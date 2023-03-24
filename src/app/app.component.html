@@ -1,11 +1,15 @@
 <app-header></app-header>
 <main>
-  <button disabled="true">Login</button>
-  <button disabled="true">Logout</button>
-  <button disabled="true">Paga</button>
-  <button disabled="true">Visualizza lista pagamenti</button>
-  <button disabled="true">Recensione</button>
-  <button disabled="true">Visualizza recensioni rilasciate</button>
-  <button disabled="true">Visualizza recensioni ricevute</button>
+  <nav>
+    <button disabled="true">Login</button>
+    <button disabled="true">Logout</button>
+    <button disabled="true">Paga</button>
+    <button routerLink="/payments">Visualizza lista pagamenti</button>
+    <button disabled="true">Recensione</button>
+    <button disabled="true">Visualizza recensioni rilasciate</button>
+    <button disabled="true">Visualizza recensioni ricevute</button>
+    <button disabled="true">Ricerca recensioni</button>
+  </nav>
+  <router-outlet></router-outlet>
 </main>
 <app-footer></app-footer>
