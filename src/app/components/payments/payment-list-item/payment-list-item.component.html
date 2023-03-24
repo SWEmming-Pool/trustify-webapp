@@ -1,1 +1,9 @@
-<p>payment-list-item works!</p>
+<div>
+  <p>{{ payment.id }}</p>
+  <p>{{ dateToString(payment.date) }}</p>
+  <p>{{ payment.amount }}</p>
+  <p>{{ payment.sender }}</p>
+  <p>{{ payment.receiver }}</p>
+  <fa-icon *ngIf="!payment.reviewed" [icon]="faStar"></fa-icon>
+</div>
+<hr>
