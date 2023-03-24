@@ -6,13 +6,17 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PaymentsComponent } from './components/payments/payments.component';
+import { PaymentListItemComponent } from './components/payments/payment-list-item/payment-list-item.component';
+import { PaymentComponent } from './components/payments/payment/payment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    PaymentsComponent
+    PaymentsComponent,
+    PaymentListItemComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
