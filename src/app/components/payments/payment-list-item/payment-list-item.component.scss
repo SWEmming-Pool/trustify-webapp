@@ -1,10 +1,9 @@
-div {
+.container {
   display: flex;
   flex-wrap: wrap;
-}
-
-p {
-  margin: 0.5rem;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  justify-content: space-between;
 }
 
 hr {
@@ -13,14 +12,34 @@ hr {
 }
 
 fa-icon {
-  border-radius: 50px;
   padding: unset;
   margin: unset;
-  width: 2rem;
-  height: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--dark-green);
-  color: white;
+
+  &.faStar {
+    font-size: 1.25rem;
+  }
+
+  &.faCreditCard {
+    font-size: 2rem;
+    border: 2px solid black;
+    border-radius: 50px;
+    padding: 1rem;
+  }
 }
+
+.merchantDate {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.amountReview {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+

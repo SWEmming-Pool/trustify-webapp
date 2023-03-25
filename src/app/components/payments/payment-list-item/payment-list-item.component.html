@@ -1,9 +1,12 @@
-<div>
-  <p>{{ payment.id }}</p>
-  <p>{{ dateToString(payment.date) }}</p>
-  <p>{{ payment.amount }}</p>
-  <p>{{ payment.sender }}</p>
-  <p>{{ payment.receiver }}</p>
-  <fa-icon *ngIf="!payment.reviewed" [icon]="faStar"></fa-icon>
+<div class="container">
+  <fa-icon [icon]="faCreditCard" class="faCreditCard"></fa-icon>
+  <div class="merchantDate">
+    <p class="merchant">Amazon</p>
+    <p class="paymentDate">{{ dateToString(payment.date) }}</p>
+  </div>
+  <div class="amountReview">
+    <p class="amount">{{ payment.amount }}€</p>
+    <fa-icon *ngIf="payment.reviewed" [icon]="faStar" class="faStar"></fa-icon>
+  </div>
 </div>
-<hr>
+<hr />
