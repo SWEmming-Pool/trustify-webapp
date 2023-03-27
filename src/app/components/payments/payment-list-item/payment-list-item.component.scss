@@ -4,11 +4,7 @@
   width: 100%;
   padding: 1rem 1.5rem;
   justify-content: space-between;
-}
-
-hr {
-  margin: 0;
-  border: 1px solid rgb(190, 190, 190);
+  border-top: 1px solid gray;
 }
 
 fa-icon {
@@ -23,7 +19,7 @@ fa-icon {
   }
 
   &.faCreditCard {
-    font-size: 2rem;
+    font-size: 1.5rem;
     border: 2px solid black;
     border-radius: 50px;
     padding: 1rem;
@@ -34,6 +30,9 @@ fa-icon {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  flex-grow: 2;
+  padding-left: 1.25rem;
+  justify-content: space-evenly;
 }
 
 .amountReview {
@@ -41,5 +40,13 @@ fa-icon {
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
+  flex-grow: 1;
 }
 
+.merchant{
+  font-size: 1.4rem;
+}
+
+.amount {
+  font-size: 1.5rem;
+}
