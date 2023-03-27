@@ -9,6 +9,7 @@ import { PaymentsComponent } from './components/payments/payments.component';
 import { PaymentListItemComponent } from './components/payments/payment-list-item/payment-list-item.component';
 import { PaymentComponent } from './components/payments/payment/payment.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AuthenticationComponent } from './components/authentication/authentication.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FooterComponent,
     PaymentsComponent,
     PaymentListItemComponent,
-    PaymentComponent
+    PaymentComponent,
+    AuthenticationComponent
   ],
   imports: [
     BrowserModule,
