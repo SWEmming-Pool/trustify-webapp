@@ -1,12 +1,14 @@
 .container {
   display: flex;
   flex-wrap: wrap;
-  padding: 1rem;
+  padding: clamp(.75rem, 1.5vw, 1rem);
   justify-content: space-between;
-  border: 1px solid gray;
+  border: 1px solid hsla(0, 0%, 60%, 0.5);;
   align-items: center;
   margin: 0 1rem .5rem 1rem;
   border-radius: 10px;
+  column-gap: .85rem;
+  width: 92.5vw;
 }
 
 img {
@@ -14,8 +16,8 @@ img {
   height: 2.75rem;
   width: 2.75rem;
   padding: .25rem;
-  border: 1px solid gray;
-  border-radius: 50px;
+  border: 1px solid hsla(0, 0%, 60%, 0.15);
+  border-radius: 10px;
   object-fit: cover;
   object-position: center;
   background-color: white;
@@ -26,15 +28,13 @@ img {
   flex-direction: column;
   justify-content: center;
   flex-grow: 2;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
   justify-content: space-evenly;
   width: 50%;
   row-gap: .5rem;
 }
 
 .merchantDesc {
-  font-size: 1.2rem;
+  font-size: 1rem;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -43,6 +43,7 @@ img {
 .dateAmount {
   color: hsl(0, 0%, 30%);
   font-weight: 300;
+  font-size: .9rem;
 }
 
 .merchant {
@@ -51,4 +52,14 @@ img {
 
 .desc {
   font-weight: 300;
+}
+
+button {
+  margin: 0;
+  padding-left: .5rem;
+  padding-right: .5rem;
+}
+
+h2 {
+  font-weight: 1000;
 }
