@@ -10,6 +10,7 @@ import { PaymentListItemComponent } from './components/payments/payment-list-ite
 import { PaymentComponent } from './components/payments/payment/payment.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AuthenticationComponent } from './components/authentication/authenticat
     PaymentsComponent,
     PaymentListItemComponent,
     PaymentComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
