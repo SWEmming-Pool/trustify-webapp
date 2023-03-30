@@ -72,3 +72,9 @@ button {
     cursor: not-allowed;
   }
 }
+
+app-payments {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
