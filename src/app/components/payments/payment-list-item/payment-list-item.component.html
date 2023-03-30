@@ -1,8 +1,17 @@
-<div class="container" *ngIf="!payment.reviewed">
-  <img src="{{ '../../../../../../assets/'+payment.receiver.toLowerCase()+'.png' }}" />
-  <div class="merchantDate">
-    <p class="merchant">{{ payment.receiver+' | '+payment.description }}</p>
-    <p class="paymentDate">{{ dateToString(payment.date) }}</p>
+<div class="container">
+  <img
+    src="{{
+      '../../../../../../assets/' + payment.receiver.toLowerCase() + '.png'
+    }}"
+  />
+  <div class="centralText">
+    <p class="merchantDesc">
+      <span class="merchant">{{ payment.receiver }}</span> |
+      <span class="desc">{{ payment.description }}</span>
+    </p>
+    <p class="dateAmount">
+      {{ dateToString(payment.date) + " • " + payment.amount }} ETH
+    </p>
   </div>
-  <p class="amount">{{ payment.amount }} ETH</p>
+  <button>Valuta</button>
 </div>

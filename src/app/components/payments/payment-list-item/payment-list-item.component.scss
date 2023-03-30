@@ -21,7 +21,7 @@ img {
   background-color: white;
 }
 
-.merchantDate {
+.centralText {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,15 +30,25 @@ img {
   padding-right: 1.25rem;
   justify-content: space-evenly;
   width: 50%;
+  row-gap: .5rem;
 }
 
-.merchant {
-  font-size: 1.4rem;
+.merchantDesc {
+  font-size: 1.2rem;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-.amount {
-  font-size: 1.5rem;
+.dateAmount {
+  color: hsl(0, 0%, 30%);
+  font-weight: 300;
+}
+
+.merchant {
+  font-weight: 600;
+}
+
+.desc {
+  font-weight: 300;
 }
