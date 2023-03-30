@@ -11,6 +11,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { HomeComponent } from './components/home/home.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
+import { ReviewListItemComponent } from './components/reviews/review-list-item/review-list-item.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
     PaymentListItemComponent,
     AuthenticationComponent,
     HomeComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    ReviewListItemComponent
   ],
   imports: [
     BrowserModule,

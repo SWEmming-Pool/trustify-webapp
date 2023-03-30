@@ -1,0 +1,18 @@
+<div class="container">
+  <img />
+  <div class="centralText">
+    <p class="merchantDesc">
+      <span class="merchant">{{ review.transaction }}</span> |
+      <span class="desc">{{ dateToString(review.date)}}</span>
+    </p>
+    <p class="dateAmount">
+      {{ review.text }}
+    </p>
+  </div>
+
+  <fa-icon
+    *ngFor="let item of [].constructor(review.rating)"
+    id="rateIcon"
+    [icon]="faStar"
+  ></fa-icon>
+</div>

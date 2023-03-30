@@ -1,1 +1,5 @@
-<p>reviews works!</p>
+<h2>Recensioni</h2>
+<app-review-list-item
+  *ngFor="let review of reviews"
+  [review]="review"
+></app-review-list-item>
