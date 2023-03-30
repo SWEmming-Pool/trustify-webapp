@@ -7,10 +7,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PaymentsComponent } from './components/payments/payments.component';
 import { PaymentListItemComponent } from './components/payments/payment-list-item/payment-list-item.component';
-import { PaymentComponent } from './components/payments/payment/payment.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { HomeComponent } from './components/home/home.component';
+import { ReviewsComponent } from './components/reviews/reviews.component';
 
 @NgModule({
   declarations: [
@@ -19,9 +19,9 @@ import { HomeComponent } from './components/home/home.component';
     FooterComponent,
     PaymentsComponent,
     PaymentListItemComponent,
-    PaymentComponent,
     AuthenticationComponent,
-    HomeComponent
+    HomeComponent,
+    ReviewsComponent
   ],
   imports: [
     BrowserModule,
