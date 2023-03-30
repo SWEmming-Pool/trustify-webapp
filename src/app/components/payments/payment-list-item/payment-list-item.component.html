@@ -13,5 +13,8 @@
       {{ dateToString(payment.date) + " • " + payment.amount }} ETH
     </p>
   </div>
-  <button><fa-icon [icon]="faStar"></fa-icon></button>
+  <button>
+    <fa-icon id="rateIcon" [icon]="faStar"></fa-icon>
+    <span id="rateText"> Valuta</span>
+  </button>
 </div>

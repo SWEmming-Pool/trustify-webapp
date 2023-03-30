@@ -1,13 +1,17 @@
+h2 {
+  font-weight: 1000;
+}
+
 .container {
   display: flex;
   flex-wrap: wrap;
-  padding: clamp(.75rem, 1.5vw, 1rem);
+  padding: clamp(0.75rem, 1.5vw, 1rem);
   justify-content: space-between;
-  border: 1px solid hsla(0, 0%, 60%, 0.5);;
+  border: 1px solid hsla(0, 0%, 60%, 0.5);
   align-items: center;
-  margin: 0 1rem .5rem 1rem;
+  margin: 0 1rem 0.5rem 1rem;
   border-radius: 10px;
-  column-gap: .85rem;
+  column-gap: 0.85rem;
   width: 92.5vw;
 }
 
@@ -15,7 +19,7 @@ img {
   margin: unset;
   height: 2.75rem;
   width: 2.75rem;
-  padding: .25rem;
+  padding: 0.25rem;
   border: 1px solid hsla(0, 0%, 60%, 0.15);
   border-radius: 10px;
   object-fit: cover;
@@ -30,7 +34,7 @@ img {
   flex-grow: 2;
   justify-content: space-evenly;
   width: 50%;
-  row-gap: .5rem;
+  row-gap: 0.5rem;
 }
 
 .merchantDesc {
@@ -43,7 +47,7 @@ img {
 .dateAmount {
   color: hsl(0, 0%, 30%);
   font-weight: 300;
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
 .merchant {
@@ -56,10 +60,45 @@ img {
 
 button {
   margin: 0;
-  padding-left: .5rem;
-  padding-right: .5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
-h2 {
-  font-weight: 1000;
+#rateText {
+  display: none;
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .container {
+    width: 70vw;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .container {
+    width: 50vw;
+  }
+
+  img {
+    height: 3.5rem;
+    width: 3.5rem;
+  }
+
+  .merchantDesc {
+    font-size: 1.2rem;
+  }
+
+  .dateAmount {
+    font-size: 1rem;
+  }
+
+  #rateText {
+    display: block;
+  }
+
+  #rateIcon {
+    display: none;
+  }
 }
