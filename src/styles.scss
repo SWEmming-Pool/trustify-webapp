@@ -39,6 +39,12 @@ h1 {
   text-transform: uppercase;
 }
 
+h2 {
+  text-transform: uppercase;
+  font-weight: lighter;
+  color: var(--dark-green);
+}
+
 app-payments {
   width: 100%;
 }

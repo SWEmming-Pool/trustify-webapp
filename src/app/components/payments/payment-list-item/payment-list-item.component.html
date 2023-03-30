@@ -1,11 +1,8 @@
-<div class="container">
-  <fa-icon [icon]="faCreditCard" class="faCreditCard"></fa-icon>
+<div class="container" *ngIf="!payment.reviewed">
+  <img src="{{ '../../../../../../assets/'+payment.receiver.toLowerCase()+'.png' }}" />
   <div class="merchantDate">
-    <p class="merchant">Amazon</p>
+    <p class="merchant">{{ payment.receiver+' | '+payment.description }}</p>
     <p class="paymentDate">{{ dateToString(payment.date) }}</p>
   </div>
-  <div class="amountReview">
-    <p class="amount">{{ payment.amount }}€</p>
-    <fa-icon *ngIf="payment.reviewed" [icon]="faStar" class="faStar"></fa-icon>
-  </div>
+  <p class="amount">{{ payment.amount }} ETH</p>
 </div>
