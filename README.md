@@ -5,6 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Running in container
 
 Run `docker-compose up -d --build`
+Then navigate to `http://localhost:4200/`
 
 ## Development server
 
