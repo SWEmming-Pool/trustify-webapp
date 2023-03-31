@@ -10,7 +10,7 @@
       <span class="desc">{{ payment.description }}</span>
     </p>
     <p class="dateAmount">
-      {{ dateToString(payment.date) + " • " + payment.amount }} ETH
+      {{ payment.date | date: "yyyy-MM-dd" + " • " + payment.amount }} ETH
     </p>
   </div>
   <button>

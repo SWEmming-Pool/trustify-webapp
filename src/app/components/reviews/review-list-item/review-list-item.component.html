@@ -1,18 +1,33 @@
 <div class="container">
-  <img />
-  <div class="centralText">
-    <p class="merchantDesc">
-      <span class="merchant">{{ review.transaction }}</span> |
-      <span class="desc">{{ dateToString(review.date)}}</span>
-    </p>
-    <p class="dateAmount">
-      {{ review.text }}
-    </p>
+  <div class="upperSection">
+    <div class="merchant">
+      <img
+        class="merchantLogo"
+        src="../../../../assets/amazon.png
+    "
+      />
+      <div class="merchantDetails">
+        <p class="merchantName">Amazon</p>
+        <p class="merchantAddress">0x1234567890</p>
+      </div>
+    </div>
+    <div class="starsDate">
+      <div class="stars">
+        <fa-icon
+          *ngFor="let item of [].constructor(review.rating)"
+          id="rateIcon"
+          [icon]="faStar"
+        ></fa-icon>
+      </div>
+      <p class="reviewDate">{{ review.date | date : "yyyy-MM-dd" }}</p>
+    </div>
   </div>
-
-  <fa-icon
-    *ngFor="let item of [].constructor(review.rating)"
-    id="rateIcon"
-    [icon]="faStar"
-  ></fa-icon>
+  <p class="reviewText">{{ review.text }}</p>
+  <div class="lowerSection">
+    <fa-icon class="reviewerAvatar" [icon]="faUser" [size]="'xl'"></fa-icon>
+    <div class="reviewerDetails">
+      <p class="reviewerName">Mario Rossi</p>
+      <p class="reviewerAddress">0x0987654321</p>
+    </div>
+  </div>
 </div>

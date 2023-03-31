@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Review } from '../Reviews';
-import { faStar } from '@fortawesome/free-regular-svg-icons';
+import { faStar, faUser } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-review-list-item',
@@ -9,8 +9,7 @@ import { faStar } from '@fortawesome/free-regular-svg-icons';
 })
 export class ReviewListItemComponent {
   faStar = faStar;
-  dateToString(date: Date): string {
-    return date.toISOString().split('T')[0];
-  }
+  faUser = faUser;
+
   @Input() review!: Review;
 }
