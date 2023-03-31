@@ -5,8 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { PaymentsComponent } from './components/payments/payments.component';
-import { PaymentListItemComponent } from './components/payments/payment-list-item/payment-list-item.component';
+import { TransactionsComponent } from './components/transactions/transactions.component';
+import { TransactionListItemComponent } from './components/transactions/transaction-list-item/transaction-list-item.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { HomeComponent } from './components/home/home.component';
@@ -18,8 +18,8 @@ import { ReviewListItemComponent } from './components/reviews/review-list-item/r
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    PaymentsComponent,
-    PaymentListItemComponent,
+    TransactionsComponent,
+    TransactionListItemComponent,
     AuthenticationComponent,
     HomeComponent,
     ReviewsComponent,

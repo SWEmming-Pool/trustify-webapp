@@ -1,0 +1,20 @@
+<div class="container">
+  <img
+    src="{{
+      '../../../../../../assets/' + transaction.receiver.toLowerCase() + '.png'
+    }}"
+  />
+  <div class="centralText">
+    <p class="merchantDesc">
+      <span class="merchant">{{ transaction.receiver }}</span> |
+      <span class="desc">{{ transaction.description }}</span>
+    </p>
+    <p class="dateAmount">
+      {{ transaction.date | date: "yyyy-MM-dd" + " • " + transaction.amount }} ETH
+    </p>
+  </div>
+  <button>
+    <fa-icon id="rateIcon" [icon]="faStar"></fa-icon>
+    <span id="rateText"> Valuta</span>
+  </button>
+</div>

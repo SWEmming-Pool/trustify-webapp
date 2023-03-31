@@ -1,4 +1,4 @@
-export interface Payment {
+export interface transaction {
   id: string;
   date: Date;
   amount: number;
@@ -7,7 +7,7 @@ export interface Payment {
   description: string;
 }
 
-export const PAYMENTS: Payment[] = [
+export const TRANSACTIONS: transaction[] = [
   {
     id: '1',
     date: new Date('2023-03-24'),
