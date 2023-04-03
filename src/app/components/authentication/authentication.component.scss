@@ -1,3 +1,7 @@
+h2 {
+  padding: 1rem 0;
+}
+
 #userInfo {
   display: flex;
   justify-content: space-between;
@@ -6,9 +10,9 @@
 
   border: 1px solid hsla(0, 0%, 60%, 0.2);
   padding: 1rem;
-  margin: 1rem 1rem 1rem 1rem;
   border-radius: 10px;
   width: 92.5vw;
+  max-width: fit-content;
   background-color: white;
 
   fa-icon {
@@ -26,12 +30,14 @@
     color: var(--dark-green);
   }
 
-  h2 {
+  h3 {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     color: black;
     text-transform: none;
     font-size: 1.2rem;
+    font-weight: 300;
   }
 }
+
