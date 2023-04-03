@@ -1,6 +1,5 @@
 <nav>
-  <button (click)="login()"><img src="./assets/metamask.svg" /> Login</button>
-  <button disabled="true"><img src="./assets/metamask.svg" />Logout</button>
+  <button (click)="login()"><img src="./assets/metamask.svg" />{{ !isLoggedIn() ? "Login" : "Account"  }}</button>
   <button disabled="true">Paga</button>
   <button routerLink="/transactions">Pagamenti da recensire</button>
   <button routerLink="/reviews" >Visualizza recensioni</button>

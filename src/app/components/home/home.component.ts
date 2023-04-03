@@ -18,4 +18,8 @@ export class HomeComponent {
       this.router.navigate(['/auth']);
     });
   }
+
+  isLoggedIn(): boolean {
+    return this.authenticationService.isLoggedIn();
+  }
 }

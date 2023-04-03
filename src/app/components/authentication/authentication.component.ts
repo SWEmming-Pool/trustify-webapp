@@ -7,18 +7,9 @@ import { AuthenticationService } from '../../services/authentication.service';
   styleUrls: ['./authentication.component.scss'],
 })
 export class AuthenticationComponent {
-  //accountAddress: string;
+  accountAddress: string;
 
-  /*constructor(private authenticationService: AuthenticationService) {
-    if (!this.authenticationService.isLoggedIn()) {
-      console.log('Please log in to MetaMask');
-      this.authenticationService.login();
-      this.accountAddress = this.authenticationService.getAccountAddress();
-      return;
-    } else {
-      console.log('Already logged in to MetaMask');
-      this.accountAddress = this.authenticationService.getAccountAddress();
-      return;
-    }
-  }*/
+  constructor(private authenticationService: AuthenticationService) {
+    this.accountAddress = authenticationService.getAccountAddress();
+  }
 }
