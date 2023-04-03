@@ -11,7 +11,7 @@ declare global {
   providedIn: 'root',
 })
 export class AuthenticationService {
-  public static account: string;
+  public account!: string;
 
   constructor() {
     console.log('Costruito authentication service');
@@ -23,16 +23,28 @@ export class AuthenticationService {
       const accounts = await window.ethereum.request({
         method: 'eth_requestAccounts',
       });
-      AuthenticationService.account = accounts[0];
+      this.account = accounts[0];
+      sessionStorage.setItem('account', this.account);
     } else {
       console.error('Please install MetaMask');
     }
   }
 
   public isLoggedIn(): boolean {
+    window.ethereum.on('accountsChanged', (accounts: Array<string>) => {
+      if (accounts.length <= 0) {
+        console.log('logged out');
+        this.account = '';
+        sessionStorage.removeItem('account');
+      }
+    });
+
     return (
-      AuthenticationService.account != null &&
-      AuthenticationService.account !== 'undefined'
+      (this.account != null &&
+        this.account !== undefined &&
+        this.account != '') ||
+      (sessionStorage.getItem('account') != null &&
+        sessionStorage.getItem('account') !== undefined)
     );
   }
 }
