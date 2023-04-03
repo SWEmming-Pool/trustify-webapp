@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-authentication',
@@ -8,6 +9,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 })
 export class AuthenticationComponent {
   accountAddress: string;
+  faUser = faUser;
 
   constructor(private authenticationService: AuthenticationService) {
     this.accountAddress = authenticationService.getAccountAddress();

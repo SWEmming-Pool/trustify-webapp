@@ -1,0 +1,37 @@
+#userInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: .75rem;
+
+  border: 1px solid hsla(0, 0%, 60%, 0.2);
+  padding: 1rem;
+  margin: 1rem 1rem 1rem 1rem;
+  border-radius: 10px;
+  width: 92.5vw;
+  background-color: white;
+
+  fa-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: unset;
+    height: 3rem;
+    min-width: 3rem;
+    width: 3rem;
+    padding: 0.25rem;
+    border: 1px solid hsla(0, 0%, 50%, 0.15);
+    border-radius: 50px;
+    color: var(--dark-green);
+  }
+
+  h2 {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: black;
+    text-transform: none;
+    font-size: 1.2rem;
+  }
+}
