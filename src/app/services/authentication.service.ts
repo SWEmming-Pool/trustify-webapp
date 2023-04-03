@@ -11,9 +11,11 @@ declare global {
   providedIn: 'root',
 })
 export class AuthenticationService {
-  private account!: string;
+  public static account: string;
 
-  constructor() {}
+  constructor() {
+    console.log('Costruito authentication service');
+  }
 
   public async login() {
     const provider = await detectEthereumProvider();
@@ -21,17 +23,16 @@ export class AuthenticationService {
       const accounts = await window.ethereum.request({
         method: 'eth_requestAccounts',
       });
-      this.account = accounts[0];
+      AuthenticationService.account = accounts[0];
     } else {
       console.error('Please install MetaMask');
     }
   }
 
   public isLoggedIn(): boolean {
-    return this.account != null && this.account !== 'undefined';
-  }
-
-  public getAccountAddress(): string {
-    return this.account;
+    return (
+      AuthenticationService.account != null &&
+      AuthenticationService.account !== 'undefined'
+    );
   }
 }

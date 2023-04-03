@@ -14,9 +14,13 @@ export class HomeComponent {
   ) {}
 
   async login() {
-    await this.authenticationService.login().then(() => {
+    if (!this.authenticationService.isLoggedIn()) {
+      await this.authenticationService.login().then(() => {
+        this.router.navigate(['/auth']);
+      });
+    } else {
       this.router.navigate(['/auth']);
-    });
+    }
   }
 
   isLoggedIn(): boolean {
