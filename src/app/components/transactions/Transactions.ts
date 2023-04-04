@@ -17,7 +17,7 @@ export const TRANSACTIONS: transaction[] = [
     description: 'Order #123456',
   },
   {
-    id: '1',
+    id: '2',
     date: new Date('2023-03-22'),
     amount: 0.25,
     sender: '0x123abc456def890ghi',
@@ -33,7 +33,7 @@ export const TRANSACTIONS: transaction[] = [
     description: '#4578 - 2x Nike Air Max 90',
   },
   {
-    id: '1',
+    id: '3',
     date: new Date('2023-01-24'),
     amount: 0.35,
     sender: '0x123abc456def890ghi',
@@ -41,7 +41,7 @@ export const TRANSACTIONS: transaction[] = [
     description: 'Order #53849 Champion tuta',
   },
   {
-    id: '1',
+    id: '4',
     date: new Date('2023-02-27'),
     amount: 1.4,
     sender: '0x123abc456def890ghi',

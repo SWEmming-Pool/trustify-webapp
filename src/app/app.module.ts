@@ -12,6 +12,7 @@ import { AuthenticationComponent } from './components/authentication/authenticat
 import { HomeComponent } from './components/home/home.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { ReviewListItemComponent } from './components/reviews/review-list-item/review-list-item.component';
+import { ReviewTransactionComponent } from './components/review-transaction/review-transaction.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ReviewListItemComponent } from './components/reviews/review-list-item/r
     AuthenticationComponent,
     HomeComponent,
     ReviewsComponent,
-    ReviewListItemComponent
+    ReviewListItemComponent,
+    ReviewTransactionComponent
   ],
   imports: [
     BrowserModule,

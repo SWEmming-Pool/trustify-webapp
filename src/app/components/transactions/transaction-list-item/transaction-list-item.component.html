@@ -10,7 +10,8 @@
       <span class="desc">{{ transaction.description }}</span>
     </p>
     <p class="dateAmount">
-      {{ transaction.date | date: "yyyy-MM-dd" + " • " + transaction.amount }} ETH
+      {{ transaction.date | date : "yyyy-MM-dd" + " • " + transaction.amount }}
+      ETH
     </p>
   </div>
   <button>
