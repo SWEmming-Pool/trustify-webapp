@@ -11,4 +11,6 @@ export class TransactionListItemComponent {
   faStar = faStar;
 
   @Input() transaction!: transaction;
+
+  constructor() {}
 }
