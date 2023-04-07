@@ -18,33 +18,45 @@ export class AuthenticationService {
   }
 
   public async login() {
-    const provider = await detectEthereumProvider();
-    if (provider) {
-      const accounts = await window.ethereum.request({
-        method: 'eth_requestAccounts',
-      });
-      this.account = accounts[0];
-      sessionStorage.setItem('account', this.account);
+    if (this.isInstalled()) {
+      const provider = await detectEthereumProvider();
+      if (provider) {
+        const accounts = await window.ethereum.request({
+          method: 'eth_requestAccounts',
+        });
+        this.account = accounts[0];
+        sessionStorage.setItem('account', this.account);
+      } else {
+        console.error('Please install MetaMask');
+      }
     } else {
       console.error('Please install MetaMask');
     }
   }
 
-  public isLoggedIn(): boolean {
-    window.ethereum.on('accountsChanged', (accounts: Array<string>) => {
-      if (accounts.length <= 0) {
-        console.log('logged out');
-        this.account = '';
-        sessionStorage.removeItem('account');
-      }
-    });
+  public isInstalled(): boolean {
+    return window.ethereum !== undefined;
+  }
 
-    return (
-      (this.account != null &&
-        this.account !== undefined &&
-        this.account != '') ||
-      (sessionStorage.getItem('account') != null &&
-        sessionStorage.getItem('account') !== undefined)
-    );
+  public isLoggedIn(): boolean {
+    if (this.isInstalled()) {
+      window.ethereum.on('accountsChanged', (accounts: Array<string>) => {
+        if (accounts.length <= 0) {
+          console.log('logged out');
+          this.account = '';
+          sessionStorage.removeItem('account');
+        }
+      });
+
+      return (
+        (this.account != null &&
+          this.account !== undefined &&
+          this.account != '') ||
+        (sessionStorage.getItem('account') != null &&
+          sessionStorage.getItem('account') !== undefined)
+      );
+    } else {
+      return false;
+    }
   }
 }
