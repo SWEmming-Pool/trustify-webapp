@@ -27,10 +27,10 @@ export class AuthenticationService {
         this.account = accounts[0];
         sessionStorage.setItem('account', this.account);
       } else {
-        console.error('Please install MetaMask');
+        alert('Please install MetaMask');
       }
     } else {
-      console.error('Please install MetaMask');
+      alert('Please install MetaMask');
     }
   }
 
