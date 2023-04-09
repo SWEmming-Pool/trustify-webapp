@@ -19,6 +19,11 @@
         <fa-icon
           *ngFor="let item of [].constructor(review.rating)"
           id="rateIcon"
+          [icon]="faStarSolid"
+        ></fa-icon>
+        <fa-icon
+          *ngFor="let item of [].constructor(5 - review.rating)"
+          id="rateIcon"
           [icon]="faStar"
         ></fa-icon>
       </div>
