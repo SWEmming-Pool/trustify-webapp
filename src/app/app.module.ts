@@ -12,7 +12,7 @@ import { UserComponent } from './components/user/user.component';
 import { HomeComponent } from './components/home/home.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { ReviewListItemComponent } from './components/reviews/review-list-item/review-list-item.component';
-import { ReviewTransactionComponent } from './components/review-transaction/review-transaction.component';
+import { LeaveReviewComponent } from './components/leave-review/leave-review.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { ReviewTransactionComponent } from './components/review-transaction/revi
     HomeComponent,
     ReviewsComponent,
     ReviewListItemComponent,
-    ReviewTransactionComponent
+    LeaveReviewComponent
   ],
   imports: [
     BrowserModule,
