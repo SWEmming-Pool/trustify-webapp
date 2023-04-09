@@ -4,11 +4,11 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-authentication',
-  templateUrl: './authentication.component.html',
-  styleUrls: ['./authentication.component.scss'],
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.scss'],
 })
-export class AuthenticationComponent {
+export class UserComponent {
   accountAddress!: string;
   faUser = faUser;
 
