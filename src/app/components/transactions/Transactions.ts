@@ -4,6 +4,8 @@ export interface transaction {
   amount: number;
   sender: string;
   receiver: string;
+  // receiverName non ci sarà nella versione finale, almeno non in questa forma. Qui viene inserito così per motivi di visualizzazione
+  receiverName: string;
   description: string;
 }
 
@@ -13,7 +15,8 @@ export const TRANSACTIONS: transaction[] = [
     date: new Date('2023-03-24'),
     amount: 0.5,
     sender: '0x123abc456def890ghi',
-    receiver: 'Amazon',
+    receiver: '0x123abc456def890ghi',
+    receiverName: 'Amazon',
     description: 'Order #123456',
   },
   {
@@ -21,7 +24,8 @@ export const TRANSACTIONS: transaction[] = [
     date: new Date('2023-03-22'),
     amount: 0.25,
     sender: '0x123abc456def890ghi',
-    receiver: 'AliExpress',
+    receiver: '0x123abc456def890ghi',
+    receiverName: 'AliExpress',
     description: 'Order #354657',
   },
   {
@@ -29,7 +33,8 @@ export const TRANSACTIONS: transaction[] = [
     date: new Date('2023-02-14'),
     amount: 2,
     sender: '0x123abc456def890ghi',
-    receiver: 'Nike',
+    receiver: '0x123abc456def890ghi',
+    receiverName: 'Nike',
     description: '#4578 - 2x Nike Air Max 90',
   },
   {
@@ -37,7 +42,8 @@ export const TRANSACTIONS: transaction[] = [
     date: new Date('2023-01-24'),
     amount: 0.35,
     sender: '0x123abc456def890ghi',
-    receiver: 'Zalando',
+    receiver: '0x123abc456def890ghi',
+    receiverName: 'Zalando',
     description: 'Order #53849 Champion tuta',
   },
   {
@@ -45,7 +51,8 @@ export const TRANSACTIONS: transaction[] = [
     date: new Date('2023-02-27'),
     amount: 1.4,
     sender: '0x123abc456def890ghi',
-    receiver: 'AliExpress',
+    receiver: '0x123abc456def890ghi',
+    receiverName: 'AliExpress',
     description: 'Order #123456',
   },
 ];

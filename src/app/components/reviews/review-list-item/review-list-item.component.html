@@ -3,12 +3,15 @@
     <div class="merchant">
       <img
         class="merchantLogo"
-        src="../../../../assets/amazon.png
-    "
+        src="{{
+          '../../../../assets/' +
+            review.transaction.receiverName.toLowerCase() +
+            '.png'
+        }}"
       />
       <div class="merchantDetails">
-        <p class="merchantName">Amazon</p>
-        <p class="merchantAddress">0x1234567890</p>
+        <p class="merchantName">{{ review.transaction.receiverName }}</p>
+        <p class="merchantAddress">{{ review.transaction.receiver }}</p>
       </div>
     </div>
     <div class="starsDate">
@@ -26,8 +29,7 @@
   <div class="lowerSection">
     <fa-icon class="reviewerAvatar" [icon]="faUser" [size]="'xl'"></fa-icon>
     <div class="reviewerDetails">
-      <p class="reviewerName">Mario Rossi</p>
-      <p class="reviewerAddress">0x0987654321</p>
+      <p class="reviewerAddress">{{ review.transaction.sender }}</p>
     </div>
   </div>
 </div>
