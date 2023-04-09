@@ -1,1 +1,37 @@
-<p>review-transaction works!</p>
+<h2>Lascia una recensione</h2>
+
+<div class="transaction">
+  <img class="merchantLogo" src="../../../../../assets/amazon.png" />
+  <div class="centralText">
+    <h3 class="merchantDesc">
+      <span class="merchant">Amazon</span> |
+      <span class="desc">Ordewr #1234565</span>
+    </h3>
+    <p class="dateAmount">2023-04-21 • 4 ETH</p>
+  </div>
+</div>
+
+<div class="review">
+  <h4>Titolo</h4>
+  <div class="stars">
+    <fa-icon
+      *ngFor="let item of [].constructor(3)"
+      id="rateIcon"
+      [icon]="faStarSolid"
+    ></fa-icon>
+    <fa-icon
+      *ngFor="let item of [].constructor(5 - 3)"
+      id="rateIcon"
+      [icon]="faStar"
+    ></fa-icon>
+  </div>
+
+  <p class="reviewText">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum commodi
+    laboriosam suscipit vero expedita accusantium, nesciunt fugit vitae quae
+    quam error similique natus consequatur autem, adipisci facilis, reiciendis
+    aspernatur asperiores.
+  </p>
+</div>
+
+<button class="submitReview">Invia</button>
