@@ -12,26 +12,28 @@
 </div>
 
 <div class="review">
-  <h4>Titolo</h4>
+  <div class="reviewTitle">
+    <h4>Titolo</h4>
+    <input
+      type="text"
+      placeholder="Inserisci il titolo della recensione"
+      maxlength="50"
+    />
+  </div>
+
   <div class="stars">
     <fa-icon
-      *ngFor="let item of [].constructor(3)"
-      id="rateIcon"
-      [icon]="faStarSolid"
-    ></fa-icon>
-    <fa-icon
-      *ngFor="let item of [].constructor(5 - 3)"
+      *ngFor="let item of [].constructor(5)"
       id="rateIcon"
       [icon]="faStar"
+      [size]="'2xl'"
     ></fa-icon>
   </div>
 
-  <p class="reviewText">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum commodi
-    laboriosam suscipit vero expedita accusantium, nesciunt fugit vitae quae
-    quam error similique natus consequatur autem, adipisci facilis, reiciendis
-    aspernatur asperiores.
-  </p>
+  <div class="reviewText">
+    <h4>Testo</h4>
+    <textarea placeholder="Inserisci il testo della recensione" maxlength="500"></textarea>
+  </div>
 </div>
 
 <button class="submitReview">Invia</button>
