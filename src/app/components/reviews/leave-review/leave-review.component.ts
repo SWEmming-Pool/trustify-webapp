@@ -11,4 +11,23 @@ export class LeaveReviewComponent {
   faStar = faStar;
   faStarSolid = faStarSolid;
   faUser = faUser;
+  stars: HTMLCollection;
+
+  constructor() {
+    this.stars = document.getElementsByClassName('starIcon');
+  }
+
+  fillStars(index: number) {
+    console.log(index);
+    console.log(this.stars);
+
+    for (let star of this.stars) {
+      if (parseInt(star.id) <= index) {
+        console.log("coloro"+star.id);
+        star.setAttribute('[icon]', 'faStarSolid');
+      } else {
+        star.setAttribute('[icon]', 'faStar');
+      }
+    }
+  }
 }

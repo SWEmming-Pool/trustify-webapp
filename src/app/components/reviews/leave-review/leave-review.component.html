@@ -21,18 +21,23 @@
     />
   </div>
 
-  <div class="stars">
+  <div id="stars">
     <fa-icon
-      *ngFor="let item of [].constructor(5)"
-      id="rateIcon"
+      class="starIcon"
+      *ngFor="let star of [].constructor(5); let i = index"
+      id="{{ i+1 }}"
       [icon]="faStar"
       [size]="'2xl'"
+      (mouseenter)="fillStars(i+1)"
     ></fa-icon>
   </div>
 
   <div class="reviewText">
     <h4>Testo</h4>
-    <textarea placeholder="Inserisci il testo della recensione" maxlength="500"></textarea>
+    <textarea
+      placeholder="Inserisci il testo della recensione"
+      maxlength="500"
+    ></textarea>
   </div>
 </div>
 
