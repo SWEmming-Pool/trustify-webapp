@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { faStar, faUser } from '@fortawesome/free-regular-svg-icons';
+import { faStar } from '@fortawesome/free-regular-svg-icons';
 import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -8,25 +8,35 @@ import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./leave-review.component.scss'],
 })
 export class LeaveReviewComponent {
-  faStar = faStar;
+  faStar = Array(5).fill(faStar);
   faStarSolid = faStarSolid;
-  faUser = faUser;
   stars: HTMLCollection;
+  rating: number;
 
   constructor() {
     this.stars = document.getElementsByClassName('starIcon');
+    this.rating = 0;
   }
 
-  fillStars(index: number) {
-    console.log(index);
-    console.log(this.stars);
+  fillStars(index: number) {}
 
+  setRating(index: number) {
     for (let star of this.stars) {
-      if (parseInt(star.id) <= index) {
-        console.log("coloro"+star.id);
-        star.setAttribute('[icon]', 'faStarSolid');
+      if (parseInt(star.id) > index) {
+        this.faStar[parseInt(star.id)] = faStar;
       } else {
-        star.setAttribute('[icon]', 'faStar');
+        this.faStar[parseInt(star.id)] = faStarSolid;
+      }
+    }
+
+    this.rating = index + 1;
+    console.log(this.rating);
+  }
+
+  resetStars() {
+    if (this.rating === 0) {
+      for (let star of this.stars) {
+        this.faStar[parseInt(star.id)] = faStar;
       }
     }
   }

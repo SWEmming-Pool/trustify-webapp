@@ -25,10 +25,10 @@
     <fa-icon
       class="starIcon"
       *ngFor="let star of [].constructor(5); let i = index"
-      id="{{ i+1 }}"
-      [icon]="faStar"
+      id="{{ i }}"
+      [icon]="faStar[i]"
       [size]="'2xl'"
-      (mouseenter)="fillStars(i+1)"
+      (click)="setRating(i)"
     ></fa-icon>
   </div>
 
