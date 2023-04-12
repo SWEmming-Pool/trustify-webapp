@@ -18,8 +18,6 @@ export class LeaveReviewComponent {
     this.rating = 0;
   }
 
-  fillStars(index: number) {}
-
   setRating(index: number) {
     for (let star of this.stars) {
       if (parseInt(star.id) > index) {
@@ -31,13 +29,5 @@ export class LeaveReviewComponent {
 
     this.rating = index + 1;
     console.log(this.rating);
-  }
-
-  resetStars() {
-    if (this.rating === 0) {
-      for (let star of this.stars) {
-        this.faStar[parseInt(star.id)] = faStar;
-      }
-    }
   }
 }
