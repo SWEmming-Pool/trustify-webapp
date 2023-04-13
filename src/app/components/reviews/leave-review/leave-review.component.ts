@@ -14,23 +14,27 @@ export class LeaveReviewComponent implements OnInit, OnDestroy {
   faStar = Array(5).fill(faStar);
   faStarSolid = faStarSolid;
   stars!: HTMLCollection;
-  rating!: number;
   private sub: any;
-  transaction: Transaction | undefined;
+  transaction!: Transaction;
+  review: Review;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) {
+    this.sub = this.route.params.subscribe((params) => {
+      let searchedTransaction = TRANSACTIONS.find(
+        (transaction: { id: any }) => transaction.id === params['transactionId']
+      );
+      if (searchedTransaction) {
+        this.transaction = searchedTransaction;
+      }
+    });
+    this.review = new Review(this.transaction);
+  }
 
   ngOnInit() {
     this.stars = document.getElementsByClassName('starIcon');
-    this.rating = 0;
-    this.sub = this.route.params.subscribe((params) => {
-      this.transaction = TRANSACTIONS.find(
-        (transaction: { id: any }) => transaction.id === params['transactionId']
-      );
-    });
   }
 
-  setRating(index: number) {
+  fillStars(index: number) {
     for (let star of this.stars) {
       if (parseInt(star.id) > index) {
         this.faStar[parseInt(star.id)] = faStar;
@@ -38,9 +42,12 @@ export class LeaveReviewComponent implements OnInit, OnDestroy {
         this.faStar[parseInt(star.id)] = faStarSolid;
       }
     }
+  }
 
-    this.rating = index + 1;
-    console.log(this.rating);
+  onSubmit() {
+    this.review.date = new Date();
+    REVIEWS.push(this.review);
+    console.log(this.review);
   }
 
   ngOnDestroy() {

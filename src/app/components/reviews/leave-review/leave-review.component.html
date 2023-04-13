@@ -4,49 +4,77 @@
   <img
     class="merchantLogo"
     src="{{
-      '../../../../../assets/' + transaction?.receiverName?.toLowerCase() + '.png'
+      '../../../../../assets/' + transaction.receiverName.toLowerCase() + '.png'
     }}"
   />
   <div class="centralText">
     <h3 class="merchantDesc">
-      <span class="merchant">{{ transaction?.receiverName }}</span> |
-      <span class="desc">{{ transaction?.description }}</span>
+      <span class="merchant">{{ transaction.receiverName }}</span> |
+      <span class="desc">{{ transaction.description }}</span>
     </h3>
     <p class="dateAmount">
-      {{ transaction?.date | date : "yyyy-MM-dd" }} •
-      {{ transaction?.amount }} ETH
+      {{ transaction.date | date : "yyyy-MM-dd" }} •
+      {{ transaction.amount }} ETH
     </p>
   </div>
 </div>
 
-<div class="review">
+<form class="review" #reviewForm="ngForm" (ngSubmit)="onSubmit()">
   <div class="reviewTitle">
-    <h4>Titolo</h4>
+    <h4><label for="title">Titolo</label></h4>
     <input
       type="text"
+      id="title"
       placeholder="Inserisci il titolo della recensione"
       maxlength="50"
+      required
+      [(ngModel)]="review.title"
+      name="title"
     />
   </div>
 
   <div id="stars">
-    <fa-icon
-      class="starIcon"
+    <input
+      type="radio"
+      id="{{ 'star' + i }}"
+      value="{{ i + 1 }}"
       *ngFor="let star of [].constructor(5); let i = index"
-      id="{{ i }}"
-      [icon]="faStar[i]"
-      [size]="'2xl'"
-      (click)="setRating(i)"
-    ></fa-icon>
+      [(ngModel)]="review.rating"
+      name="rating"
+      required
+    />
+    <label
+      class="full"
+      for="{{ 'star' + i }}"
+      *ngFor="let star of [].constructor(5); let i = index"
+    >
+      <fa-icon
+        class="starIcon"
+        id="{{ i }}"
+        [icon]="faStar[i]"
+        [size]="'2xl'"
+        (click)="fillStars(i)"
+      ></fa-icon>
+    </label>
   </div>
 
   <div class="reviewText">
-    <h4>Testo</h4>
+    <h4><label for="text">Testo</label></h4>
     <textarea
+      id="text"
       placeholder="Inserisci il testo della recensione"
       maxlength="500"
+      required
+      [(ngModel)]="review.text"
+      name="text"
     ></textarea>
   </div>
-</div>
 
-<button class="submitReview">Invia</button>
+  <button
+    type="submit"
+    class="submitReview"
+    [disabled]="!reviewForm.form.valid"
+  >
+    Invia
+  </button>
+</form>

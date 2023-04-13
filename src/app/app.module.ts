@@ -13,6 +13,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { ReviewListItemComponent } from './components/reviews/review-list-item/review-list-item.component';
 import { LeaveReviewComponent } from './components/reviews/leave-review/leave-review.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { LeaveReviewComponent } from './components/reviews/leave-review/leave-re
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

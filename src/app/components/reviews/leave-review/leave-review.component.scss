@@ -7,6 +7,7 @@ h2 {
 button {
   padding-left: 2rem;
   padding-right: 2rem;
+  align-self: center;
 }
 
 .transaction,
@@ -97,11 +98,15 @@ button {
   #stars {
     display: flex;
     align-self: center;
+
+    input {
+      display: none;
+    }
   }
 
   .starIcon {
     cursor: pointer;
-    padding: 0 .5rem;
+    padding: 0 0.5rem;
   }
 
   .reviewText {
