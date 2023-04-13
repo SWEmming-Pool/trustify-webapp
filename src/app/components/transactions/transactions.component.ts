@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { transaction, TRANSACTIONS} from './Transactions';
+import { Transaction, TRANSACTIONS} from './Transactions';
 
 @Component({
   selector: 'app-transactions',
@@ -7,6 +7,6 @@ import { transaction, TRANSACTIONS} from './Transactions';
   styleUrls: ['./transactions.component.scss']
 })
 export class TransactionsComponent {
-  transactions: transaction[] = TRANSACTIONS;
+  transactions: Transaction[] = TRANSACTIONS;
 
 }

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { transaction } from '../Transactions';
+import { Transaction } from '../Transactions';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
@@ -10,7 +10,7 @@ import { faStar } from '@fortawesome/free-regular-svg-icons';
 export class TransactionListItemComponent {
   faStar = faStar;
 
-  @Input() transaction!: transaction;
+  @Input() transaction!: Transaction;
 
   constructor() {}
 }

@@ -14,7 +14,7 @@
       ETH
     </p>
   </div>
-  <button>
+  <button [routerLink]="['/leave-review', transaction.id]">
     <fa-icon id="rateIcon" [icon]="faStar"></fa-icon>
     <span id="rateText"> Valuta</span>
   </button>

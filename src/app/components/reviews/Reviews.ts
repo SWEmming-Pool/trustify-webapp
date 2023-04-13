@@ -1,7 +1,7 @@
-import { transaction, TRANSACTIONS } from "../transactions/Transactions";
+import { Transaction, TRANSACTIONS } from "../transactions/Transactions";
 
 export interface Review {
-  transaction: transaction;
+  transaction: Transaction;
   date: Date;
   rating: number;
   text: string;

@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'transactions', component: TransactionsComponent },
   { path: 'user', component: UserComponent },
   { path: 'reviews', component: ReviewsComponent },
-  { path: 'leave-review', component: LeaveReviewComponent },
+  { path: 'leave-review/:transactionId', component: LeaveReviewComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
