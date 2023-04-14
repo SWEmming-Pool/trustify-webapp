@@ -59,7 +59,7 @@ export class ContractService {
 
     this.Contract.methods
       .sendTransaction(receiverAddress)
-      .send({ from: sessionStorage.getItem('account'), gas: 3000000, value: 500000000000000000 })
+      .send({ from: sessionStorage.getItem('account'), value: 50000000000000000 })
       .on('error', (error: any) => {
         console.log(error.message);
       });
