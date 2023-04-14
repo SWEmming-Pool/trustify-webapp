@@ -1,7 +1,7 @@
 FROM node:18-alpine AS build
 WORKDIR /trustify-webapp
 
-RUN npm install -g @angular/cli
+RUN npm install -g @angular/cli@15.1.6
 
 COPY ./package.json .
 RUN npm install
