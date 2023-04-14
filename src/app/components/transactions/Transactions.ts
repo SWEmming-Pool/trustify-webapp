@@ -4,12 +4,9 @@ export interface Transaction {
   amount: number;
   sender: string;
   receiver: string;
-  // receiverName non ci sarà nella versione finale, almeno non in questa forma. Qui viene inserito così per motivi di visualizzazione
-  receiverName: string;
-  description: string;
 }
 
-export const TRANSACTIONS: Transaction[] = [
+/*export const TRANSACTIONS: Transaction[] = [
   {
     id: '1',
     date: new Date('2023-03-24'),
@@ -55,4 +52,4 @@ export const TRANSACTIONS: Transaction[] = [
     receiverName: 'AliExpress',
     description: 'Order #123456',
   },
-];
+];*/

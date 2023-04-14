@@ -1,14 +1,17 @@
 <div class="container">
-  <img
+  <!--<img
     src="{{
-      '../../../../../../assets/' + transaction.receiverName.toLowerCase() + '.png'
+      '../../../../../../assets/' +
+        transaction.receiverName.toLowerCase() +
+        '.png'
     }}"
-  />
+  /> -->
+  <img />
   <div class="centralText">
-    <p class="merchantDesc">
+    <!-- <p class="merchantDesc">
       <span class="merchant">{{ transaction.receiverName }}</span> |
       <span class="desc">{{ transaction.description }}</span>
-    </p>
+    </p>-->
     <p class="dateAmount">
       {{ transaction.date | date : "yyyy-MM-dd" + " • " + transaction.amount }}
       ETH

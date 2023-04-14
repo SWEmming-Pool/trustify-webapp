@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
+import { ContractService } from 'src/app/services/contract.service';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,8 @@ import { Router } from '@angular/router';
 export class HomeComponent {
   constructor(
     private authenticationService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private contractService: ContractService
   ) {}
 
   async login() {
@@ -30,5 +32,11 @@ export class HomeComponent {
 
   isLoggedIn(): boolean {
     return this.authenticationService.isLoggedIn();
+  }
+
+  sendTransaction() {
+    this.contractService.sendTransaction(
+      '0x36Ac550A5BD2b6a30f52901b3B63ede555F0fdF1'
+    );
   }
 }

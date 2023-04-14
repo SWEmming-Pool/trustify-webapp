@@ -1,0 +1,196 @@
+{
+  "contractName": "ReviewLibrary",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/ReviewLibrary.sol\":\"ReviewLibrary\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/ReviewLibrary.sol\":{\"keccak256\":\"0xc801bd79234cb7b3d6717c6be273138482120192100d7047b11be073fe73404f\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://41b728a31aee8a93013210b2a2eaab035f2eae4ffd3cb846a27efcff442b8bfd\",\"dweb:/ipfs/QmR499S3HgTyqcsiKYAs7JzhitoVuv5jCtcXdvv468hJ6T\"]}},\"version\":1}",
+  "bytecode": "0x60566050600b82828239805160001a6073146043577f4e487b7100000000000000000000000000000000000000000000000000000000600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea264697066735822122065a95ca67f318205371b6d3843f7b08e79bfe85e7ec0830334774a7c7e4867a064736f6c63430008120033",
+  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fdfea264697066735822122065a95ca67f318205371b6d3843f7b08e79bfe85e7ec0830334774a7c7e4867a064736f6c63430008120033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "57:624:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "57:624:0:-:0;;;;;;;;",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\nlibrary ReviewLibrary {\n    struct Review {\n        string title;\n        uint256 date;\n        uint8 rating;\n        string text;\n    }\n\n    //     function getReview(\n    //         mapping(bytes32 => Review) storage self,\n    //         bytes32 _id\n    //     ) internal view returns (Review memory) {\n    //         // Check that a review for this transaction exists\n    //         require(\n    //             bytes(self[_id].text).length > 0,\n    //             \"No reviews found for this transaction\"\n    //         );\n\n    //         Review memory myreview = self[_id];\n\n    //         return myreview;\n    //     }\n}\n",
+  "sourcePath": "/Users/sebastianosanson/Documents/Università/SWEmming Pool/trustify-smart_contract/contracts/ReviewLibrary.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/ReviewLibrary.sol",
+    "exportedSymbols": {
+      "ReviewLibrary": [
+        11
+      ]
+    },
+    "id": 12,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:23:0"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "ReviewLibrary",
+        "contractDependencies": [],
+        "contractKind": "library",
+        "fullyImplemented": true,
+        "id": 11,
+        "linearizedBaseContracts": [
+          11
+        ],
+        "name": "ReviewLibrary",
+        "nameLocation": "65:13:0",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "ReviewLibrary.Review",
+            "id": 10,
+            "members": [
+              {
+                "constant": false,
+                "id": 3,
+                "mutability": "mutable",
+                "name": "title",
+                "nameLocation": "116:5:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 10,
+                "src": "109:12:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 2,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "109:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 5,
+                "mutability": "mutable",
+                "name": "date",
+                "nameLocation": "139:4:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 10,
+                "src": "131:12:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 4,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "131:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 7,
+                "mutability": "mutable",
+                "name": "rating",
+                "nameLocation": "159:6:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 10,
+                "src": "153:12:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint8",
+                  "typeString": "uint8"
+                },
+                "typeName": {
+                  "id": 6,
+                  "name": "uint8",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "153:5:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 9,
+                "mutability": "mutable",
+                "name": "text",
+                "nameLocation": "182:4:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 10,
+                "src": "175:11:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 8,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "175:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Review",
+            "nameLocation": "92:6:0",
+            "nodeType": "StructDefinition",
+            "scope": 11,
+            "src": "85:108:0",
+            "visibility": "public"
+          }
+        ],
+        "scope": 12,
+        "src": "57:624:0",
+        "usedErrors": []
+      }
+    ],
+    "src": "32:650:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.18+commit.87f61d96.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.11",
+  "updatedAt": "2023-04-14T10:02:44.582Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

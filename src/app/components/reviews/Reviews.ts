@@ -1,4 +1,4 @@
-import { Transaction, TRANSACTIONS } from '../transactions/Transactions';
+import { Transaction } from '../transactions/Transactions';
 
 export class Review {
   transaction: Transaction;
@@ -23,7 +23,7 @@ export class Review {
 }
 
 export const REVIEWS: Review[] = [
-  {
+  /*{
     transaction: TRANSACTIONS[0],
     date: new Date('2023-03-24'),
     title:
@@ -62,5 +62,5 @@ export const REVIEWS: Review[] = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vitae',
     rating: 3,
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vitae ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vitae ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vitae ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vitae ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vitae.',
-  },
+  },*/
 ];

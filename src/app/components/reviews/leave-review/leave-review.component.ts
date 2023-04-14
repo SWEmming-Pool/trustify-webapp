@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
 import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute } from '@angular/router';
-import { TRANSACTIONS, Transaction } from '../../transactions/Transactions';
+import { Transaction } from '../../transactions/Transactions';
 import { REVIEWS, Review } from '../../reviews/Reviews';
 
 @Component({
@@ -16,10 +16,10 @@ export class LeaveReviewComponent implements OnInit, OnDestroy {
   stars!: HTMLCollection;
   private sub: any;
   transaction!: Transaction;
-  review: Review;
+  review!: Review;
 
   constructor(private route: ActivatedRoute) {
-    this.sub = this.route.params.subscribe((params) => {
+    /*this.sub = this.route.params.subscribe((params) => {
       let searchedTransaction = TRANSACTIONS.find(
         (transaction: { id: any }) => transaction.id === params['transactionId']
       );
@@ -27,7 +27,7 @@ export class LeaveReviewComponent implements OnInit, OnDestroy {
         this.transaction = searchedTransaction;
       }
     });
-    this.review = new Review(this.transaction);
+    this.review = new Review(this.transaction);*/
   }
 
   ngOnInit() {

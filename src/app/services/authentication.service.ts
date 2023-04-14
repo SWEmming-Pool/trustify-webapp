@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import Web3 from 'web3';
 import detectEthereumProvider from '@metamask/detect-provider';
 declare global {
   interface Window {
@@ -13,9 +12,7 @@ declare global {
 export class AuthenticationService {
   public account!: string;
 
-  constructor() {
-    console.log('Costruito authentication service');
-  }
+  constructor() {}
 
   public async login() {
     if (this.isInstalled()) {
@@ -24,6 +21,7 @@ export class AuthenticationService {
         const accounts = await window.ethereum.request({
           method: 'eth_requestAccounts',
         });
+        //Modificare
         this.account = accounts[0];
         sessionStorage.setItem('account', this.account);
       } else {
