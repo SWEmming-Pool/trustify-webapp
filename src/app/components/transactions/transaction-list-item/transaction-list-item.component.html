@@ -1,25 +1,11 @@
 <div class="container">
-  <!--<img
-    src="{{
-      '../../../../../../assets/' +
-        transaction.receiverName.toLowerCase() +
-        '.png'
-    }}"
-  /> -->
-  <img />
   <div class="centralText">
-    <p class="merchantDesc">
-      <span class="merchant">{{ transaction.receiver }}</span>
-    </p>
-    <!-- | <span class="desc">{{ transaction.description }}</span>
-    </p>-->
+    <p class="longAddr" id="transId">{{ transaction.id }}</p>
+    <p class="longAddr">{{ transaction.receiver }}</p>
     <p class="dateAmount">
-      {{
-        timestampToDate(transaction.date) + " • " + weiToEth(transaction.amount)
-      }}
+      {{ transaction.date | date : "yyy-MM-dd" + " • " + transaction.amount }}
       ETH
     </p>
-    <!-- <p>{{ transaction.id }}</p> -->
   </div>
   <button [routerLink]="['/leave-review', transaction.id]">
     <fa-icon id="rateIcon" [icon]="faStar"></fa-icon>

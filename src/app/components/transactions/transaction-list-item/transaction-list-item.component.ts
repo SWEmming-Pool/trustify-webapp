@@ -14,13 +14,4 @@ export class TransactionListItemComponent {
   @Input() transaction!: Transaction;
 
   constructor() {}
-
-  timestampToDate(timestamp: string): string {
-    const date = new Date(parseInt(timestamp) * 1000);
-    return date.toDateString();
-  }
-
-  weiToEth(wei: string): string {
-    return Web3.utils.fromWei(wei, 'ether');
-  }
 }

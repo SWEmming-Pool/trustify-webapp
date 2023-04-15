@@ -34,21 +34,21 @@ img {
   row-gap: 0.5rem;
 }
 
-.merchantDesc {
+.longAddr {
   font-size: 1rem;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
+#transId {
+  font-weight: 600;
+}
+
 .dateAmount {
   color: hsl(0, 0%, 30%);
   font-weight: 300;
   font-size: 0.9rem;
-}
-
-.merchant {
-  font-weight: 600;
 }
 
 .desc {

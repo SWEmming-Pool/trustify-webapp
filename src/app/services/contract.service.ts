@@ -47,12 +47,16 @@ export class ContractService {
   async getUnreviewedTransactions(
     address: string | null
   ): Promise<Transaction[]> {
-    let unreviewed: Transaction[];
-    unreviewed = this.Contract.methods
+    let unreviewed: Transaction[] = [];
+    this.Contract.methods
       .getUnreviewedTransactions(address)
-      .call((error: any) => {
+      .call((error: any, result: Transaction[]) => {
         if (error) {
           alert(error);
+        } else {
+          result.forEach((transaction: any) => {
+            unreviewed.push(new Transaction(transaction.id, transaction.date, transaction.amount, transaction.sender, transaction.receiver));
+          });
         }
       });
 
@@ -90,9 +94,7 @@ export class ContractService {
       });
   }
 
-  async getReviewsForAddress(
-    address: string | null
-  ): Promise<Review[]> {
+  async getReviewsForAddress(address: string | null): Promise<Review[]> {
     let reviews: Review[];
     reviews = this.Contract.methods
       .getReviewsForAddress(address)
@@ -104,5 +106,4 @@ export class ContractService {
 
     return reviews;
   }
-
 }
