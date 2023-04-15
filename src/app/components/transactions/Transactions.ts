@@ -8,11 +8,11 @@ export class Transaction {
   receiver: string;
 
   constructor(
-    id: string,
-    date: number,
-    amount: number,
-    sender: string,
-    receiver: string
+    id: string = '',
+    date: number = 0,
+    amount: number = 0,
+    sender: string = '',
+    receiver: string = ''
   ) {
     this.id = id;
     this.date = new Date(date*1000);

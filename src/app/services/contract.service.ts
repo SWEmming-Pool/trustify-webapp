@@ -52,15 +52,44 @@ export class ContractService {
       .getUnreviewedTransactions(address)
       .call((error: any, result: Transaction[]) => {
         if (error) {
-          alert(error);
+          alert(error.message);
         } else {
           result.forEach((transaction: any) => {
-            unreviewed.push(new Transaction(transaction.id, transaction.date, transaction.amount, transaction.sender, transaction.receiver));
+            unreviewed.push(
+              new Transaction(
+                transaction.id,
+                transaction.date,
+                transaction.amount,
+                transaction.sender,
+                transaction.receiver
+              )
+            );
           });
         }
       });
 
     return unreviewed;
+  }
+
+  // NON FUNZIONA
+  async findTransactionById(
+    accountAddress: string,
+    id: string
+  ): Promise<Transaction> {
+    let transactions = await this.getUnreviewedTransactions(accountAddress);
+    console.log(
+      'ContractService.findTransactionById - Looking for transaction with id: ' +
+        id +
+        ' from account: ' +
+        accountAddress
+    );
+    console.log(transactions);
+    let transaction = transactions.find((t) => t.id == id);
+    if (transaction == undefined) {
+      alert('Transaction ' + id + ' not found');
+      throw new Error('Transaction not found');
+    }
+    return transaction;
   }
 
   sendTransaction(receiverAddress: string) {
@@ -100,7 +129,7 @@ export class ContractService {
       .getReviewsForAddress(address)
       .call((error: any) => {
         if (error) {
-          alert(error);
+          alert(error.message);
         }
       });
 
