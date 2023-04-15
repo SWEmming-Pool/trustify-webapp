@@ -12,7 +12,7 @@
       <img class="merchantLogo" src="" />
       <div class="merchantDetails">
         <!-- <p class="merchantName">{{ review.transaction.receiverName }}</p> -->
-        <p class="merchantAddress">{{ review.transaction.receiver }}</p>
+        <p class="merchantAddress">{{ transaction?.receiver }}</p>
       </div>
     </div>
     <div class="starsDate">
@@ -35,7 +35,7 @@
   <div class="lowerSection">
     <fa-icon class="reviewerAvatar" [icon]="faUser" [size]="'xl'"></fa-icon>
     <div class="reviewerDetails">
-      <p class="reviewerAddress">{{ review.transaction.sender }}</p>
+      <p class="reviewerAddress">{{ transaction?.sender }}</p>
     </div>
   </div>
 </div>

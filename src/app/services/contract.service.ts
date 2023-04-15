@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import Web3 from 'web3';
 import { Transaction } from '../components/transactions/Transactions';
 import { AuthenticationService } from './authentication.service';
+import { Review } from '../components/reviews/Reviews';
 
 @Injectable({
   providedIn: 'root',
@@ -88,4 +89,20 @@ export class ContractService {
         alert(error.message);
       });
   }
+
+  async getReviewsForAddress(
+    address: string | null
+  ): Promise<Review[]> {
+    let reviews: Review[];
+    reviews = this.Contract.methods
+      .getReviewsForAddress(address)
+      .call((error: any) => {
+        if (error) {
+          alert(error);
+        }
+      });
+
+    return reviews;
+  }
+
 }

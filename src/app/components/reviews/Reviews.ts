@@ -1,20 +1,20 @@
 import { Transaction } from '../transactions/Transactions';
 
 export class Review {
-  transaction: Transaction;
+  transactionId: string;
   date: Date;
   title: string;
   rating: number;
   text: string;
 
   constructor(
-    transaction: Transaction,
+    transactionId: string,
     date: Date = new Date(),
     title: string = '',
     rating: number = 0,
     text: string = ''
   ) {
-    this.transaction = transaction;
+    this.transactionId = transactionId;
     this.date = date;
     this.title = title;
     this.rating = rating;
@@ -22,8 +22,8 @@ export class Review {
   }
 }
 
-export const REVIEWS: Review[] = [
-  /*{
+/*export const REVIEWS: Review[] = [
+  {
     transaction: TRANSACTIONS[0],
     date: new Date('2023-03-24'),
     title:
@@ -62,5 +62,5 @@ export const REVIEWS: Review[] = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vitae',
     rating: 3,
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vitae ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vitae ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vitae ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vitae ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vitae.',
-  },*/
-];
+  },
+];*/
