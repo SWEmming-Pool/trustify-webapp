@@ -18,9 +18,10 @@ export class TransactionsComponent implements OnInit {
 
   async ngOnInit() {
     this.transactions = await this.contractService.getUnreviewedTransactions(
-      sessionStorage.getItem('account')
+      this.authService.account
     );
 
-    console.log('TransactionComponent.ngOnInit - ' + this.transactions);
+    console.log('TransactionComponent.ngOnInit:');
+    console.log(this.transactions);
   }
 }

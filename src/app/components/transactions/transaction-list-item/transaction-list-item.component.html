@@ -8,14 +8,18 @@
   /> -->
   <img />
   <div class="centralText">
-    <!-- <p class="merchantDesc">
-      <span class="merchant">{{ transaction.receiverName }}</span> |
-      <span class="desc">{{ transaction.description }}</span>
+    <p class="merchantDesc">
+      <span class="merchant">{{ transaction.receiver }}</span>
+    </p>
+    <!-- | <span class="desc">{{ transaction.description }}</span>
     </p>-->
     <p class="dateAmount">
-      {{ transaction.date | date : "yyyy-MM-dd" + " • " + transaction.amount }}
+      {{
+        timestampToDate(transaction.date) + " • " + weiToEth(transaction.amount)
+      }}
       ETH
     </p>
+    <!-- <p>{{ transaction.id }}</p> -->
   </div>
   <button [routerLink]="['/leave-review', transaction.id]">
     <fa-icon id="rateIcon" [icon]="faStar"></fa-icon>

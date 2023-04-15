@@ -3,7 +3,9 @@ import { faStar } from '@fortawesome/free-regular-svg-icons';
 import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute } from '@angular/router';
 import { Transaction } from '../../transactions/Transactions';
-import { REVIEWS, Review } from '../../reviews/Reviews';
+import { ContractService } from 'src/app/services/contract.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import Web3 from 'web3';
 
 @Component({
   selector: 'app-leave-review',
@@ -16,22 +18,33 @@ export class LeaveReviewComponent implements OnInit, OnDestroy {
   stars!: HTMLCollection;
   private sub: any;
   transaction!: Transaction;
-  review!: Review;
+  transactions!: Transaction[];
+  rating!: number;
+  reviewTitle!: string;
+  reviewText!: string;
 
-  constructor(private route: ActivatedRoute) {
-    /*this.sub = this.route.params.subscribe((params) => {
-      let searchedTransaction = TRANSACTIONS.find(
+  constructor(
+    private route: ActivatedRoute,
+    private contractService: ContractService,
+    private authService: AuthenticationService
+  ) {}
+
+  async ngOnInit() {
+    this.stars = document.getElementsByClassName('starIcon');
+
+    this.transactions = await this.contractService.getUnreviewedTransactions(
+      this.authService.account
+    );
+
+    this.sub = this.route.params.subscribe((params) => {
+      let searchedTransaction = this.transactions.find(
         (transaction: { id: any }) => transaction.id === params['transactionId']
       );
       if (searchedTransaction) {
         this.transaction = searchedTransaction;
       }
     });
-    this.review = new Review(this.transaction);*/
-  }
-
-  ngOnInit() {
-    this.stars = document.getElementsByClassName('starIcon');
+    console.log(this.transaction);
   }
 
   fillStars(index: number) {
@@ -45,9 +58,12 @@ export class LeaveReviewComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.review.date = new Date();
-    REVIEWS.push(this.review);
-    console.log('LeaveReviewComponent.onSubmit - ' + this.review);
+    this.contractService.addReview(
+      this.transaction.id,
+      this.reviewTitle,
+      this.rating,
+      this.reviewText
+    );
   }
 
   ngOnDestroy() {

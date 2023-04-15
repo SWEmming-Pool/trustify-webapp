@@ -10,7 +10,6 @@ export class ContractService {
   @Injectable({
     providedIn: 'root',
   })
-
   INFURA_RPC: string =
     'https://sepolia.infura.io/v3/2309bf77660544a0b78cef8a85d33a1f';
   CONTRACT_ADDRESS: string = '0xbE5178D3954282de18bBD23206D661F6639e7Fca';
@@ -50,10 +49,13 @@ export class ContractService {
     let unreviewed: Transaction[];
     unreviewed = this.Contract.methods
       .getUnreviewedTransactions(address)
-      .call();
-    let unreviewedTransactions: Transaction[] = [];
+      .call((error: any) => {
+        if (error) {
+          alert(error);
+        }
+      });
 
-    return unreviewedTransactions;
+    return unreviewed;
   }
 
   sendTransaction(receiverAddress: string) {
@@ -62,6 +64,26 @@ export class ContractService {
     this.Contract.methods
       .sendTransaction(receiverAddress)
       .send({ from: this.accountAddress, value: 5000000000000000 })
+      .on('error', (error: any) => {
+        alert(error.message);
+      });
+  }
+
+  addReview(
+    transactionId: string,
+    reviewTitle: string,
+    rating: number,
+    reviewText: string
+  ) {
+    this.Contract.methods
+      /*.addReview(transactionId, reviewTitle, rating, reviewText)
+      .call((error: any) => {
+        if (error) {
+          console.log(error);
+        }
+      });*/
+      .addReview(transactionId, reviewTitle, rating, reviewText)
+      .send({ from: this.accountAddress })
       .on('error', (error: any) => {
         alert(error.message);
       });
