@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import Web3 from 'web3';
 import { Transaction } from '../components/transactions/Transactions';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +10,7 @@ export class ContractService {
   @Injectable({
     providedIn: 'root',
   })
+
   INFURA_RPC: string =
     'https://sepolia.infura.io/v3/2309bf77660544a0b78cef8a85d33a1f';
   CONTRACT_ADDRESS: string = '0xbE5178D3954282de18bBD23206D661F6639e7Fca';
@@ -17,14 +19,14 @@ export class ContractService {
   Contract: any;
   accountAddress: string | undefined;
 
-  constructor() {
+  constructor(authService: AuthenticationService) {
     const Client = new Web3(Web3.givenProvider || this.INFURA_RPC);
     this.Contract = new Client.eth.Contract(
       this.CONTRACT_JSON,
       this.CONTRACT_ADDRESS
     );
-
-    console.log(this.Contract);
+    this.accountAddress = authService.account;
+    //console.log('ContractService.constructor - ' + this.accountAddress);
   }
 
   /*async addAddressToBook(address: string, owner: string): Promise<string> {
@@ -55,13 +57,13 @@ export class ContractService {
   }
 
   sendTransaction(receiverAddress: string) {
-    //this.Contract.methods.sendTransaction(receiverAddress).call();
+    console.log('ContractService.sendTransaction - ' + this.accountAddress);
 
     this.Contract.methods
       .sendTransaction(receiverAddress)
-      .send({ from: sessionStorage.getItem('account'), value: 50000000000000000 })
+      .send({ from: this.accountAddress, value: 5000000000000000 })
       .on('error', (error: any) => {
-        console.log(error.message);
+        alert(error.message);
       });
   }
 }

@@ -12,18 +12,22 @@ declare global {
 export class AuthenticationService {
   public account!: string;
 
-  constructor() {}
+  constructor() {
+    if (this.isLoggedIn()) {
+      this.account = sessionStorage.getItem('account')!;
+    }
+  }
 
-  public async login() {
+  async login() {
     if (this.isInstalled()) {
       const provider = await detectEthereumProvider();
       if (provider) {
         const accounts = await window.ethereum.request({
           method: 'eth_requestAccounts',
         });
-        //Modificare
+        sessionStorage.setItem('account', accounts[0]);
         this.account = accounts[0];
-        sessionStorage.setItem('account', this.account);
+        console.log('AuthenticationService.login - ' + this.account);
       } else {
         alert('Please install MetaMask');
       }
@@ -32,15 +36,15 @@ export class AuthenticationService {
     }
   }
 
-  public isInstalled(): boolean {
+  isInstalled(): boolean {
     return window.ethereum !== undefined;
   }
 
-  public isLoggedIn(): boolean {
+  isLoggedIn(): boolean {
     if (this.isInstalled()) {
       window.ethereum.on('accountsChanged', (accounts: Array<string>) => {
         if (accounts.length <= 0) {
-          console.log('logged out');
+          console.log('AuthenticationService.isLoggedIn - logged out');
           this.account = '';
           sessionStorage.removeItem('account');
         }

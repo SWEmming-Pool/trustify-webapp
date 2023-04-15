@@ -47,7 +47,7 @@ export class LeaveReviewComponent implements OnInit, OnDestroy {
   onSubmit() {
     this.review.date = new Date();
     REVIEWS.push(this.review);
-    console.log(this.review);
+    console.log('LeaveReviewComponent.onSubmit - ' + this.review);
   }
 
   ngOnDestroy() {

@@ -21,6 +21,6 @@ export class TransactionsComponent implements OnInit {
       sessionStorage.getItem('account')
     );
 
-    console.log(this.transactions);
+    console.log('TransactionComponent.ngOnInit - ' + this.transactions);
   }
 }
