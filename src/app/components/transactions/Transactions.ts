@@ -15,7 +15,7 @@ export class Transaction {
     receiver: string = ''
   ) {
     this.id = id;
-    this.date = new Date(date*1000);
+    this.date = new Date(date * 1000);
     this.amount = parseFloat(Web3.utils.fromWei(amount.toString(), 'ether'));
     this.sender = sender;
     this.receiver = receiver;

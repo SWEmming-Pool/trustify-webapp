@@ -45,11 +45,32 @@ export class ContractService {
     address: string | null
   ): Promise<Transaction[]> {
     let unreviewed: Transaction[] = [];
-    this.Contract.methods
+    /*this.Contract.methods
       .getUnreviewedTransactions(address)
       .call((error: any, result: Transaction[]) => {
         if (error) {
           alert(error.message);
+        } else {
+          result.forEach((transaction: any) => {
+            unreviewed.push(
+              new Transaction(
+                transaction.id,
+                transaction.date,
+                transaction.amount,
+                transaction.sender,
+                transaction.receiver
+              )
+            );
+          });
+        }
+      });*/
+
+    await this.Contract.methods
+      .getUnreviewedTransactions(address)
+      .call((error: any, result: any) => {
+        if (error) {
+          alert(error.message);
+          throw new Error(error.message);
         } else {
           result.forEach((transaction: any) => {
             unreviewed.push(

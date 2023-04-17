@@ -1,21 +1,12 @@
 <h2>Lascia una recensione</h2>
 
 <div class="transaction">
-  <!-- <img
-    class="merchantLogo"
-    src="{{
-      '../../../../../assets/' + transaction.receiverName.toLowerCase() + '.png'
-    }}"
-  /> -->
-  <img class="merchantLogo" />
   <div class="centralText">
-    <!-- <h3 class="merchantDesc">
-      <span class="merchant">{{ transaction.receiverName }}</span> |
-      <span class="desc">{{ transaction.description }}</span>
-    </h3> -->
+    <p class="longAddr" id="transId">{{ transaction.id }}</p>
+    <p class="longAddr">{{ transaction.receiver }}</p>
     <p class="dateAmount">
-      {{ transaction.date | date : "yyyy-MM-dd" }} •
-      {{ transaction.amount }} ETH
+      {{ transaction.date | date : "yyy-MM-dd" + " • " + transaction.amount }}
+      ETH
     </p>
   </div>
 </div>

@@ -26,6 +26,17 @@ button {
   column-gap: 0.85rem;
   padding: 0.85rem;
 
+  .longAddr {
+    font-size: 1rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  #transId {
+    font-weight: 600;
+  }
+
   .merchantLogo {
     margin: unset;
     height: 3rem;
