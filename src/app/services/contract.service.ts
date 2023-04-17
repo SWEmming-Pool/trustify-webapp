@@ -17,16 +17,13 @@ export class ContractService {
   CONTRACT_JSON: any = require('../../assets/ReviewSystem.json');
 
   Contract: any;
-  accountAddress: string | undefined;
 
-  constructor(authService: AuthenticationService) {
+  constructor(private authService: AuthenticationService) {
     const Client = new Web3(Web3.givenProvider || this.INFURA_RPC);
     this.Contract = new Client.eth.Contract(
       this.CONTRACT_JSON,
       this.CONTRACT_ADDRESS
     );
-    this.accountAddress = authService.account;
-    //console.log('ContractService.constructor - ' + this.accountAddress);
   }
 
   /*async addAddressToBook(address: string, owner: string): Promise<string> {
@@ -93,11 +90,13 @@ export class ContractService {
   }
 
   sendTransaction(receiverAddress: string) {
-    console.log('ContractService.sendTransaction - ' + this.accountAddress);
+    console.log(
+      'ContractService.sendTransaction - ' + this.authService.account
+    );
 
     this.Contract.methods
       .sendTransaction(receiverAddress)
-      .send({ from: this.accountAddress, value: 5000000000000000 })
+      .send({ from: this.authService.account, value: 5000000000000000 })
       .on('error', (error: any) => {
         alert(error.message);
       });
@@ -117,7 +116,7 @@ export class ContractService {
         }
       });*/
       .addReview(transactionId, reviewTitle, rating, reviewText)
-      .send({ from: this.accountAddress })
+      .send({ from: this.authService.account })
       .on('error', (error: any) => {
         alert(error.message);
       });
