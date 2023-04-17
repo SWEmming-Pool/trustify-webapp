@@ -45,25 +45,6 @@ export class ContractService {
     address: string | null
   ): Promise<Transaction[]> {
     let unreviewed: Transaction[] = [];
-    /*this.Contract.methods
-      .getUnreviewedTransactions(address)
-      .call((error: any, result: Transaction[]) => {
-        if (error) {
-          alert(error.message);
-        } else {
-          result.forEach((transaction: any) => {
-            unreviewed.push(
-              new Transaction(
-                transaction.id,
-                transaction.date,
-                transaction.amount,
-                transaction.sender,
-                transaction.receiver
-              )
-            );
-          });
-        }
-      });*/
 
     await this.Contract.methods
       .getUnreviewedTransactions(address)
@@ -89,7 +70,6 @@ export class ContractService {
     return unreviewed;
   }
 
-  // NON FUNZIONA
   async findTransactionById(
     accountAddress: string,
     id: string
@@ -130,12 +110,6 @@ export class ContractService {
     reviewText: string
   ) {
     this.Contract.methods
-      /*.addReview(transactionId, reviewTitle, rating, reviewText)
-      .call((error: any) => {
-        if (error) {
-          console.log(error);
-        }
-      });*/
       .addReview(transactionId, reviewTitle, rating, reviewText)
       .send({ from: this.authService.account })
       .on('error', (error: any) => {
@@ -143,7 +117,7 @@ export class ContractService {
       });
   }
 
-  async getReviewsForAddress(address: string | null): Promise<Review[]> {
+  /*async getReviewsForAddress(address: string | null): Promise<Review[]> {
     let reviews: Review[];
     reviews = this.Contract.methods
       .getReviewsForAddress(address)
@@ -152,6 +126,36 @@ export class ContractService {
           alert(error.message);
         }
       });
+
+    return reviews;
+  }*/
+
+  async getReviewsForAddress(address: string | null): Promise<Review[]> {
+    let reviews: Review[] = [];
+
+    await this.Contract.methods
+      .getReviewsForAddress(address)
+      .call((error: any, result: any) => {
+        if (error) {
+          alert(error.message);
+          throw new Error(error.message);
+        } else {
+          result.forEach((review: any) => {
+            reviews.push(
+              new Review(
+                review.transactionId,
+                review.date,
+                review.title,
+                review.rating,
+                review.text
+              )
+            );
+          });
+        }
+      });
+
+    console.log('ContractService.getReviewsForAddress:');
+    console.log(reviews);
 
     return reviews;
   }

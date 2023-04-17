@@ -15,7 +15,6 @@ export class ReviewListItemComponent implements OnInit {
   faStar = faStar;
   faStarSolid = faStarSolid;
   faUser = faUser;
-  transactions: Transaction[] = [];
   transaction: Transaction | undefined;
 
   @Input() review!: Review;
@@ -23,15 +22,16 @@ export class ReviewListItemComponent implements OnInit {
   constructor(
     private contractService: ContractService,
     private authService: AuthenticationService
-  ) {}
+  ) {
+    console.log('ReviewListItemComponent.constructor:');
+    console.log(this.review);
+  }
 
   async ngOnInit() {
-    this.transactions = await this.contractService.getUnreviewedTransactions(
-      this.authService.account
-    );
 
-    this.transaction = this.transactions.find(
-      (transaction: { id: any }) => transaction.id === this.review.transactionId
+    this.transaction = await this.contractService.findTransactionById(
+      this.authService.account,
+      this.review.transactionId
     );
   }
 }

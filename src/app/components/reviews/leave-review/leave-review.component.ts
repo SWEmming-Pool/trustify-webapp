@@ -37,7 +37,6 @@ export class LeaveReviewComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit() {
-    // NON FUNZIONA
     this.transaction = await this.contractService.findTransactionById(
       this.authService.account,
       this.route.snapshot.params['transactionId']
@@ -55,6 +54,8 @@ export class LeaveReviewComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    console.log('LeaveReviewComponent.onSubmit:');
+    console.log(this.transaction.id);
     this.contractService.addReview(
       this.transaction.id,
       this.reviewTitle,
