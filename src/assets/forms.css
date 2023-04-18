@@ -1,0 +1,18 @@
+#title.ng-valid[required],
+#title.ng-valid.required,
+#text.ng-valid[required],
+#text.ng-valid.required {
+  border: 2px solid #42a948; /* green */
+}
+
+#title.ng-invalid:not(form).ng-touched,
+#text.ng-invalid:not(form).ng-touched,
+#title.ng-invalid:not(form),
+#text.ng-invalid:not(form) {
+  border: 2px solid red;
+}
+
+#title.ng-invalid:not(form).ng-pristine.ng-untouched,
+#text.ng-invalid:not(form).ng-pristine.ng-untouched {
+  border: 1px solid hsla(0, 0%, 50%, 0.4);
+}

@@ -86,6 +86,23 @@ button {
   padding: 1rem;
   row-gap: 1rem;
 
+  span {
+    font-weight: 300;
+    font-size: 1rem;
+  }
+
+  .required {
+    font-size: .9rem;
+    font-weight: 300;
+    color: black;
+  }
+
+  .form-error {
+    color: red;
+    font-size: 0.9rem;
+    font-weight: 300;
+  }
+
   .reviewTitle {
     display: flex;
     flex-direction: column;
