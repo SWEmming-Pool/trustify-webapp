@@ -22,16 +22,15 @@ export class ReviewListItemComponent implements OnInit {
   constructor(
     private contractService: ContractService,
     private authService: AuthenticationService
-  ) {
-    console.log('ReviewListItemComponent.constructor:');
-    console.log(this.review);
-  }
+  ) {}
 
   async ngOnInit() {
-
-    /*this.transaction = await this.contractService.findTransactionById(
+    this.transaction = await this.contractService.getTransaction(
       this.authService.account,
       this.review.transactionId
-    );*/
+    );
+
+    console.log('ReviewListItemComponent.ngOnInit:');
+    console.log(this.review);
   }
 }

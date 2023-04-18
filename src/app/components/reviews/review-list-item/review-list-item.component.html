@@ -1,21 +1,10 @@
 <div class="container">
   <div class="upperSection">
     <div class="merchant">
-      <!-- <img
-        class="merchantLogo"
-        src="{{
-          '../../../../assets/' +
-            review.transaction.receiverName.toLowerCase() +
-            '.png'
-        }}"
-      />
-      <img class="merchantLogo" src="" />
-      <div class="merchantDetails">
-        <p class="merchantName">{{ review.transaction.receiverName }}</p>
-         <p class="merchantAddress">{{ transaction?.receiver }}</p>
-      </div> -->
-
       <p class="longAddr">{{ review.transactionId }}</p>
+      <p class="longAddr merchantDetails merchantAddress">
+        {{ transaction?.receiver }}
+      </p>
     </div>
     <div class="starsDate">
       <div class="stars">
@@ -36,8 +25,7 @@
   <p class="reviewText">{{ review.text }}</p>
   <div class="lowerSection">
     <fa-icon class="reviewerAvatar" [icon]="faUser" [size]="'xl'"></fa-icon>
-    <!-- <div class="reviewerDetails">
-      <p class="reviewerAddress">{{ transaction?.sender }}</p>
-    </div> -->
+
+    <p class="reviewerDetails reviewerAddress">{{ transaction?.sender }}</p>
   </div>
 </div>

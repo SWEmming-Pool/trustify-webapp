@@ -43,6 +43,7 @@
 .merchant {
   display: flex;
   column-gap: 1rem;
+  flex-direction: column;
 }
 
 .merchantDetails {

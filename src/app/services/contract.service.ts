@@ -13,7 +13,7 @@ export class ContractService {
   })
   INFURA_RPC: string =
     'https://sepolia.infura.io/v3/2309bf77660544a0b78cef8a85d33a1f';
-  CONTRACT_ADDRESS: string = '0xA83eA29E73Ba909813d7eD3c2703f2EE474Ff253';
+  CONTRACT_ADDRESS: string = '0xbc7477568E2EB68390f7791B3231b12F969af155';
   CONTRACT_JSON: any = require('../../assets/ReviewSystem.json');
 
   Contract: any;
@@ -83,6 +83,32 @@ export class ContractService {
     return transaction;
   }
 
+  async getTransaction(
+    accountAddress: string,
+    id: string
+  ): Promise<Transaction> {
+    let transaction: Transaction = new Transaction('', 0, 0, '', '');
+
+    await this.Contract.methods
+      .getTransaction(accountAddress, id)
+      .call((error: any, result: any) => {
+        if (error) {
+          alert(error.message);
+          throw new Error(error.message);
+        } else {
+          transaction = new Transaction(
+            result.id,
+            result.date,
+            result.amount,
+            result.sender,
+            result.receiver
+          );
+        }
+      });
+
+    return transaction;
+  }
+
   sendTransaction(receiverAddress: string) {
     console.log(
       'ContractService.sendTransaction - ' + this.authService.account
@@ -146,6 +172,7 @@ export class ContractService {
           throw new Error(error.message);
         } else {
           result.forEach((review: any) => {
+            console.log(review);
             reviews.push(
               new Review(
                 review.date,
