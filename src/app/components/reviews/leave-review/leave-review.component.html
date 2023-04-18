@@ -35,7 +35,9 @@
       [(ngModel)]="reviewTitle"
       name="title"
       #title="ngModel"
+      (ngModelChange)="textChange('reviewTitle', reviewTitle)"
     />
+    <p class="charCount">{{ titleCharCount }} / 50</p>
   </div>
 
   <div id="stars">
@@ -84,9 +86,11 @@
       maxlength="500"
       required
       [(ngModel)]="reviewText"
+      (ngModelChange)="textChange('reviewText', reviewText)"
       name="text"
       #text="ngModel"
     ></textarea>
+    <p class="charCount">{{ textCharCount }} / 500</p>
   </div>
   <p
     [ngClass]="

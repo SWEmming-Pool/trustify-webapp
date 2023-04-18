@@ -97,6 +97,12 @@ button {
     color: black;
   }
 
+  .charCount {
+    align-self: flex-end;
+    font-size: 0.8rem;
+    font-weight: 300;
+  }
+
   .form-error {
     color: red;
     font-size: 0.9rem;
