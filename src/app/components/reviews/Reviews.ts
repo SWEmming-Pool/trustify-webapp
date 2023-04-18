@@ -8,17 +8,19 @@ export class Review {
   text: string;
 
   constructor(
-    transactionId: string,
     date: Date = new Date(),
     title: string = '',
     rating: number = 0,
-    text: string = ''
+    text: string = '',
+    transactionId: string
+
   ) {
-    this.transactionId = transactionId;
     this.date = date;
     this.title = title;
     this.rating = rating;
     this.text = text;
+    this.transactionId = transactionId;
+
   }
 }
 

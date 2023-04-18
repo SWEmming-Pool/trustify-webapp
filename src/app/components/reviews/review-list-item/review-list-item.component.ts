@@ -29,9 +29,9 @@ export class ReviewListItemComponent implements OnInit {
 
   async ngOnInit() {
 
-    this.transaction = await this.contractService.findTransactionById(
+    /*this.transaction = await this.contractService.findTransactionById(
       this.authService.account,
       this.review.transactionId
-    );
+    );*/
   }
 }
