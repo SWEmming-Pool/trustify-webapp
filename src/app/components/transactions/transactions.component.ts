@@ -21,7 +21,7 @@ export class TransactionsComponent implements OnInit {
       this.authService.account
     );
 
-    console.log('TransactionComponent.ngOnInit:');
-    console.log(this.transactions);
+    /*console.log('TransactionComponent.ngOnInit:');
+    console.log(this.transactions);*/
   }
 }

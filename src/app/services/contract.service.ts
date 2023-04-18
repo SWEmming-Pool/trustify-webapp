@@ -75,13 +75,13 @@ export class ContractService {
     id: string
   ): Promise<Transaction> {
     let transactions = await this.getUnreviewedTransactions(accountAddress);
-    console.log(
+    /*console.log(
       'ContractService.findTransactionById - Looking for transaction with id: ' +
         id +
         ' from account: ' +
         accountAddress
     );
-    console.log(transactions);
+    console.log(transactions);*/
     let transaction = transactions.find((t) => t.id == id);
     if (transaction == undefined) {
       alert('Transaction ' + id + ' not found');
@@ -154,8 +154,8 @@ export class ContractService {
         }
       });
 
-    console.log('ContractService.getReviewsForAddress:');
-    console.log(reviews);
+    /*console.log('ContractService.getReviewsForAddress:');
+    console.log(reviews);*/
 
     return reviews;
   }

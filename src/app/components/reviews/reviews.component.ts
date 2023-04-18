@@ -21,7 +21,7 @@ export class ReviewsComponent implements OnInit {
       this.authService.account
     );
 
-    console.log('ReviewsComponent.ngOnInit:');
-    console.log(this.reviews);
+    /*console.log('ReviewsComponent.ngOnInit:');
+    console.log(this.reviews);*/
   }
 }
