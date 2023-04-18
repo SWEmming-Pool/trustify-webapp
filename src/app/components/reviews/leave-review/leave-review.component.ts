@@ -1,10 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
 import {
   IconDefinition,
   faStar as faStarSolid,
 } from '@fortawesome/free-solid-svg-icons';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Transaction } from '../../transactions/Transactions';
 import { ContractService } from 'src/app/services/contract.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -14,11 +14,10 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   templateUrl: './leave-review.component.html',
   styleUrls: ['./leave-review.component.scss'],
 })
-export class LeaveReviewComponent implements OnInit, OnDestroy {
+export class LeaveReviewComponent implements OnInit {
   faStar: any[];
   faStarSolid: IconDefinition;
   stars: HTMLCollection;
-  private sub: any;
   transaction: Transaction = new Transaction();
   rating!: number;
   reviewTitle!: string;
@@ -31,7 +30,8 @@ export class LeaveReviewComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private contractService: ContractService,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private router: Router
   ) {
     this.faStar = Array(5).fill(faStar);
     this.stars = document.getElementsByClassName('starIcon');
@@ -41,10 +41,15 @@ export class LeaveReviewComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit() {
-    this.transaction = await this.contractService.findTransactionById(
-      this.authService.account,
-      this.route.snapshot.params['transactionId']
-    );
+    await this.contractService
+      .findTransactionById(
+        this.authService.account,
+        this.route.snapshot.params['transactionId']
+      )
+      .then((t) => (this.transaction = t))
+      .catch(() => {
+        this.router.navigate(['/transactions']);
+      });
   }
 
   textChange(varName: string, chars: string) {
@@ -74,9 +79,5 @@ export class LeaveReviewComponent implements OnInit, OnDestroy {
       this.rating,
       this.reviewText
     );
-  }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
   }
 }

@@ -85,6 +85,7 @@ button {
   flex-direction: column;
   padding: 1rem;
   row-gap: 1rem;
+  margin-bottom: 1rem;
 
   span {
     font-weight: 300;
@@ -178,7 +179,7 @@ button {
 @media only screen and (min-width: 992px) {
   .transaction,
   .review {
-    width: 50vw;
+    width: 40vw;
   }
 
   .transaction {

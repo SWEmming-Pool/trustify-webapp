@@ -75,13 +75,6 @@ export class ContractService {
     id: string
   ): Promise<Transaction> {
     let transactions = await this.getUnreviewedTransactions(accountAddress);
-    /*console.log(
-      'ContractService.findTransactionById - Looking for transaction with id: ' +
-        id +
-        ' from account: ' +
-        accountAddress
-    );
-    console.log(transactions);*/
     let transaction = transactions.find((t) => t.id == id);
     if (transaction == undefined) {
       alert('Transaction ' + id + ' not found');
@@ -109,12 +102,25 @@ export class ContractService {
     rating: number,
     reviewText: string
   ) {
-    this.Contract.methods
-      .addReview(transactionId, reviewTitle, rating, reviewText)
-      .send({ from: this.authService.account })
-      .on('error', (error: any) => {
-        alert(error.message);
-      });
+    if (
+      reviewTitle.length > 50 ||
+      reviewText.length > 500 ||
+      rating < 1 ||
+      rating > 5 ||
+      transactionId.length != 64 ||
+      reviewTitle.length == 0 ||
+      reviewText.length == 0
+    ) {
+      alert('Invalid review');
+      throw new Error('Invalid review');
+    } else {
+      this.Contract.methods
+        .addReview(transactionId, reviewTitle, rating, reviewText)
+        .send({ from: this.authService.account })
+        .on('error', (error: any) => {
+          alert(error.message);
+        });
+    }
   }
 
   /*async getReviewsForAddress(address: string | null): Promise<Review[]> {
