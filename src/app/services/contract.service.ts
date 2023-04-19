@@ -123,7 +123,7 @@ export class ContractService {
       });
   }
 
-  addReview(
+  async addReview(
     transactionId: string,
     reviewTitle: string,
     rating: number,
@@ -142,7 +142,7 @@ export class ContractService {
       alert('La recensione non rispetta i vincoli di validità.');
       throw new Error('Invalid review');
     } else {
-      this.Contract.methods
+      await this.Contract.methods
         .addReview(transactionId, reviewTitle, rating, reviewText)
         .send({ from: this.authService.account })
         .on('error', (error: any) => {

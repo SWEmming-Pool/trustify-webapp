@@ -78,18 +78,24 @@ export class LeaveReviewComponent implements OnInit {
     }
   }
 
-  onSubmit() {
-    console.log('LeaveReviewComponent.onSubmit:');
-    console.log(this.transaction.id);
-    try {
-      this.contractService.addReview(
+  async onSubmit() {
+    this.router.navigate(['/sending']);
+    await this.contractService
+      .addReview(
         this.transaction.id,
         this.reviewTitle,
         this.rating,
         this.reviewText
-      );
-    } catch (e: any) {
-      alert(e.message);
-    }
+      )
+      .catch((e) => {
+        alert(e.message);
+        throw new Error(e.message);
+      })
+      .then(() => {
+        alert(
+          "La recensione è stata inviata. Controlla le notifiche di Metamask per l'esito. Potrebbero volerci alcuni secondi."
+        );
+        this.router.navigate(['/transactions']);
+      });
   }
 }

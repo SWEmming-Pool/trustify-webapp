@@ -5,12 +5,14 @@ import { HomeComponent } from './components/home/home.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { LeaveReviewComponent } from './components/reviews/leave-review/leave-review.component';
+import { SendingComponent } from './components/sending/sending.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'transactions', component: TransactionsComponent },
   { path: 'user', component: UserComponent },
   { path: 'reviews', component: ReviewsComponent },
+  { path: 'sending', component: SendingComponent },
   { path: 'leave-review/:transactionId', component: LeaveReviewComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home', pathMatch: 'full' },
