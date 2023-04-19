@@ -11,62 +11,36 @@
 }
 
 .longAddr {
-  font-size: 1rem;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  font-weight: 600;
 }
 
-.upperSection {
+.transaction {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  row-gap: 0.75rem;
+  justify-content: space-evenly;
+  row-gap: 0.5rem;
 
   border-bottom: 1px solid hsla(0, 0%, 60%, 0.5);
   padding-bottom: 0.75rem;
 }
 
-.merchantLogo {
-  margin: unset;
-  height: 3rem;
-  width: 3rem;
-  padding: 0.25rem;
-  border: 1px solid hsla(0, 0%, 50%, 0.15);
-  border-radius: 10px;
-  object-fit: cover;
-  object-position: center;
-  background-color: white;
+.transId {
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
-.merchant {
-  display: flex;
-  column-gap: 1rem;
-  flex-direction: column;
-}
-
-.merchantDetails {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  row-gap: 0.25rem;
-}
-
-.merchantName {
-  font-weight: 500;
-  font-size: 1.25rem;
-}
-
-.merchantAddress,
-.reviewerAddress {
-  color: hsl(0, 0%, 30%);
-  font-weight: 300;
+.transReceiver {
   font-size: 0.9rem;
 }
 
-.reviewerAddress {
-  font-size: 1rem;
+.review {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: space-evenly;
+  row-gap: 0.75rem;
 }
 
 .starsDate {
@@ -81,15 +55,19 @@
 }
 
 .reviewText {
-  padding: 0.75rem 0;
+  padding-bottom: 0.75rem;
   border-bottom: 1px solid hsla(0, 0%, 60%, 0.5);
 }
 
-.lowerSection {
+.reviewTitle {
+  padding-top: 0.75rem;
+}
+
+.reviewer {
   display: flex;
   align-items: center;
   padding-top: 0.75rem;
-  column-gap: 1rem;
+  column-gap: 0.65rem;
 }
 
 .reviewerAvatar {
@@ -104,13 +82,23 @@
   border: 1px solid hsla(0, 0%, 50%, 0.15);
   border-radius: 50px;
   background-color: white;
+  flex-shrink: 0;
 }
 
-.reviewerDetails {
+.addressDate {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  row-gap: .35rem;
+  justify-content: space-between;
+  row-gap: .3rem;
+  font-size: .95rem;
+  color: hsl(0, 0%, 30%);
+  font-weight: 300;
+  overflow: hidden;
+
+  span {
+    color: black;
+    font-weight: 500;
+  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
