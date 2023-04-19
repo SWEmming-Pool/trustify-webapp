@@ -139,7 +139,7 @@ export class ContractService {
       reviewTitle == undefined ||
       reviewText == undefined
     ) {
-      alert('Invalid review');
+      alert('La recensione non rispetta i vincoli di validità.');
       throw new Error('Invalid review');
     } else {
       this.Contract.methods
