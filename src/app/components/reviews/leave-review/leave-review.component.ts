@@ -52,7 +52,9 @@ export class LeaveReviewComponent implements OnInit {
         )
         .then((t) => (this.transaction = t))
         .catch(() => {
-          alert('La transazione che vuoi recensire non compare tra quelle non recensite');
+          alert(
+            'La transazione che vuoi recensire non compare tra quelle non recensite'
+          );
           this.router.navigate(['/transactions']);
         });
     }
@@ -79,11 +81,15 @@ export class LeaveReviewComponent implements OnInit {
   onSubmit() {
     console.log('LeaveReviewComponent.onSubmit:');
     console.log(this.transaction.id);
-    this.contractService.addReview(
-      this.transaction.id,
-      this.reviewTitle,
-      this.rating,
-      this.reviewText
-    );
+    try {
+      this.contractService.addReview(
+        this.transaction.id,
+        this.reviewTitle,
+        this.rating,
+        this.reviewText
+      );
+    } catch (e: any) {
+      alert(e.message);
+    }
   }
 }

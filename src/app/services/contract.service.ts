@@ -135,7 +135,9 @@ export class ContractService {
       rating < 1 ||
       rating > 5 ||
       reviewTitle.length == 0 ||
-      reviewText.length == 0
+      reviewText.length == 0 ||
+      reviewTitle == undefined ||
+      reviewText == undefined
     ) {
       alert('Invalid review');
       throw new Error('Invalid review');
