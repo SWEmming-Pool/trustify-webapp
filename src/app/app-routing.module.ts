@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'reviews', component: ReviewsComponent },
   { path: 'leave-review/:transactionId', component: LeaveReviewComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({
