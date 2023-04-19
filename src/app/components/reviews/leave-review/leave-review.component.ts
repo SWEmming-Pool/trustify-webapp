@@ -93,7 +93,7 @@ export class LeaveReviewComponent implements OnInit {
       })
       .then(() => {
         alert(
-          "La recensione è stata inviata. Controlla le notifiche di Metamask per l'esito. Potrebbero volerci alcuni secondi."
+          "La recensione è stata inviata. Controlla le notifiche di Metamask per l'esito."
         );
         this.router.navigate(['/transactions']);
       });

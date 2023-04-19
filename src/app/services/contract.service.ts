@@ -110,12 +110,12 @@ export class ContractService {
     return transaction;
   }
 
-  sendTransaction(receiverAddress: string) {
+  async sendTransaction(receiverAddress: string) {
     console.log(
       'ContractService.sendTransaction - ' + this.authService.account
     );
 
-    this.Contract.methods
+    await this.Contract.methods
       .sendTransaction(receiverAddress)
       .send({ from: this.authService.account, value: 5000000000000000 })
       .on('error', (error: any) => {
