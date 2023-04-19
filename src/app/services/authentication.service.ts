@@ -47,6 +47,7 @@ export class AuthenticationService {
           console.log('AuthenticationService.isLoggedIn - logged out');
           this.account = '';
           sessionStorage.removeItem('account');
+          sessionStorage.clear();
         }
       });
 

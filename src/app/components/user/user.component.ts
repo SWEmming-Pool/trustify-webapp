@@ -17,7 +17,7 @@ export class UserComponent {
     private router: Router
   ) {
     authenticationService.isLoggedIn()
-      ? (this.accountAddress = sessionStorage.getItem('account') || '')
+      ? (this.accountAddress = authenticationService.account)
       : this.router.navigate(['/home']);
   }
 }

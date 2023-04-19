@@ -2,7 +2,7 @@
   <div class="transaction">
     <p class="longAddr transId">{{ review.transactionId }}</p>
     <p class="longAddr transReceiver">
-      {{ transaction?.receiver }}
+      {{ transaction.receiver }}
     </p>
   </div>
   <div class="review">
@@ -10,14 +10,9 @@
     <div class="starsDate">
       <div class="stars">
         <fa-icon
-          *ngFor="let item of [].constructor(review.rating)"
-          id="rateIcon"
-          [icon]="faStarSolid"
-        ></fa-icon>
-        <fa-icon
-          *ngFor="let item of [].constructor(5 - review.rating)"
-          id="rateIcon"
-          [icon]="faStar"
+          *ngFor="let filled of stars"
+          [icon]="filled ? faStarSolid : faStar"
+          class="rateIcon"
         ></fa-icon>
       </div>
       <p class="reviewDate">{{ review.date | date : "yyyy-MM-dd" }}</p>
@@ -27,8 +22,11 @@
   <div class="reviewer">
     <fa-icon class="reviewerAvatar" [icon]="faUser" [size]="'xl'"></fa-icon>
     <div class="addressDate">
-      <p class="reviewerAddress longAddr">{{ transaction?.sender }}</p>
-      <p class="transDate"><span>Data transazione:</span> {{ transaction?.date | date : "yyyy-MM-dd" }}</p>
+      <p class="reviewerAddress longAddr">{{ transaction.sender }}</p>
+      <p class="transDate">
+        <span>Data transazione:</span>
+        {{ transaction.date | date : "yyyy-MM-dd" }}
+      </p>
     </div>
   </div>
 </div>
