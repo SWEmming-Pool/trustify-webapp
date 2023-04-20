@@ -151,19 +151,6 @@ export class ContractService {
     }
   }
 
-  /*async getReviewsForAddress(address: string | null): Promise<Review[]> {
-    let reviews: Review[];
-    reviews = this.Contract.methods
-      .getReviewsForAddress(address)
-      .call((error: any) => {
-        if (error) {
-          alert(error.message);
-        }
-      });
-
-    return reviews;
-  }*/
-
   async getReviewsForAddress(address: string | null): Promise<Review[]> {
     let reviews: Review[] = [];
 
