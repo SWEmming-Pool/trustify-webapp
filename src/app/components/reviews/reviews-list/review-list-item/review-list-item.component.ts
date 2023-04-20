@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Review } from '../Reviews';
+import { Review } from '../../Reviews';
 import { faStar, faUser } from '@fortawesome/free-regular-svg-icons';
 import {
   IconDefinition,
   faStar as faStarSolid,
 } from '@fortawesome/free-solid-svg-icons';
-import { Transaction } from '../../transactions/Transactions';
+import { Transaction } from '../../../transactions/Transactions';
 import { ContractService } from 'src/app/services/contract.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
