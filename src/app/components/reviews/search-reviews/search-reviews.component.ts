@@ -13,17 +13,20 @@ export class SearchReviewsComponent {
   searchQuery: string;
   searchType: string;
   reviews: Review[];
+  searched: boolean;
 
   constructor(private contractService: ContractService) {
     this.faSearch = faSearch;
     this.searchQuery = '';
     this.searchType = 'sender';
     this.reviews = [];
+    this.searched = false;
   }
 
   async onSubmit() {
     this.reviews = await this.contractService.getReviewsForAddress(
       this.searchQuery
     );
+    this.searched = true;
   }
 }

@@ -16,6 +16,7 @@ import { LeaveReviewComponent } from './components/reviews/leave-review/leave-re
 import { FormsModule } from '@angular/forms';
 import { SendingComponent } from './components/sending/sending.component';
 import { SearchReviewsComponent } from './components/reviews/search-reviews/search-reviews.component';
+import { ReviewsListComponent } from './components/reviews/reviews-list/reviews-list.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { SearchReviewsComponent } from './components/reviews/search-reviews/sear
     ReviewListItemComponent,
     LeaveReviewComponent,
     SendingComponent,
-    SearchReviewsComponent
+    SearchReviewsComponent,
+    ReviewsListComponent
   ],
   imports: [
     BrowserModule,
