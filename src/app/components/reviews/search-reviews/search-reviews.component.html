@@ -12,6 +12,7 @@
       required
       name="query"
       [(ngModel)]="searchQuery"
+      ngModel pattern="^0x[a-fA-F0-9]{40}$"
     />
 
     <select name="searchType" id="searchType" [(ngModel)]="searchType" required>
