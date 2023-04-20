@@ -162,7 +162,6 @@ export class ContractService {
           throw new Error(error.message);
         } else {
           result.forEach((review: any) => {
-            console.log(review);
             reviews.push(
               new Review(
                 review.date,
