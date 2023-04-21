@@ -48,6 +48,9 @@ export class HomeComponent {
           "La transazione inviata è stata inviata. Controlla le notifiche di Metamask per l'esito."
         );
         this.router.navigate(['/transactions']);
+      })
+      .catch(() => {
+        this.router.navigate(['/transactions']);
       });
   }
 }

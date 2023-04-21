@@ -117,10 +117,7 @@ export class ContractService {
 
     await this.Contract.methods
       .sendTransaction(receiverAddress)
-      .send({ from: this.authService.account, value: 5000000000000000 })
-      .on('error', (error: any) => {
-        alert(error.message);
-      });
+      .send({ from: this.authService.account, value: 5000000000000000 });
   }
 
   async addReview(
