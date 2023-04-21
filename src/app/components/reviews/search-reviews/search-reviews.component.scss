@@ -1,11 +1,14 @@
-h2 {
-  padding: 1rem 0;
-}
-
-#search {
+form {
   display: flex;
-  column-gap: 0.5rem;
-  margin-bottom: 1rem;
+  flex-direction: column;
+  row-gap: .5rem;
+  padding: 1rem;
+  width: 95vw;
+
+  h2 {
+    padding: unset;
+    margin-bottom: .5rem;
+  }
 
   input,
   select {
@@ -15,21 +18,58 @@ h2 {
     border: 1px solid hsla(0, 0%, 50%, 0.4);
   }
 
-  input {
-    flex-grow: 2;
-    flex-shrink: 1;
+  #search {
+    display: flex;
+    column-gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+
+    input {
+      flex-grow: 1;
+      flex-shrink: 1;
+    }
+
+    button {
+      margin: unset;
+      width: 2.25rem;
+      height: 2.25rem;
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
   }
 
-  select {
-    background-color: white;
-    flex-grow: 1;
-    flex-shrink: 2;
+  #select {
+    display: flex;
+    column-gap: 0.5rem;
+    align-items: center;
+    padding-right: 2.75rem;
+
+    label {
+      font-size: .9rem;
+      flex-grow: 0;
+    }
+
+    select {
+      background-color: white;
+      flex-grow: 1;
+    }
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  form {
+    width: 65vw;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  form {
+    width: 30vw;
   }
 
-  button {
-    margin: unset;
-    width: 2.25rem;
-    height: 2.25rem;
-    flex-grow: 0;
+  form input, form select, form #select label {
+    font-size: 1rem;
   }
 }

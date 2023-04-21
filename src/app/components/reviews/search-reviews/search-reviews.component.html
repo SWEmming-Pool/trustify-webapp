@@ -12,20 +12,24 @@
       required
       name="query"
       [(ngModel)]="searchQuery"
-      ngModel pattern="^0x[a-fA-F0-9]{40}$"
+      ngModel
+      pattern="^0x[a-fA-F0-9]{40}$"
     />
-
-    <select name="searchType" id="searchType" [(ngModel)]="searchType" required>
-      <option value="sender">Autore</option>
-      <option value="receiver">Destinatario</option>
-    </select>
-
     <button type="submit" [disabled]="!searchForm.form.valid">
       <fa-icon [icon]="faSearch"></fa-icon>
     </button>
   </div>
+  <div id="select">
+    <label for="searchType">Cerca per:</label>
+    <select name="searchType" id="searchType" [(ngModel)]="searchType" required>
+      <option value="sender">Autore</option>
+      <option value="receiver">Destinatario</option>
+    </select>
+  </div>
 </form>
 
-<p *ngIf="reviews.length === 0 && searched" id="noRev">Nessuna recensione trovata con i parametri specificati.</p>
+<p *ngIf="reviews.length === 0 && searched" id="noRev">
+  Nessuna recensione trovata con i parametri specificati.
+</p>
 
 <app-reviews-list [reviews]="reviews"></app-reviews-list>
