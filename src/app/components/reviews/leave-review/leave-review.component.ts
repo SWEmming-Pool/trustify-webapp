@@ -5,7 +5,7 @@ import {
   faStar as faStarSolid,
 } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Transaction } from '../../transactions/Transactions';
+import { Transaction } from '../../transactions/Transaction';
 import { ContractService } from 'src/app/services/contract.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
@@ -41,15 +41,23 @@ export class LeaveReviewComponent implements OnInit {
   }
 
   async ngOnInit() {
-    await this.contractService
-      .findTransactionById(
-        this.authService.account,
-        this.route.snapshot.params['transactionId']
-      )
-      .then((t) => (this.transaction = t))
-      .catch(() => {
-        this.router.navigate(['/transactions']);
-      });
+    if (!this.authService.isLoggedIn()) {
+      alert('Devi prima effettuare il login per lasciare una recensione');
+      this.router.navigate(['/user']);
+    } else {
+      await this.contractService
+        .findTransactionById(
+          this.authService.account,
+          this.route.snapshot.params['transactionId']
+        )
+        .then((t) => (this.transaction = t))
+        .catch(() => {
+          alert(
+            'La transazione che vuoi recensire non compare tra quelle non recensite'
+          );
+          this.router.navigate(['/transactions']);
+        });
+    }
   }
 
   textChange(varName: string, chars: string) {
@@ -70,14 +78,24 @@ export class LeaveReviewComponent implements OnInit {
     }
   }
 
-  onSubmit() {
-    console.log('LeaveReviewComponent.onSubmit:');
-    console.log(this.transaction.id);
-    this.contractService.addReview(
-      this.transaction.id,
-      this.reviewTitle,
-      this.rating,
-      this.reviewText
-    );
+  async onSubmit() {
+    this.router.navigate(['/sending']);
+    await this.contractService
+      .addReview(
+        this.transaction.id,
+        this.reviewTitle,
+        this.rating,
+        this.reviewText
+      )
+      .catch((e) => {
+        alert(e.message);
+        throw new Error(e.message);
+      })
+      .then(() => {
+        alert(
+          "La recensione è stata inviata. Controlla le notifiche di Metamask per l'esito."
+        );
+        this.router.navigate(['/transactions']);
+      });
   }
 }

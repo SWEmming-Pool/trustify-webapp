@@ -10,14 +10,13 @@ import { ContractService } from 'src/app/services/contract.service';
 })
 export class HomeComponent {
   constructor(
-    private authenticationService: AuthenticationService,
+    private authService: AuthenticationService,
     private router: Router,
-    private contractService: ContractService
   ) {}
 
   async login() {
-    if (!this.authenticationService.isLoggedIn()) {
-      await this.authenticationService
+    if (!this.authService.isLoggedIn()) {
+      await this.authService
         .login()
         .then(() => {
           this.router.navigate(['/user']);
@@ -31,12 +30,6 @@ export class HomeComponent {
   }
 
   isLoggedIn(): boolean {
-    return this.authenticationService.isLoggedIn();
-  }
-
-  sendTransaction() {
-    this.contractService.sendTransaction(
-      '0x36Ac550A5BD2b6a30f52901b3B63ede555F0fdF1'
-    );
+    return this.authService.isLoggedIn();
   }
 }

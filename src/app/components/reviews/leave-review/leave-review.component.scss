@@ -93,7 +93,7 @@ button {
   }
 
   .required {
-    font-size: .9rem;
+    font-size: 0.9rem;
     font-weight: 300;
     color: black;
   }
@@ -171,7 +171,7 @@ button {
 @media only screen and (min-width: 600px) {
   .transaction,
   .review {
-    width: 70vw;
+    width: 75vw;
   }
 }
 
@@ -180,20 +180,5 @@ button {
   .transaction,
   .review {
     width: 40vw;
-  }
-
-  .transaction {
-    .merchantLogo {
-      height: 3.5rem;
-      width: 3.5rem;
-    }
-
-    .merchantDesc {
-      font-size: 1.2rem;
-    }
-
-    .dateAmount {
-      font-size: 1rem;
-    }
   }
 }

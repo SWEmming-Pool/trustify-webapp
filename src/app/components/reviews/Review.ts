@@ -1,5 +1,3 @@
-import { Transaction } from '../transactions/Transactions';
-
 export class Review {
   transactionId: string;
   date: Date;
@@ -15,11 +13,10 @@ export class Review {
     transactionId: string
 
   ) {
-    this.date = new Date(date * 1000);;
+    this.date = new Date(date * 1000);
     this.title = title;
     this.rating = rating;
     this.text = text;
     this.transactionId = transactionId;
-
   }
 }

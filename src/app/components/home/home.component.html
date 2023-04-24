@@ -2,10 +2,10 @@
   <button (click)="login()">
     <img src="./assets/metamask.svg" />{{ !isLoggedIn() ? "Login" : "Account" }}
   </button>
-  <button [disabled]="!isLoggedIn()" (click)="sendTransaction()">Paga</button>
   <button [disabled]="!isLoggedIn()" routerLink="/transactions">
     Pagamenti da recensire
   </button>
-  <button routerLink="/reviews" [disabled]="!isLoggedIn()">Recensioni</button>
-  <button disabled="true">Ricerca recensioni</button>
+  <button routerLink="/reviews" [disabled]="!isLoggedIn()">Recensioni rilasciate</button>
+  <button routerLink="/reviews" disabled>Recensioni ricevute</button>
+  <button routerLink="/search-reviews">Ricerca recensioni</button>
 </nav>

@@ -1,0 +1,35 @@
+<form #searchForm="ngForm" (ngSubmit)="onSubmit()">
+  <h2>
+    <label for="query">Ricerca recensioni</label>
+  </h2>
+  <div id="search">
+    <input
+      type="text"
+      id="query"
+      placeholder="Inserisci indirizzo wallet"
+      maxlength="42"
+      minlength="42"
+      required
+      name="query"
+      [(ngModel)]="searchQuery"
+      ngModel
+      pattern="^0x[a-fA-F0-9]{40}$"
+    />
+    <button type="submit" [disabled]="!searchForm.form.valid">
+      <fa-icon [icon]="faSearch"></fa-icon>
+    </button>
+  </div>
+  <div id="select">
+    <label for="searchType">Cerca per:</label>
+    <select name="searchType" id="searchType" [(ngModel)]="searchType" required>
+      <option value="sender">Autore</option>
+      <option value="receiver">Destinatario</option>
+    </select>
+  </div>
+</form>
+
+<p *ngIf="reviews.length === 0 && searched" id="noRev">
+  Nessuna recensione trovata con i parametri specificati.
+</p>
+
+<app-reviews-list [reviews]="reviews"></app-reviews-list>

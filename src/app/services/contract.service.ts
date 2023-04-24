@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import Web3 from 'web3';
-import { Transaction } from '../components/transactions/Transactions';
+import { Transaction } from '../components/transactions/Transaction';
 import { AuthenticationService } from './authentication.service';
-import { Review } from '../components/reviews/Reviews';
+import { Review } from '../components/reviews/Review';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,7 @@ export class ContractService {
   })
   INFURA_RPC: string =
     'https://sepolia.infura.io/v3/2309bf77660544a0b78cef8a85d33a1f';
-  CONTRACT_ADDRESS: string = '0xbc7477568E2EB68390f7791B3231b12F969af155';
+  CONTRACT_ADDRESS: string = '0xB85B1BFC243d246a8Ac860199F1b1d1F729ea7D5';
   CONTRACT_JSON: any = require('../../assets/ReviewSystem.json');
 
   Contract: any;
@@ -25,21 +25,6 @@ export class ContractService {
       this.CONTRACT_ADDRESS
     );
   }
-
-  /*async addAddressToBook(address: string, owner: string): Promise<string> {
-    let status: string = '';
-    if (this.accountAddress == undefined) {
-      status = 'Missing account connection';
-      return status;
-    }
-    this.Contract.methods
-      .addAddressToBook(address, owner)
-      .send({ from: this.accountAddress })
-      .on('error', (error: any) => {
-        status = error.message;
-      });
-    return status;
-  }*/
 
   async getUnreviewedTransactions(
     address: string | null
@@ -77,8 +62,9 @@ export class ContractService {
     let transactions = await this.getUnreviewedTransactions(accountAddress);
     let transaction = transactions.find((t) => t.id == id);
     if (transaction == undefined) {
-      alert('Transaction ' + id + ' not found');
-      throw new Error('Transaction not found');
+      //alert('Transaction ' + id + ' not found');
+      console.error('Transaction ' + id + ' not found');
+      throw new Error('Transaction' + id + 'not found');
     }
     return transaction;
   }
@@ -109,20 +95,20 @@ export class ContractService {
     return transaction;
   }
 
-  sendTransaction(receiverAddress: string) {
+  async sendTransaction(receiverAddress: string, amount: number) {
     console.log(
       'ContractService.sendTransaction - ' + this.authService.account
     );
 
-    this.Contract.methods
+    await this.Contract.methods
       .sendTransaction(receiverAddress)
-      .send({ from: this.authService.account, value: 5000000000000000 })
-      .on('error', (error: any) => {
-        alert(error.message);
+      .send({
+        from: this.authService.account,
+        value: Web3.utils.toWei(amount.toString(), 'ether'),
       });
   }
 
-  addReview(
+  async addReview(
     transactionId: string,
     reviewTitle: string,
     rating: number,
@@ -134,12 +120,14 @@ export class ContractService {
       rating < 1 ||
       rating > 5 ||
       reviewTitle.length == 0 ||
-      reviewText.length == 0
+      reviewText.length == 0 ||
+      reviewTitle == undefined ||
+      reviewText == undefined
     ) {
-      alert('Invalid review');
+      alert('La recensione non rispetta i vincoli di validità.');
       throw new Error('Invalid review');
     } else {
-      this.Contract.methods
+      await this.Contract.methods
         .addReview(transactionId, reviewTitle, rating, reviewText)
         .send({ from: this.authService.account })
         .on('error', (error: any) => {
@@ -147,19 +135,6 @@ export class ContractService {
         });
     }
   }
-
-  /*async getReviewsForAddress(address: string | null): Promise<Review[]> {
-    let reviews: Review[];
-    reviews = this.Contract.methods
-      .getReviewsForAddress(address)
-      .call((error: any) => {
-        if (error) {
-          alert(error.message);
-        }
-      });
-
-    return reviews;
-  }*/
 
   async getReviewsForAddress(address: string | null): Promise<Review[]> {
     let reviews: Review[] = [];
@@ -172,7 +147,6 @@ export class ContractService {
           throw new Error(error.message);
         } else {
           result.forEach((review: any) => {
-            console.log(review);
             reviews.push(
               new Review(
                 review.date,
