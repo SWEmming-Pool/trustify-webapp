@@ -33,24 +33,4 @@ export class HomeComponent {
   isLoggedIn(): boolean {
     return this.authenticationService.isLoggedIn();
   }
-
-  async sendTransaction() {
-    this.router.navigate(['/sending']);
-
-    await this.contractService
-      .sendTransaction('0x36Ac550A5BD2b6a30f52901b3B63ede555F0fdF1')
-      .catch((error) => {
-        alert(error.message);
-        throw new Error(error.message);
-      })
-      .then(() => {
-        alert(
-          "La transazione inviata è stata inviata. Controlla le notifiche di Metamask per l'esito."
-        );
-        this.router.navigate(['/transactions']);
-      })
-      .catch(() => {
-        this.router.navigate(['/transactions']);
-      });
-  }
 }

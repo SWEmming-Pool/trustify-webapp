@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'reviews', component: ReviewsComponent },
   { path: 'sending', component: SendingComponent },
   { path: 'search-reviews', component: SearchReviewsComponent },
-  { path: 'checkout', component: CheckoutComponent },
+  { path: 'checkout/:seller/:price', component: CheckoutComponent },
   { path: 'leave-review/:transactionId', component: LeaveReviewComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home', pathMatch: 'full' },

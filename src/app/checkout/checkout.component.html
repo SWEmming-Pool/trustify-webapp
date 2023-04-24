@@ -1,1 +1,17 @@
+<div id="header">
+  <h1>eCommerce</h1>
+  <h2>Riepilogo ordine</h2>
+</div>
+<div id="main">
+  <div>
+    <h3>Prezzo</h3>
+    <p>{{ this.price }} ETH</p>
+  </div>
 
+  <div>
+    <h3>Venditore</h3>
+    <p>{{ this.seller }}</p>
+  </div>
+
+  <button (click)="sendTransaction()">Paga con <span>Trustify</span></button>
+</div>

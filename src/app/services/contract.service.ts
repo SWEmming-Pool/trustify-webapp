@@ -110,14 +110,17 @@ export class ContractService {
     return transaction;
   }
 
-  async sendTransaction(receiverAddress: string) {
+  async sendTransaction(receiverAddress: string, amount: number) {
     console.log(
       'ContractService.sendTransaction - ' + this.authService.account
     );
 
     await this.Contract.methods
       .sendTransaction(receiverAddress)
-      .send({ from: this.authService.account, value: 5000000000000000 });
+      .send({
+        from: this.authService.account,
+        value: Web3.utils.toWei(amount.toString(), 'ether'),
+      });
   }
 
   async addReview(
