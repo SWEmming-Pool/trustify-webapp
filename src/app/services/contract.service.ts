@@ -26,21 +26,6 @@ export class ContractService {
     );
   }
 
-  /*async addAddressToBook(address: string, owner: string): Promise<string> {
-    let status: string = '';
-    if (this.accountAddress == undefined) {
-      status = 'Missing account connection';
-      return status;
-    }
-    this.Contract.methods
-      .addAddressToBook(address, owner)
-      .send({ from: this.accountAddress })
-      .on('error', (error: any) => {
-        status = error.message;
-      });
-    return status;
-  }*/
-
   async getUnreviewedTransactions(
     address: string | null
   ): Promise<Transaction[]> {
