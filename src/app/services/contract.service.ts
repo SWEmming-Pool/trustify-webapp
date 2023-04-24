@@ -13,7 +13,7 @@ export class ContractService {
   })
   INFURA_RPC: string =
     'https://sepolia.infura.io/v3/2309bf77660544a0b78cef8a85d33a1f';
-  CONTRACT_ADDRESS: string = '0xbc7477568E2EB68390f7791B3231b12F969af155';
+  CONTRACT_ADDRESS: string = '0xB85B1BFC243d246a8Ac860199F1b1d1F729ea7D5';
   CONTRACT_JSON: any = require('../../assets/ReviewSystem.json');
 
   Contract: any;
