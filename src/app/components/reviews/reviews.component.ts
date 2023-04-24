@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Review } from './Reviews';
+import { Review } from './Review';
 import { ContractService } from 'src/app/services/contract.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';

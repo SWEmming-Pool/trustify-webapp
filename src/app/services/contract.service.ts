@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import Web3 from 'web3';
-import { Transaction } from '../components/transactions/Transactions';
+import { Transaction } from '../components/transactions/Transaction';
 import { AuthenticationService } from './authentication.service';
-import { Review } from '../components/reviews/Reviews';
+import { Review } from '../components/reviews/Review';
 
 @Injectable({
   providedIn: 'root',

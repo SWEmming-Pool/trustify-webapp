@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IconDefinition, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { Review } from '../Reviews';
+import { Review } from '../Review';
 import { ContractService } from 'src/app/services/contract.service';
 
 @Component({

@@ -5,7 +5,7 @@ import {
   faStar as faStarSolid,
 } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Transaction } from '../../transactions/Transactions';
+import { Transaction } from '../../transactions/Transaction';
 import { ContractService } from 'src/app/services/contract.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 

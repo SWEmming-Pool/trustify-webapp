@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
-        if (val.url === '/checkout') {
+        if (val.url.includes('/checkout')) {
           this.checkout = true;
         } else {
           this.checkout = false;
