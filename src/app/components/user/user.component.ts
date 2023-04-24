@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
@@ -8,16 +8,20 @@ import { Router } from '@angular/router';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
 })
-export class UserComponent {
+export class UserComponent implements OnInit {
   accountAddress!: string;
   faUser = faUser;
 
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router
-  ) {
-    authenticationService.isLoggedIn()
-      ? (this.accountAddress = sessionStorage.getItem('account') || '')
-      : this.router.navigate(['/home']);
+  ) { }
+
+  ngOnInit() {
+    if (this.authenticationService.isLoggedIn()) {
+      this.accountAddress = sessionStorage.getItem('account') || '';
+    } else {
+      this.router.navigate(['/home']);
+    }
   }
 }
