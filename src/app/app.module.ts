@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { SendingComponent } from './components/sending/sending.component';
 import { SearchReviewsComponent } from './components/reviews/search-reviews/search-reviews.component';
 import { ReviewsListComponent } from './components/reviews/reviews-list/reviews-list.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ReviewsListComponent } from './components/reviews/reviews-list/reviews-
     LeaveReviewComponent,
     SendingComponent,
     SearchReviewsComponent,
-    ReviewsListComponent
+    ReviewsListComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
