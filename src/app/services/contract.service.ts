@@ -27,7 +27,7 @@ export class ContractService {
   }
 
   async getUnreviewedTransactions(
-    address: string | null
+    address: string
   ): Promise<Transaction[]> {
     let unreviewed: Transaction[] = [];
 
@@ -142,7 +142,7 @@ export class ContractService {
 
   async getReviewsForAddress(
     type: 'sender' | 'receiver',
-    address: string | null
+    address: string
   ): Promise<Review[]> {
     let reviews: Review[] = [];
 

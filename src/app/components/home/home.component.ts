@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
-import { ContractService } from 'src/app/services/contract.service';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +9,7 @@ import { ContractService } from 'src/app/services/contract.service';
 })
 export class HomeComponent {
   constructor(
-    private authService: AuthenticationService,
+    protected authService: AuthenticationService,
     private router: Router
   ) {}
 
@@ -27,9 +26,5 @@ export class HomeComponent {
     } else {
       this.router.navigate(['/user']);
     }
-  }
-
-  isLoggedIn(): boolean {
-    return this.authService.isLoggedIn();
   }
 }

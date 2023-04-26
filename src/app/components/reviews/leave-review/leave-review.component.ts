@@ -15,7 +15,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./leave-review.component.scss'],
 })
 export class LeaveReviewComponent implements OnInit {
-  faStar: any[];
+  faStars: IconDefinition[];
   faStarSolid: IconDefinition;
   stars: HTMLCollection;
   transaction: Transaction = new Transaction();
@@ -33,7 +33,7 @@ export class LeaveReviewComponent implements OnInit {
     private authService: AuthenticationService,
     private router: Router
   ) {
-    this.faStar = Array(5).fill(faStar);
+    this.faStars = Array(5).fill(faStar);
     this.stars = document.getElementsByClassName('starIcon');
     this.faStarSolid = faStarSolid;
     this.textCharCount = 0;
@@ -61,10 +61,10 @@ export class LeaveReviewComponent implements OnInit {
     }
   }
 
-  textChange(varName: string, chars: string) {
+  textChange(varName: 'reviewTitle' | 'reviewText', chars: string) {
     if (varName == 'reviewTitle') {
       this.titleCharCount = chars.length;
-    } else if (varName == 'reviewText') {
+    } else {
       this.textCharCount = chars.length;
     }
   }
@@ -72,9 +72,9 @@ export class LeaveReviewComponent implements OnInit {
   fillStars(index: number) {
     for (let star of this.stars) {
       if (parseInt(star.id) > index) {
-        this.faStar[parseInt(star.id)] = faStar;
+        this.faStars[parseInt(star.id)] = faStar;
       } else {
-        this.faStar[parseInt(star.id)] = faStarSolid;
+        this.faStars[parseInt(star.id)] = faStarSolid;
       }
     }
   }
