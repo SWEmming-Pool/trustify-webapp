@@ -23,8 +23,9 @@ export class TransactionsComponent implements OnInit {
       alert('Devi prima effettuare il login per visualizzare le transazioni');
       this.router.navigate(['/user']);
     } else {
-      this.transactions =
-        await this.contractService.getUnreviewedTransactions();
+      this.transactions = await this.contractService.getUnreviewedTransactions(
+        this.authService.account
+      );
     }
 
     /*console.log('TransactionComponent.ngOnInit:');
