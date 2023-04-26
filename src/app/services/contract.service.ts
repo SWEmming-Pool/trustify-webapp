@@ -14,7 +14,7 @@ export class ContractService {
   INFURA_RPC: string =
     'https://sepolia.infura.io/v3/2309bf77660544a0b78cef8a85d33a1f';
   CONTRACT_ADDRESS: string = '0xB85B1BFC243d246a8Ac860199F1b1d1F729ea7D5';
-  CONTRACT_JSON: any = require('../../assets/ReviewSystem.json');
+  CONTRACT_JSON = require('../../assets/ReviewSystem.json');
 
   Contract: any;
 
@@ -26,13 +26,11 @@ export class ContractService {
     );
   }
 
-  async getUnreviewedTransactions(
-    address: string | null
-  ): Promise<Transaction[]> {
+  async getUnreviewedTransactions(): Promise<Transaction[]> {
     let unreviewed: Transaction[] = [];
 
     await this.Contract.methods
-      .getUnreviewedTransactions(address)
+      .getUnreviewedTransactions()
       .call((error: any, result: any) => {
         if (error) {
           alert(error.message);
@@ -56,10 +54,9 @@ export class ContractService {
   }
 
   async findTransactionById(
-    accountAddress: string,
     id: string
   ): Promise<Transaction> {
-    let transactions = await this.getUnreviewedTransactions(accountAddress);
+    let transactions = await this.getUnreviewedTransactions();
     let transaction = transactions.find((t) => t.id == id);
     if (transaction == undefined) {
       //alert('Transaction ' + id + ' not found');
@@ -95,17 +92,11 @@ export class ContractService {
     return transaction;
   }
 
-  async sendTransaction(receiverAddress: string, amount: number) {
-    console.log(
-      'ContractService.sendTransaction - ' + this.authService.account
-    );
-
-    await this.Contract.methods
-      .sendTransaction(receiverAddress)
-      .send({
-        from: this.authService.account,
-        value: Web3.utils.toWei(amount.toString(), 'ether'),
-      });
+  async sendTransaction(receiverAddress: string, amount: string) {
+    await this.Contract.methods.sendTransaction(receiverAddress).send({
+      from: this.authService.account,
+      value: Web3.utils.toWei(amount),
+    });
   }
 
   async addReview(
