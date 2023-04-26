@@ -22,12 +22,10 @@ export class ReviewListItemComponent implements OnInit {
   stars: boolean[];
 
   @Input() review!: Review;
-  @Input() type!: "sender" | "receiver";
+  @Input() type!: 'sender' | 'receiver';
+  @Input() address!: string;
 
-  constructor(
-    private contractService: ContractService,
-    private authService: AuthenticationService
-  ) {
+  constructor(private contractService: ContractService) {
     this.faStar = faStar;
     this.faStarSolid = faStarSolid;
     this.faUser = faUser;
@@ -41,7 +39,11 @@ export class ReviewListItemComponent implements OnInit {
     }
 
     await this.contractService
-      .getTransactionForAddress(this.type, this.authService.account, this.review.transactionId)
+      .getTransactionForAddress(
+        this.type,
+        this.address,
+        this.review.transactionId
+      )
       .then((transaction) => {
         this.transaction = transaction;
       });

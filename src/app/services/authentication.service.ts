@@ -44,10 +44,10 @@ export class AuthenticationService {
     if (this.isInstalled()) {
       window.ethereum.on('accountsChanged', (accounts: Array<string>) => {
         if (accounts.length <= 0) {
-          console.log('AuthenticationService.isLoggedIn - logged out');
-          this.account = '';
           sessionStorage.removeItem('account');
           sessionStorage.clear();
+          this.account = '';
+          console.log('AuthenticationService.isLoggedIn - logged out');
         }
       });
 

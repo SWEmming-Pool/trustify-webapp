@@ -55,20 +55,6 @@ export class ContractService {
     return unreviewed;
   }
 
-  async findTransactionById(
-    accountAddress: string,
-    id: string
-  ): Promise<Transaction> {
-    let transactions = await this.getUnreviewedTransactions(accountAddress);
-    let transaction = transactions.find((t) => t.id == id);
-    if (transaction == undefined) {
-      //alert('Transaction ' + id + ' not found');
-      console.error('Transaction ' + id + ' not found');
-      throw new Error('Transaction' + id + 'not found');
-    }
-    return transaction;
-  }
-
   async getTransactionForAddress(
     type: 'sender' | 'receiver',
     accountAddress: string,
