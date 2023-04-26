@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'transactions', component: TransactionsComponent },
   { path: 'user', component: UserComponent },
-  { path: 'reviews', component: ReviewsComponent },
+  { path: 'reviews/:type', component: ReviewsComponent },
   { path: 'sending', component: SendingComponent },
   { path: 'search-reviews', component: SearchReviewsComponent },
   { path: 'checkout/:seller/:price', component: CheckoutComponent },

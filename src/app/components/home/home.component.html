@@ -5,7 +5,7 @@
   <button [disabled]="!isLoggedIn()" routerLink="/transactions">
     Pagamenti da recensire
   </button>
-  <button routerLink="/reviews" [disabled]="!isLoggedIn()">Recensioni rilasciate</button>
-  <button routerLink="/reviews" disabled>Recensioni ricevute</button>
+  <button routerLink="/reviews/sender" [disabled]="!isLoggedIn()">Recensioni rilasciate</button>
+  <button routerLink="/reviews/receiver" [disabled]="!isLoggedIn()">Recensioni ricevute</button>
   <button routerLink="/search-reviews">Ricerca recensioni</button>
 </nav>

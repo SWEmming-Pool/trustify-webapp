@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Review } from './Review';
 import { ContractService } from 'src/app/services/contract.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-reviews',
@@ -11,12 +11,16 @@ import { Router } from '@angular/router';
 })
 export class ReviewsComponent implements OnInit {
   reviews: Review[] = [];
+  type: 'sender' | 'receiver';
 
   constructor(
     private contractService: ContractService,
     private authService: AuthenticationService,
+    private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+    this.type = this.route.snapshot.params['type'];
+  }
 
   async ngOnInit() {
     if (!this.authService.isLoggedIn()) {
@@ -27,7 +31,7 @@ export class ReviewsComponent implements OnInit {
       this.router.navigate(['/user']);
     } else {
       this.reviews = await this.contractService.getReviewsForAddress(
-        'sender',
+        this.type,
         this.authService.account
       );
     }
