@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import detectEthereumProvider from '@metamask/detect-provider';
 declare global {
   interface Window {
@@ -12,7 +13,7 @@ declare global {
 export class AuthenticationService {
   public account!: string;
 
-  constructor() {
+  constructor(private router: Router) {
     if (this.isLoggedIn()) {
       this.account = sessionStorage.getItem('account')!;
     }
@@ -47,6 +48,7 @@ export class AuthenticationService {
           sessionStorage.removeItem('account');
           sessionStorage.clear();
           this.account = '';
+          this.router.navigate(['/home']);
           console.log('AuthenticationService.isLoggedIn - logged out');
         }
       });

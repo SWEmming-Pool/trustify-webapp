@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ReviewsComponent implements OnInit {
   reviews: Review[] = [];
   type: 'sender' | 'receiver';
-  address: string = '';
+  address: string;
 
   constructor(
     private contractService: ContractService,
@@ -21,6 +21,7 @@ export class ReviewsComponent implements OnInit {
     private router: Router
   ) {
     this.type = this.route.snapshot.params['type'];
+    this.address = this.authService.account;
   }
 
   async ngOnInit() {
