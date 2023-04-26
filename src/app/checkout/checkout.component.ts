@@ -32,7 +32,7 @@ export class CheckoutComponent {
         this.route.snapshot.params['price']
       )
       .catch((error) => {
-        alert(error.message);
+        alert("Checkout.sendTransaction " + error.message);
         throw new Error(error.message);
       })
       .then(() => {

@@ -8,7 +8,7 @@ export class Review {
   constructor(
     date: number = 0,
     title: string = '',
-    rating: number = 0,
+    rating: number = 4,
     text: string = '',
     transactionId: string
 

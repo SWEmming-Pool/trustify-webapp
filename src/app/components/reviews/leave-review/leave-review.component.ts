@@ -46,7 +46,7 @@ export class LeaveReviewComponent implements OnInit {
       this.router.navigate(['/user']);
     } else {
       await this.contractService
-        .findTransactionById(
+        .getTransactionForSender(
           this.authService.account,
           this.route.snapshot.params['transactionId']
         )
@@ -88,7 +88,7 @@ export class LeaveReviewComponent implements OnInit {
         this.reviewText
       )
       .catch((e) => {
-        alert(e.message);
+        alert('LeaveReviewComponent.onSubmit ' + e.message);
         throw new Error(e.message);
       })
       .then(() => {

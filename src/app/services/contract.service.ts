@@ -13,7 +13,7 @@ export class ContractService {
   })
   INFURA_RPC: string =
     'https://sepolia.infura.io/v3/2309bf77660544a0b78cef8a85d33a1f';
-  CONTRACT_ADDRESS: string = '0xB85B1BFC243d246a8Ac860199F1b1d1F729ea7D5';
+  CONTRACT_ADDRESS: string = '0x3297bc571f9420DcbD671bdFE98A48F07604B272';
   CONTRACT_JSON: any = require('../../assets/ReviewSystem.json');
 
   Contract: any;
@@ -34,7 +34,7 @@ export class ContractService {
     await this.Contract.methods
       .getUnreviewedTransactions(address)
       .call((error: any, result: any) => {
-        if (error) {
+        if (error && error.message !== 'header not found') {
           alert(error.message);
           throw new Error(error.message);
         } else {
@@ -69,14 +69,14 @@ export class ContractService {
     return transaction;
   }
 
-  async getTransaction(
+  async getTransactionForSender(
     accountAddress: string,
     id: string
   ): Promise<Transaction> {
     let transaction: Transaction = new Transaction('', 0, 0, '', '');
 
     await this.Contract.methods
-      .getTransaction(accountAddress, id)
+      .getTransactionForSender(accountAddress, id)
       .call((error: any, result: any) => {
         if (error) {
           alert(error.message);
@@ -100,12 +100,10 @@ export class ContractService {
       'ContractService.sendTransaction - ' + this.authService.account
     );
 
-    await this.Contract.methods
-      .sendTransaction(receiverAddress)
-      .send({
-        from: this.authService.account,
-        value: Web3.utils.toWei(amount.toString(), 'ether'),
-      });
+    await this.Contract.methods.sendTransaction(receiverAddress).send({
+      from: this.authService.account,
+      value: Web3.utils.toWei(amount.toString(), 'ether'),
+    });
   }
 
   async addReview(
@@ -136,29 +134,55 @@ export class ContractService {
     }
   }
 
-  async getReviewsForAddress(address: string | null): Promise<Review[]> {
+  async getReviewsForAddress(
+    type: 'sender' | 'receiver',
+    address: string | null
+  ): Promise<Review[]> {
     let reviews: Review[] = [];
 
-    await this.Contract.methods
-      .getReviewsForAddress(address)
-      .call((error: any, result: any) => {
-        if (error) {
-          alert(error.message);
-          throw new Error(error.message);
-        } else {
-          result.forEach((review: any) => {
-            reviews.push(
-              new Review(
-                review.date,
-                review.title,
-                review.rating,
-                review.text,
-                review.transactionId
-              )
-            );
-          });
-        }
-      });
+    if (type == 'sender') {
+      await this.Contract.methods
+        .getReviewsForSender(address)
+        .call((error: any, result: any) => {
+          if (error && error.message !== 'header not found') {
+            alert(error.message);
+            throw new Error(error.message);
+          } else {
+            result.forEach((review: any) => {
+              reviews.push(
+                new Review(
+                  review.date,
+                  review.title,
+                  review.rating,
+                  review.text,
+                  review.transactionId
+                )
+              );
+            });
+          }
+        });
+    } else {
+      await this.Contract.methods
+        .getReviewsForReceiver(address)
+        .call((error: any, result: any) => {
+          if (error && error.message !== 'header not found') {
+            alert(error.message);
+            throw new Error(error.message);
+          } else {
+            result.forEach((review: any) => {
+              reviews.push(
+                new Review(
+                  review.date,
+                  review.title,
+                  review.rating,
+                  review.text,
+                  review.transactionId
+                )
+              );
+            });
+          }
+        });
+    }
 
     /*console.log('ContractService.getReviewsForAddress:');
     console.log(reviews);*/

@@ -20,10 +20,14 @@ export class ReviewsComponent implements OnInit {
 
   async ngOnInit() {
     if (!this.authService.isLoggedIn()) {
-      alert('Devi prima effettuare il login per visualizzare le recensioni');
+      alert(
+        'ReviewComponent.OnInit ' +
+          'Devi prima effettuare il login per visualizzare le recensioni'
+      );
       this.router.navigate(['/user']);
     } else {
       this.reviews = await this.contractService.getReviewsForAddress(
+        'sender',
         this.authService.account
       );
     }

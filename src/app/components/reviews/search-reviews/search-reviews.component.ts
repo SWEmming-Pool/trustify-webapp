@@ -26,10 +26,14 @@ export class SearchReviewsComponent {
   async onSubmit() {
     if (this.searchType === 'sender') {
       this.reviews = await this.contractService.getReviewsForAddress(
+        'sender',
         this.searchQuery
       );
     } else {
-      // searchType === 'receiver'
+      this.reviews = await this.contractService.getReviewsForAddress(
+        'receiver',
+        this.searchQuery
+      );
     }
     this.searched = true;
   }

@@ -11,7 +11,7 @@ import { ContractService } from 'src/app/services/contract.service';
 export class HomeComponent {
   constructor(
     private authService: AuthenticationService,
-    private router: Router,
+    private router: Router
   ) {}
 
   async login() {
@@ -22,7 +22,7 @@ export class HomeComponent {
           this.router.navigate(['/user']);
         })
         .catch((error) => {
-          alert(error.message);
+          alert('HomeComponent.login() ' + error.message);
         });
     } else {
       this.router.navigate(['/user']);

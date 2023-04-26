@@ -35,14 +35,14 @@ export class ReviewListItemComponent implements OnInit {
   }
 
   async ngOnInit() {
-    await this.contractService
-      .getTransaction(this.authService.account, this.review.transactionId)
-      .then((transaction) => {
-        this.transaction = transaction;
-      });
-
     for (let i = 0; i < this.review.rating; i++) {
       this.stars[i] = true;
     }
+
+    await this.contractService
+      .getTransactionForSender(this.authService.account, this.review.transactionId)
+      .then((transaction) => {
+        this.transaction = transaction;
+      });
   }
 }
