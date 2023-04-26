@@ -12,6 +12,7 @@
       required
       name="query"
       [(ngModel)]="searchQuery"
+      (ngModelChange)="searched = false"
       ngModel
       pattern="^0x[a-fA-F0-9]{40}$"
     />
@@ -32,4 +33,8 @@
   Nessuna recensione trovata con i parametri specificati.
 </p>
 
-<app-reviews-list [reviews]="reviews" [type]="searchType" [address]="searchQuery"></app-reviews-list>
+<app-reviews-list
+  [reviews]="reviews"
+  [type]="searchType"
+  [address]="searchQuery"
+></app-reviews-list>

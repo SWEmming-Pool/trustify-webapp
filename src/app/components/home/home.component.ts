@@ -22,7 +22,7 @@ export class HomeComponent {
           this.router.navigate(['/user']);
         })
         .catch((error) => {
-          alert('HomeComponent.login() ' + error.message);
+          alert(error.message);
         });
     } else {
       this.router.navigate(['/user']);

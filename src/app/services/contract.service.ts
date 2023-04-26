@@ -189,7 +189,6 @@ export class ContractService {
           }
         });
     }
-
     /*console.log('ContractService.getReviewsForAddress:');
     console.log(reviews);*/
 

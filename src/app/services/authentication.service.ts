@@ -49,6 +49,7 @@ export class AuthenticationService {
           sessionStorage.clear();
           this.account = '';
           this.router.navigate(['/home']);
+          window.location.reload();
           console.log('AuthenticationService.isLoggedIn - logged out');
         }
       });
