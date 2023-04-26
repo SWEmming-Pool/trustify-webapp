@@ -11,7 +11,7 @@ import { ContractService } from 'src/app/services/contract.service';
 export class SearchReviewsComponent {
   faSearch: IconDefinition;
   searchQuery: string;
-  searchType: string;
+  searchType: 'sender' | 'receiver';
   reviews: Review[];
   searched: boolean;
 

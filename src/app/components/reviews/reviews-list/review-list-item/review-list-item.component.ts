@@ -22,6 +22,7 @@ export class ReviewListItemComponent implements OnInit {
   stars: boolean[];
 
   @Input() review!: Review;
+  @Input() type!: "sender" | "receiver";
 
   constructor(
     private contractService: ContractService,
@@ -40,7 +41,7 @@ export class ReviewListItemComponent implements OnInit {
     }
 
     await this.contractService
-      .getTransactionForSender(this.authService.account, this.review.transactionId)
+      .getTransactionForAddress(this.type, this.authService.account, this.review.transactionId)
       .then((transaction) => {
         this.transaction = transaction;
       });

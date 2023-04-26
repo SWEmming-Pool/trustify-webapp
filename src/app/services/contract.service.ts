@@ -69,28 +69,48 @@ export class ContractService {
     return transaction;
   }
 
-  async getTransactionForSender(
+  async getTransactionForAddress(
+    type: 'sender' | 'receiver',
     accountAddress: string,
     id: string
   ): Promise<Transaction> {
     let transaction: Transaction = new Transaction('', 0, 0, '', '');
 
-    await this.Contract.methods
-      .getTransactionForSender(accountAddress, id)
-      .call((error: any, result: any) => {
-        if (error) {
-          alert(error.message);
-          throw new Error(error.message);
-        } else {
-          transaction = new Transaction(
-            result.id,
-            result.date,
-            result.amount,
-            result.sender,
-            result.receiver
-          );
-        }
-      });
+    if (type == 'sender') {
+      await this.Contract.methods
+        .getTransactionForSender(accountAddress, id)
+        .call((error: any, result: any) => {
+          if (error) {
+            alert(error.message);
+            throw new Error(error.message);
+          } else {
+            transaction = new Transaction(
+              result.id,
+              result.date,
+              result.amount,
+              result.sender,
+              result.receiver
+            );
+          }
+        });
+    } else {
+      await this.Contract.methods
+        .getTransactionForReceiver(accountAddress, id)
+        .call((error: any, result: any) => {
+          if (error) {
+            alert(error.message);
+            throw new Error(error.message);
+          } else {
+            transaction = new Transaction(
+              result.id,
+              result.date,
+              result.amount,
+              result.sender,
+              result.receiver
+            );
+          }
+        });
+    }
 
     return transaction;
   }
