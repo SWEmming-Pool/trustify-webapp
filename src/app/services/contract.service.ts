@@ -8,9 +8,7 @@ import { Review } from '../components/reviews/Review';
   providedIn: 'root',
 })
 export class ContractService {
-  @Injectable({
-    providedIn: 'root',
-  })
+
   INFURA_RPC: string =
     'https://sepolia.infura.io/v3/2309bf77660544a0b78cef8a85d33a1f';
   CONTRACT_ADDRESS: string = '0x3297bc571f9420DcbD671bdFE98A48F07604B272';

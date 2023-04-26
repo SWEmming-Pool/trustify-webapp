@@ -22,8 +22,6 @@ export class LeaveReviewComponent implements OnInit {
   rating!: number;
   reviewTitle!: string;
   reviewText!: string;
-
-  transactions: Transaction[] = [];
   textCharCount: number;
   titleCharCount: number;
 
@@ -79,7 +77,7 @@ export class LeaveReviewComponent implements OnInit {
     }
   }
 
-  async onSubmit() {
+  async addReview() {
     this.router.navigate(['/sending']);
     await this.contractService
       .addReview(

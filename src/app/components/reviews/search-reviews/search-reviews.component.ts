@@ -23,7 +23,7 @@ export class SearchReviewsComponent {
     this.searched = false;
   }
 
-  async onSubmit() {
+  async search() {
     this.searched = true;
 
     this.reviews = [];
