@@ -39,26 +39,16 @@ export class LeaveReviewComponent implements OnInit {
   }
 
   async ngOnInit() {
-    if (!this.authService.isLoggedIn()) {
+    if (!this.authService.isLoggedIn) {
       alert('Devi prima effettuare il login per lasciare una recensione');
       this.router.navigate(['/user']);
     } else {
       await this.contractService
         .getTransactionById(this.route.snapshot.params['transactionId'])
         .then((t) => {
-          if (t.sender == '0x0000000000000000000000000000000000000000') {
-            alert(
-              'La transazione che vuoi recensire non compare tra quelle non recensite'
-            );
-            this.router.navigate(['/transactions']);
-          } else {
-            this.transaction = t;
-          }
+          this.transaction = t;
         })
         .catch(() => {
-          alert(
-            'La transazione che vuoi recensire non compare tra quelle non recensite'
-          );
           this.router.navigate(['/transactions']);
         });
     }

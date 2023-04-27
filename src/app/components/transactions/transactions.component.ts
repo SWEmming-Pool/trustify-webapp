@@ -22,7 +22,7 @@ export class TransactionsComponent implements OnInit {
   async ngOnInit() {
     this.init = false;
 
-    if (!this.authService.isLoggedIn()) {
+    if (!this.authService.isLoggedIn) {
       alert('Devi prima effettuare il login per visualizzare le transazioni');
       this.router.navigate(['/user']);
     } else {
@@ -32,8 +32,5 @@ export class TransactionsComponent implements OnInit {
 
       this.init = true;
     }
-
-    /*console.log('TransactionComponent.ngOnInit:');
-    console.log(this.transactions);*/
   }
 }

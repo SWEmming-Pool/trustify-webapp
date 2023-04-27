@@ -20,7 +20,7 @@ export class CheckoutComponent {
   ) {}
 
   async sendTransaction() {
-    if (!this.authService.isLoggedIn()) {
+    if (!this.authService.isLoggedIn) {
       await this.authService.login();
     }
 
@@ -32,7 +32,7 @@ export class CheckoutComponent {
         this.route.snapshot.params['price']
       )
       .catch((error) => {
-        alert("Checkout.sendTransaction " + error.message);
+        alert("ERRORE " + error.message);
         throw new Error(error.message);
       })
       .then(() => {

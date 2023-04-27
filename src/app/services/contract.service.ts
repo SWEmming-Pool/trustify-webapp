@@ -34,8 +34,6 @@ export class ContractService {
           throw new Error(error.message);
         } else {
           result.forEach((transaction: any) => {
-            console.log(transaction.reviewed);
-
             unreviewed.push(
               new Transaction(
                 transaction.id,
@@ -59,8 +57,7 @@ export class ContractService {
       .getTransactionById(id)
       .call((error: any, result: any) => {
         if (error) {
-          alert(error.message);
-          throw new Error(error.message);
+          alert('Transazione non trovata.');
         } else {
           transaction = new Transaction(
             result.id,
@@ -76,10 +73,6 @@ export class ContractService {
   }
 
   async sendTransaction(receiverAddress: string, amount: number) {
-    console.log(
-      'ContractService.sendTransaction - ' + this.authService.account
-    );
-
     await this.Contract.methods.sendTransaction(receiverAddress).send({
       from: this.authService.account,
       value: Web3.utils.toWei(amount.toString(), 'ether'),
@@ -165,9 +158,6 @@ export class ContractService {
           }
         });
     }
-    /*console.log('ContractService.getReviewsForAddress:');
-    console.log(reviews);*/
-
     return reviews;
   }
 }

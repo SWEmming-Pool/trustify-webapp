@@ -14,13 +14,13 @@ export class AuthenticationService {
   public account!: string;
 
   constructor(private router: Router) {
-    if (this.isLoggedIn()) {
+    if (this.isLoggedIn) {
       this.account = sessionStorage.getItem('account')!;
     }
   }
 
   async login() {
-    if (this.isInstalled()) {
+    if (this.isInstalled) {
       const provider = await detectEthereumProvider();
       if (provider) {
         const accounts = await window.ethereum.request({
@@ -28,7 +28,6 @@ export class AuthenticationService {
         });
         sessionStorage.setItem('account', accounts[0]);
         this.account = accounts[0];
-        console.log('AuthenticationService.login - ' + this.account);
       } else {
         alert('Please install MetaMask');
       }
@@ -37,19 +36,18 @@ export class AuthenticationService {
     }
   }
 
-  isInstalled(): boolean {
+  get isInstalled(): boolean {
     return window.ethereum !== undefined;
   }
 
-  isLoggedIn(): boolean {
-    if (this.isInstalled()) {
+  get isLoggedIn(): boolean {
+    if (this.isInstalled) {
       window.ethereum.on('accountsChanged', (accounts: Array<string>) => {
         if (accounts.length <= 0) {
           sessionStorage.removeItem('account');
           sessionStorage.clear();
           this.account = '';
           window.location.reload();
-          console.log('AuthenticationService.isLoggedIn - logged out');
         } else {
           sessionStorage.setItem('account', accounts[0]);
           this.account = accounts[0];
