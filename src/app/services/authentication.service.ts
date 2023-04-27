@@ -48,9 +48,12 @@ export class AuthenticationService {
           sessionStorage.removeItem('account');
           sessionStorage.clear();
           this.account = '';
-          this.router.navigate(['/home']);
           window.location.reload();
           console.log('AuthenticationService.isLoggedIn - logged out');
+        } else {
+          sessionStorage.setItem('account', accounts[0]);
+          this.account = accounts[0];
+          window.location.reload();
         }
       });
 

@@ -8,25 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  constructor(
-    private authService: AuthenticationService,
-    private router: Router
-  ) {}
-
-  async login() {
-    if (!this.authService.isLoggedIn()) {
-      await this.authService
-        .login()
-        .then(() => {
-          this.router.navigate(['/user']);
-        })
-        .catch((error) => {
-          alert(error.message);
-        });
-    } else {
-      this.router.navigate(['/user']);
-    }
-  }
+  constructor(private authService: AuthenticationService) {}
 
   get isLoggedIn(): boolean {
     return this.authService.isLoggedIn();

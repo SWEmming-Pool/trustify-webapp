@@ -1,5 +1,5 @@
 <nav>
-  <button (click)="login()">
+  <button routerLink="/user">
     <img src="./assets/metamask.svg" />{{ !isLoggedIn ? "Login" : "Account" }}
   </button>
   <button [disabled]="!isLoggedIn" routerLink="/transactions">

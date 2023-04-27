@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
-import { Router } from '@angular/router';
+import { IconDefinition, faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user',
@@ -9,19 +8,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./user.component.scss'],
 })
 export class UserComponent implements OnInit {
-  accountAddress!: string;
-  faUser = faUser;
+  accountAddress: string;
+  faUser: IconDefinition;
 
-  constructor(
-    private authenticationService: AuthenticationService,
-    private router: Router
-  ) { }
+  constructor(private authenticationService: AuthenticationService) {
+    this.faUser = faUser;
+    this.accountAddress = authenticationService.isLoggedIn()
+      ? this.authenticationService.account
+      : 'Completa il login tramite MetaMask';
+  }
 
-  ngOnInit() {
-    if (this.authenticationService.isLoggedIn()) {
-      this.accountAddress = sessionStorage.getItem('account') || '';
-    } else {
-      this.router.navigate(['/home']);
+  async ngOnInit() {
+    if (!this.authenticationService.isLoggedIn()) {
+      await this.authenticationService.login();
     }
   }
 }
