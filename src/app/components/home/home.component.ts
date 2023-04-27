@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent {
   constructor(
-    protected authService: AuthenticationService,
+    private authService: AuthenticationService,
     private router: Router
   ) {}
 
@@ -26,5 +26,9 @@ export class HomeComponent {
     } else {
       this.router.navigate(['/user']);
     }
+  }
+
+  get isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
   }
 }

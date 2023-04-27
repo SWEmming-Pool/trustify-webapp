@@ -60,25 +60,21 @@ export class LeaveReviewComponent implements OnInit {
   }
 
   textChange(varName: 'reviewTitle' | 'reviewText', chars: string) {
-    if (varName == 'reviewTitle') {
-      this.titleCharCount = chars.length;
-    } else {
-      this.textCharCount = chars.length;
-    }
+    varName == 'reviewTitle'
+      ? (this.titleCharCount = chars.length)
+      : (this.textCharCount = chars.length);
   }
 
   fillStars(index: number) {
     for (let star of this.stars) {
-      if (parseInt(star.id) > index) {
-        this.faStars[parseInt(star.id)] = faStar;
-      } else {
-        this.faStars[parseInt(star.id)] = faStarSolid;
-      }
+      this.faStars[parseInt(star.id)] =
+        parseInt(star.id) > index ? faStar : faStarSolid;
     }
   }
 
   async addReview() {
     this.router.navigate(['/sending']);
+
     await this.contractService
       .addReview(
         this.transaction.id,

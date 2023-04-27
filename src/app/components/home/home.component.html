@@ -1,25 +1,14 @@
 <nav>
   <button (click)="login()">
-    <img src="./assets/metamask.svg" />{{
-      !this.authService.isLoggedIn() ? "Login" : "Account"
-    }}
+    <img src="./assets/metamask.svg" />{{ !isLoggedIn ? "Login" : "Account" }}
   </button>
-  <button
-    [disabled]="!this.authService.isLoggedIn()"
-    routerLink="/transactions"
-  >
+  <button [disabled]="!isLoggedIn" routerLink="/transactions">
     Pagamenti da recensire
   </button>
-  <button
-    routerLink="/reviews/sender"
-    [disabled]="!this.authService.isLoggedIn()"
-  >
+  <button routerLink="/reviews/sender" [disabled]="!isLoggedIn">
     Recensioni rilasciate
   </button>
-  <button
-    routerLink="/reviews/receiver"
-    [disabled]="!this.authService.isLoggedIn()"
-  >
+  <button routerLink="/reviews/receiver" [disabled]="!isLoggedIn">
     Recensioni ricevute
   </button>
   <button routerLink="/search-reviews">Ricerca recensioni</button>
