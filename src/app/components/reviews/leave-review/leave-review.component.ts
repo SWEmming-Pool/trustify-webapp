@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { faStar } from '@fortawesome/free-regular-svg-icons';
-import {
-  IconDefinition,
-  faStar as faStarSolid,
-} from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition, faStar } from '@fortawesome/free-regular-svg-icons';
+import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Transaction } from '../../transactions/Transaction';
 import { ContractService } from 'src/app/services/contract.service';
@@ -19,9 +16,9 @@ export class LeaveReviewComponent implements OnInit {
   faStarSolid: IconDefinition;
   stars: HTMLCollection;
   transaction: Transaction = new Transaction();
-  rating!: number;
-  reviewTitle!: string;
-  reviewText!: string;
+  rating: number;
+  reviewTitle: string;
+  reviewText: string;
   textCharCount: number;
   titleCharCount: number;
 
@@ -34,6 +31,9 @@ export class LeaveReviewComponent implements OnInit {
     this.faStars = Array(5).fill(faStar);
     this.stars = document.getElementsByClassName('starIcon');
     this.faStarSolid = faStarSolid;
+    this.rating = 0;
+    this.reviewTitle = '';
+    this.reviewText = '';
     this.textCharCount = 0;
     this.titleCharCount = 0;
   }
@@ -45,7 +45,16 @@ export class LeaveReviewComponent implements OnInit {
     } else {
       await this.contractService
         .getTransactionById(this.route.snapshot.params['transactionId'])
-        .then((t) => (this.transaction = t))
+        .then((t) => {
+          if (t.sender == '0x0000000000000000000000000000000000000000') {
+            alert(
+              'La transazione che vuoi recensire non compare tra quelle non recensite'
+            );
+            this.router.navigate(['/transactions']);
+          } else {
+            this.transaction = t;
+          }
+        })
         .catch(() => {
           alert(
             'La transazione che vuoi recensire non compare tra quelle non recensite'
@@ -78,9 +87,9 @@ export class LeaveReviewComponent implements OnInit {
         this.rating,
         this.reviewText
       )
-      .catch((e) => {
-        alert('LeaveReviewComponent.onSubmit ' + e.message);
-        throw new Error(e.message);
+      .catch(() => {
+        this.router.navigate(['/transactions']);
+        throw new Error();
       })
       .then(() => {
         alert(

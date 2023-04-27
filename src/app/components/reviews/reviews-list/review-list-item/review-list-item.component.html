@@ -1,8 +1,8 @@
 <div class="container">
   <div class="transaction">
-    <p class="longAddr transId">{{ review.transactionId }}</p>
+    <p class="longAddr transId">{{ review.transaction.id }}</p>
     <p class="longAddr transReceiver">
-      {{ transaction.receiver }}
+      {{ review.transaction.receiver }}
     </p>
   </div>
   <div class="review">
@@ -22,10 +22,10 @@
   <div class="reviewer">
     <fa-icon class="reviewerAvatar" [icon]="faUser" [size]="'xl'"></fa-icon>
     <div class="addressDate">
-      <p class="reviewerAddress longAddr">{{ transaction.sender }}</p>
+      <p class="reviewerAddress longAddr">{{ review.transaction.sender }}</p>
       <p class="transDate">
         <span>Data transazione:</span>
-        {{ transaction.date | date : "yyyy-MM-dd" }}
+        {{ review.transaction.date | date : "yyyy-MM-dd" }}
       </p>
     </div>
   </div>

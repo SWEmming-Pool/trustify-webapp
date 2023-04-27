@@ -12,7 +12,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ReviewsComponent implements OnInit {
   reviews: Review[] = [];
   type: 'sender' | 'receiver';
-  address: string;
 
   constructor(
     private contractService: ContractService,
@@ -21,7 +20,6 @@ export class ReviewsComponent implements OnInit {
     private router: Router
   ) {
     this.type = this.route.snapshot.params['type'];
-    this.address = this.authService.account;
   }
 
   async ngOnInit() {
@@ -34,11 +32,8 @@ export class ReviewsComponent implements OnInit {
     } else {
       this.reviews = await this.contractService.getReviewsForAddress(
         this.type,
-        this.address
+        this.authService.account
       );
     }
-
-    /*console.log('ReviewsComponent.ngOnInit:');
-    console.log(this.reviews);*/
   }
 }

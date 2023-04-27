@@ -18,18 +18,14 @@ export class ReviewListItemComponent implements OnInit {
   faStar: IconDefinition;
   faStarSolid: IconDefinition;
   faUser: IconDefinition;
-  transaction: Transaction;
   stars: boolean[];
 
   @Input() review!: Review;
-  @Input() type!: 'sender' | 'receiver';
-  @Input() address!: string;
 
-  constructor(private contractService: ContractService) {
+  constructor() {
     this.faStar = faStar;
     this.faStarSolid = faStarSolid;
     this.faUser = faUser;
-    this.transaction = new Transaction();
     this.stars = [false, false, false, false, false];
   }
 
@@ -37,13 +33,5 @@ export class ReviewListItemComponent implements OnInit {
     for (let i = 0; i < this.review.rating; i++) {
       this.stars[i] = true;
     }
-
-    await this.contractService
-      .getTransactionById(
-        this.review.transactionId
-      )
-      .then((transaction) => {
-        this.transaction = transaction;
-      });
   }
 }

@@ -1,5 +1,8 @@
+import { ContractService } from 'src/app/services/contract.service';
+import { Transaction } from '../transactions/Transaction';
+
 export class Review {
-  transactionId: string;
+  transaction: Transaction;
   date: Date;
   title: string;
   rating: number;
@@ -10,13 +13,16 @@ export class Review {
     title: string = '',
     rating: number = 0,
     text: string = '',
-    transactionId: string
-
+    transactionId: string,
+    contractService: ContractService
   ) {
     this.date = new Date(date * 1000);
     this.title = title;
     this.rating = rating;
     this.text = text;
-    this.transactionId = transactionId;
+    this.transaction = new Transaction();
+    contractService.getTransactionById(transactionId).then((transaction) => {
+      this.transaction = transaction;
+    });
   }
 }

@@ -10,7 +10,7 @@ import { Review } from '../components/reviews/Review';
 export class ContractService {
   INFURA_RPC: string =
     'https://sepolia.infura.io/v3/2309bf77660544a0b78cef8a85d33a1f';
-  CONTRACT_ADDRESS: string = '0x3297bc571f9420DcbD671bdFE98A48F07604B272';
+  CONTRACT_ADDRESS: string = '0x0b2A4816F0E88c6a011754D818ebAc4F9f0B372C';
   CONTRACT_JSON: any = require('../../assets/ReviewSystem.json');
 
   Contract: any;
@@ -34,6 +34,8 @@ export class ContractService {
           throw new Error(error.message);
         } else {
           result.forEach((transaction: any) => {
+            console.log(transaction.reviewed);
+
             unreviewed.push(
               new Transaction(
                 transaction.id,
@@ -133,7 +135,8 @@ export class ContractService {
                   review.title,
                   review.rating,
                   review.text,
-                  review.transactionId
+                  review.transactionId,
+                  this
                 )
               );
             });
@@ -154,7 +157,8 @@ export class ContractService {
                   review.title,
                   review.rating,
                   review.text,
-                  review.transactionId
+                  review.transactionId,
+                  this
                 )
               );
             });

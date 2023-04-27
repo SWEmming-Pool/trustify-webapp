@@ -8,6 +8,4 @@ import { Review } from '../Review';
 })
 export class ReviewsListComponent {
   @Input() reviews!: Review[];
-  @Input() type!: 'sender' | 'receiver';
-  @Input() address!: string;
 }
