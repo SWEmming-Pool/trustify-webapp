@@ -39,9 +39,7 @@ export class ReviewListItemComponent implements OnInit {
     }
 
     await this.contractService
-      .getTransactionForAddress(
-        this.type,
-        this.address,
+      .getTransactionById(
         this.review.transactionId
       )
       .then((transaction) => {

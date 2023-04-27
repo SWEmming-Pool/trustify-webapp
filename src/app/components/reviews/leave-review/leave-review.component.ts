@@ -44,11 +44,7 @@ export class LeaveReviewComponent implements OnInit {
       this.router.navigate(['/user']);
     } else {
       await this.contractService
-        .getTransactionForAddress(
-          'sender',
-          this.authService.account,
-          this.route.snapshot.params['transactionId']
-        )
+        .getTransactionById(this.route.snapshot.params['transactionId'])
         .then((t) => (this.transaction = t))
         .catch(() => {
           alert(

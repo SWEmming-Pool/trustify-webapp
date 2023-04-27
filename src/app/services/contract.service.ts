@@ -8,7 +8,6 @@ import { Review } from '../components/reviews/Review';
   providedIn: 'root',
 })
 export class ContractService {
-
   INFURA_RPC: string =
     'https://sepolia.infura.io/v3/2309bf77660544a0b78cef8a85d33a1f';
   CONTRACT_ADDRESS: string = '0x3297bc571f9420DcbD671bdFE98A48F07604B272';
@@ -24,9 +23,7 @@ export class ContractService {
     );
   }
 
-  async getUnreviewedTransactions(
-    address: string
-  ): Promise<Transaction[]> {
+  async getUnreviewedTransactions(address: string): Promise<Transaction[]> {
     let unreviewed: Transaction[] = [];
 
     await this.Contract.methods
@@ -53,48 +50,25 @@ export class ContractService {
     return unreviewed;
   }
 
-  async getTransactionForAddress(
-    type: 'sender' | 'receiver',
-    accountAddress: string,
-    id: string
-  ): Promise<Transaction> {
+  async getTransactionById(id: string): Promise<Transaction> {
     let transaction: Transaction = new Transaction('', 0, 0, '', '');
 
-    if (type == 'sender') {
-      await this.Contract.methods
-        .getTransactionForSender(accountAddress, id)
-        .call((error: any, result: any) => {
-          if (error) {
-            alert(error.message);
-            throw new Error(error.message);
-          } else {
-            transaction = new Transaction(
-              result.id,
-              result.date,
-              result.amount,
-              result.sender,
-              result.receiver
-            );
-          }
-        });
-    } else {
-      await this.Contract.methods
-        .getTransactionForReceiver(accountAddress, id)
-        .call((error: any, result: any) => {
-          if (error) {
-            alert(error.message);
-            throw new Error(error.message);
-          } else {
-            transaction = new Transaction(
-              result.id,
-              result.date,
-              result.amount,
-              result.sender,
-              result.receiver
-            );
-          }
-        });
-    }
+    await this.Contract.methods
+      .getTransactionById(id)
+      .call((error: any, result: any) => {
+        if (error) {
+          alert(error.message);
+          throw new Error(error.message);
+        } else {
+          transaction = new Transaction(
+            result.id,
+            result.date,
+            result.amount,
+            result.sender,
+            result.receiver
+          );
+        }
+      });
 
     return transaction;
   }
