@@ -39,10 +39,10 @@ export class CheckoutComponent {
         alert(
           "La transazione inviata è stata inviata. Controlla le notifiche di Metamask per l'esito."
         );
-        this.router.navigate(['/home']);
+        this.router.navigate(['/transactions']);
       })
       .catch(() => {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/transactions']);
       });
   }
 }
