@@ -124,12 +124,12 @@ export class ContractService {
             result.forEach((review: any) => {
               reviews.push(
                 new Review(
+                  this,
                   review.date,
                   review.title,
                   review.rating,
                   review.text,
-                  review.transactionId,
-                  this
+                  review.transactionId
                 )
               );
             });
@@ -146,12 +146,12 @@ export class ContractService {
             result.forEach((review: any) => {
               reviews.push(
                 new Review(
+                  this,
                   review.date,
                   review.title,
                   review.rating,
                   review.text,
-                  review.transactionId,
-                  this
+                  review.transactionId
                 )
               );
             });

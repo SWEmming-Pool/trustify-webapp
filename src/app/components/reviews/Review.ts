@@ -9,12 +9,12 @@ export class Review {
   private text: string;
 
   constructor(
+    private contractService: ContractService,
     date: number = 0,
     title: string = '',
     rating: number = 0,
     text: string = '',
-    transactionId: string,
-    contractService: ContractService
+    transactionId: string = ''
   ) {
     this.date = new Date(date * 1000);
     this.title = title;
@@ -44,5 +44,21 @@ export class Review {
 
   get Text(): string {
     return this.text;
+  }
+
+  set Transaction(transaction: Transaction) {
+    this.transaction = transaction;
+  }
+
+  set Title(title: string) {
+    this.title = title;
+  }
+
+  set Rating(rating: number) {
+    this.rating = rating;
+  }
+
+  set Text(text: string) {
+    this.text = text;
   }
 }

@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { IconDefinition, faStar } from '@fortawesome/free-regular-svg-icons';
 import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Transaction } from '../../transactions/Transaction';
 import { ContractService } from 'src/app/services/contract.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Review } from '../Review';
 
 @Component({
   selector: 'app-leave-review',
@@ -12,13 +12,12 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./leave-review.component.scss'],
 })
 export class LeaveReviewComponent implements OnInit {
+  review: Review;
+
   faStars: IconDefinition[];
   faStarSolid: IconDefinition;
   stars: HTMLCollection;
-  transaction: Transaction = new Transaction();
-  rating: number;
-  reviewTitle: string;
-  reviewText: string;
+
   textCharCount: number;
   titleCharCount: number;
 
@@ -28,12 +27,12 @@ export class LeaveReviewComponent implements OnInit {
     private authService: AuthenticationService,
     private router: Router
   ) {
+    this.review = new Review(this.contractService);
+
     this.faStars = Array(5).fill(faStar);
     this.stars = document.getElementsByClassName('starIcon');
     this.faStarSolid = faStarSolid;
-    this.rating = 0;
-    this.reviewTitle = '';
-    this.reviewText = '';
+
     this.textCharCount = 0;
     this.titleCharCount = 0;
   }
@@ -46,7 +45,7 @@ export class LeaveReviewComponent implements OnInit {
       await this.contractService
         .getTransactionById(this.route.snapshot.params['transactionId'])
         .then((t) => {
-          this.transaction = t;
+          this.review.Transaction = t;
         })
         .catch(() => {
           this.router.navigate(['/transactions']);
@@ -72,10 +71,10 @@ export class LeaveReviewComponent implements OnInit {
 
     await this.contractService
       .addReview(
-        this.transaction.Id,
-        this.reviewTitle,
-        this.rating,
-        this.reviewText
+        this.review.Transaction.Id,
+        this.review.Title,
+        this.review.Rating,
+        this.review.Text
       )
       .catch(() => {
         this.router.navigate(['/transactions']);

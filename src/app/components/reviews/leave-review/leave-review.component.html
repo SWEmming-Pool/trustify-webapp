@@ -2,10 +2,10 @@
 
 <div class="transaction">
   <div class="centralText">
-    <p class="longAddr" id="transId">{{ transaction.Id }}</p>
-    <p class="longAddr">{{ transaction.Receiver }}</p>
+    <p class="longAddr" id="transId">{{ review.Transaction.Id }}</p>
+    <p class="longAddr">{{ review.Transaction.Receiver }}</p>
     <p class="dateAmount">
-      {{ transaction.Date | date : "yyy-MM-dd" + " • " + transaction.Amount }}
+      {{ review.Transaction.Date | date : "yyy-MM-dd" + " • " + review.Transaction.Amount }}
       ETH
     </p>
   </div>
@@ -32,10 +32,10 @@
       placeholder="Inserisci il titolo della recensione"
       maxlength="50"
       required
-      [(ngModel)]="reviewTitle"
+      [(ngModel)]="review.Title"
       name="title"
       #title="ngModel"
-      (ngModelChange)="textChange('reviewTitle', reviewTitle)"
+      (ngModelChange)="textChange('reviewTitle', review.Title)"
     />
     <p class="charCount">{{ titleCharCount }} / 50</p>
   </div>
@@ -46,7 +46,7 @@
       id="{{ 'star' + i }}"
       value="{{ i + 1 }}"
       *ngFor="let star of [].constructor(5); let i = index"
-      [(ngModel)]="rating"
+      [(ngModel)]="review.Rating"
       name="rating"
       required
     />
@@ -85,8 +85,8 @@
       placeholder="Inserisci il testo della recensione"
       maxlength="500"
       required
-      [(ngModel)]="reviewText"
-      (ngModelChange)="textChange('reviewText', reviewText)"
+      [(ngModel)]="review.Text"
+      (ngModelChange)="textChange('reviewText', review.Text)"
       name="text"
       #text="ngModel"
     ></textarea>
