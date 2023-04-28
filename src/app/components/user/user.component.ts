@@ -11,16 +11,16 @@ export class UserComponent implements OnInit {
   accountAddress: string;
   faUser: IconDefinition;
 
-  constructor(private authenticationService: AuthenticationService) {
+  constructor() {
     this.faUser = faUser;
-    this.accountAddress = authenticationService.isLoggedIn
-      ? this.authenticationService.account
+    this.accountAddress = AuthenticationService.isLoggedIn
+      ? AuthenticationService.account
       : 'Completa il login tramite MetaMask';
   }
 
   async ngOnInit() {
-    if (!this.authenticationService.isLoggedIn) {
-      await this.authenticationService.login();
+    if (!AuthenticationService.isLoggedIn) {
+      await AuthenticationService.login();
     }
   }
 }

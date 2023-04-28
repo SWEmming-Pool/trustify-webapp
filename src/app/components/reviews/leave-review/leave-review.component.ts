@@ -23,11 +23,9 @@ export class LeaveReviewComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private contractService: ContractService,
-    private authService: AuthenticationService,
     private router: Router
   ) {
-    this.review = new Review(this.contractService);
+    this.review = new Review();
 
     this.faStars = Array(5).fill(faStar);
     this.stars = document.getElementsByClassName('starIcon');
@@ -38,11 +36,11 @@ export class LeaveReviewComponent implements OnInit {
   }
 
   async ngOnInit() {
-    if (!this.authService.isLoggedIn) {
+    if (!AuthenticationService.isLoggedIn) {
       alert('Devi prima effettuare il login per lasciare una recensione');
       this.router.navigate(['/user']);
     } else {
-      await this.contractService
+      await ContractService
         .getTransactionById(this.route.snapshot.params['transactionId'])
         .then((t) => {
           this.review.Transaction = t;
@@ -69,7 +67,7 @@ export class LeaveReviewComponent implements OnInit {
   async addReview() {
     this.router.navigate(['/sending']);
 
-    await this.contractService
+    await ContractService
       .addReview(
         this.review.Transaction.Id,
         this.review.Title,

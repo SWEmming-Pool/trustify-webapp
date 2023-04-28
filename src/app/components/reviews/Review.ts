@@ -9,7 +9,6 @@ export class Review {
   private text: string;
 
   constructor(
-    private contractService: ContractService,
     date: number = 0,
     title: string = '',
     rating: number = 0,
@@ -21,7 +20,7 @@ export class Review {
     this.rating = rating;
     this.text = text;
     this.transaction = new Transaction();
-    contractService.getTransactionById(transactionId).then((transaction) => {
+    ContractService.getTransactionById(transactionId).then((transaction) => {
       this.transaction = transaction;
     });
   }

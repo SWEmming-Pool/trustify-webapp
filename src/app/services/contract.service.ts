@@ -8,25 +8,33 @@ import { Review } from '../components/reviews/Review';
   providedIn: 'root',
 })
 export class ContractService {
-  INFURA_RPC: string =
-    'https://sepolia.infura.io/v3/2309bf77660544a0b78cef8a85d33a1f';
-  CONTRACT_ADDRESS: string = '0xF16a40c5C0dE254dFf3BFA40F4a5C99f908f9aBa';
-  CONTRACT_JSON: any = require('../../assets/ReviewSystem.json');
+  static INFURA_RPC: string;
+  static CONTRACT_ADDRESS: string;
+  static CONTRACT_JSON: any;
+  static Contract: any;
+  static Client: Web3;
 
-  Contract: any;
+  static {
+    console.log('ContractService static constructor');
 
-  constructor(private authService: AuthenticationService) {
-    const Client = new Web3(Web3.givenProvider || this.INFURA_RPC);
-    this.Contract = new Client.eth.Contract(
+    this.INFURA_RPC =
+      'https://sepolia.infura.io/v3/2309bf77660544a0b78cef8a85d33a1f';
+    this.CONTRACT_ADDRESS = '0xF16a40c5C0dE254dFf3BFA40F4a5C99f908f9aBa';
+    this.CONTRACT_JSON = require('../../assets/ReviewSystem.json');
+    this.Client = new Web3(Web3.givenProvider || this.INFURA_RPC);
+
+    this.Contract = new this.Client.eth.Contract(
       this.CONTRACT_JSON,
       this.CONTRACT_ADDRESS
     );
   }
 
-  async getUnreviewedTransactions(address: string): Promise<Transaction[]> {
+  static async getUnreviewedTransactions(
+    address: string
+  ): Promise<Transaction[]> {
     let unreviewed: Transaction[] = [];
 
-    await this.Contract.methods
+    await ContractService.Contract.methods
       .getUnreviewedTransactions(address)
       .call((error: any, result: any) => {
         if (error && error.message !== 'header not found') {
@@ -50,10 +58,10 @@ export class ContractService {
     return unreviewed;
   }
 
-  async getTransactionById(id: string): Promise<Transaction> {
+  static async getTransactionById(id: string): Promise<Transaction> {
     let transaction: Transaction = new Transaction('', 0, 0, '', '');
 
-    await this.Contract.methods
+    await ContractService.Contract.methods
       .getTransactionById(id)
       .call((error: any, result: any) => {
         if (error) {
@@ -72,14 +80,16 @@ export class ContractService {
     return transaction;
   }
 
-  async sendTransaction(receiverAddress: string, amount: number) {
-    await this.Contract.methods.sendTransaction(receiverAddress).send({
-      from: this.authService.account,
-      value: Web3.utils.toWei(amount.toString(), 'ether'),
-    });
+  static async sendTransaction(receiverAddress: string, amount: number) {
+    await ContractService.Contract.methods
+      .sendTransaction(receiverAddress)
+      .send({
+        from: AuthenticationService.account,
+        value: Web3.utils.toWei(amount.toString(), 'ether'),
+      });
   }
 
-  async addReview(
+  static async addReview(
     transactionId: string,
     reviewTitle: string,
     rating: number,
@@ -98,23 +108,23 @@ export class ContractService {
       alert('La recensione non rispetta i vincoli di validità.');
       throw new Error('Invalid review');
     } else {
-      await this.Contract.methods
+      await ContractService.Contract.methods
         .addReview(transactionId, reviewTitle, rating, reviewText)
-        .send({ from: this.authService.account })
+        .send({ from: AuthenticationService.account })
         .on('error', (error: any) => {
           alert(error.message);
         });
     }
   }
 
-  async getReviewsByAddress(
+  static async getReviewsByAddress(
     type: 'sender' | 'receiver',
     address: string
   ): Promise<Review[]> {
     let reviews: Review[] = [];
 
     if (type == 'sender') {
-      await this.Contract.methods
+      await ContractService.Contract.methods
         .getReviewsBySender(address)
         .call((error: any, result: any) => {
           if (error && error.message !== 'header not found') {
@@ -124,7 +134,6 @@ export class ContractService {
             result.forEach((review: any) => {
               reviews.push(
                 new Review(
-                  this,
                   review.date,
                   review.title,
                   review.rating,
@@ -136,7 +145,7 @@ export class ContractService {
           }
         });
     } else {
-      await this.Contract.methods
+      await ContractService.Contract.methods
         .getReviewsByReceiver(address)
         .call((error: any, result: any) => {
           if (error && error.message !== 'header not found') {
@@ -146,7 +155,6 @@ export class ContractService {
             result.forEach((review: any) => {
               reviews.push(
                 new Review(
-                  this,
                   review.date,
                   review.title,
                   review.rating,

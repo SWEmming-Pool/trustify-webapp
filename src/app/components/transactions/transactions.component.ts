@@ -14,20 +14,18 @@ export class TransactionsComponent implements OnInit {
   init = false;
 
   constructor(
-    private contractService: ContractService,
-    private authService: AuthenticationService,
     private router: Router
   ) {}
 
   async ngOnInit() {
     this.init = false;
 
-    if (!this.authService.isLoggedIn) {
+    if (!AuthenticationService.isLoggedIn) {
       alert('Devi prima effettuare il login per visualizzare le transazioni');
       this.router.navigate(['/user']);
     } else {
-      this.transactions = await this.contractService.getUnreviewedTransactions(
-        this.authService.account
+      this.transactions = await ContractService.getUnreviewedTransactions(
+        AuthenticationService.account
       );
 
       this.init = true;

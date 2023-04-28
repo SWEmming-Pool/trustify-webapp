@@ -13,20 +13,18 @@ export class CheckoutComponent {
   seller: string = this.route.snapshot.params['seller'];
 
   constructor(
-    private contractService: ContractService,
-    private authService: AuthenticationService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
 
   async sendTransaction() {
-    if (!this.authService.isLoggedIn) {
-      await this.authService.login();
+    if (!AuthenticationService.isLoggedIn) {
+      await AuthenticationService.login();
     }
 
     this.router.navigate(['/sending']);
 
-    await this.contractService
+    await ContractService
       .sendTransaction(
         this.route.snapshot.params['seller'],
         this.route.snapshot.params['price']
