@@ -10,7 +10,7 @@ import { Review } from '../components/reviews/Review';
 export class ContractService {
   INFURA_RPC: string =
     'https://sepolia.infura.io/v3/2309bf77660544a0b78cef8a85d33a1f';
-  CONTRACT_ADDRESS: string = '0x0b2A4816F0E88c6a011754D818ebAc4F9f0B372C';
+  CONTRACT_ADDRESS: string = '0xF16a40c5C0dE254dFf3BFA40F4a5C99f908f9aBa';
   CONTRACT_JSON: any = require('../../assets/ReviewSystem.json');
 
   Contract: any;
@@ -107,7 +107,7 @@ export class ContractService {
     }
   }
 
-  async getReviewsForAddress(
+  async getReviewsByAddress(
     type: 'sender' | 'receiver',
     address: string
   ): Promise<Review[]> {
@@ -115,7 +115,7 @@ export class ContractService {
 
     if (type == 'sender') {
       await this.Contract.methods
-        .getReviewsForSender(address)
+        .getReviewsBySender(address)
         .call((error: any, result: any) => {
           if (error && error.message !== 'header not found') {
             alert(error.message);
@@ -137,7 +137,7 @@ export class ContractService {
         });
     } else {
       await this.Contract.methods
-        .getReviewsForReceiver(address)
+        .getReviewsByReceiver(address)
         .call((error: any, result: any) => {
           if (error && error.message !== 'header not found') {
             alert(error.message);

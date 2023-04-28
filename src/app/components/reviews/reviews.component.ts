@@ -27,7 +27,7 @@ export class ReviewsComponent implements OnInit {
       alert('Devi prima effettuare il login per visualizzare le recensioni');
       this.router.navigate(['/user']);
     } else {
-      this.reviews = await this.contractService.getReviewsForAddress(
+      this.reviews = await this.contractService.getReviewsByAddress(
         this.type,
         this.authService.account
       );

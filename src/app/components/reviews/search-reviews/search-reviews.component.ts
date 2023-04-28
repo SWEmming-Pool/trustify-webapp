@@ -28,7 +28,7 @@ export class SearchReviewsComponent {
 
     this.reviews = [];
 
-    this.reviews = await this.contractService.getReviewsForAddress(
+    this.reviews = await this.contractService.getReviewsByAddress(
       this.searchType,
       this.searchQuery
     );
