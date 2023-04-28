@@ -107,7 +107,7 @@ export class ContractService {
     }
   }
 
-  async getReviewsForAddress(
+  async getReviewsByAddress(
     type: 'sender' | 'receiver',
     address: string
   ): Promise<Review[]> {
@@ -115,7 +115,7 @@ export class ContractService {
 
     if (type == 'sender') {
       await this.Contract.methods
-        .getReviewsForSender(address)
+        .getReviewsBySender(address)
         .call((error: any, result: any) => {
           if (error && error.message !== 'header not found') {
             alert(error.message);
@@ -137,7 +137,7 @@ export class ContractService {
         });
     } else {
       await this.Contract.methods
-        .getReviewsForReceiver(address)
+        .getReviewsByReceiver(address)
         .call((error: any, result: any) => {
           if (error && error.message !== 'header not found') {
             alert(error.message);
