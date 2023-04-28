@@ -5,9 +5,6 @@ import {
   IconDefinition,
   faStar as faStarSolid,
 } from '@fortawesome/free-solid-svg-icons';
-import { Transaction } from '../../../transactions/Transaction';
-import { ContractService } from 'src/app/services/contract.service';
-import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-review-list-item',
@@ -30,7 +27,7 @@ export class ReviewListItemComponent implements OnInit {
   }
 
   async ngOnInit() {
-    for (let i = 0; i < this.review.rating; i++) {
+    for (let i = 0; i < this.review.Rating; i++) {
       this.stars[i] = true;
     }
   }

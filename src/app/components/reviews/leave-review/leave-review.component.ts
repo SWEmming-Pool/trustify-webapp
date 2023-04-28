@@ -72,7 +72,7 @@ export class LeaveReviewComponent implements OnInit {
 
     await this.contractService
       .addReview(
-        this.transaction.id,
+        this.transaction.Id,
         this.reviewTitle,
         this.rating,
         this.reviewText

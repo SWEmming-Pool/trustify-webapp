@@ -2,11 +2,11 @@ import { ContractService } from 'src/app/services/contract.service';
 import { Transaction } from '../transactions/Transaction';
 
 export class Review {
-  transaction: Transaction;
-  date: Date;
-  title: string;
-  rating: number;
-  text: string;
+  private transaction: Transaction;
+  private date: Date;
+  private title: string;
+  private rating: number;
+  private text: string;
 
   constructor(
     date: number = 0,
@@ -24,5 +24,25 @@ export class Review {
     contractService.getTransactionById(transactionId).then((transaction) => {
       this.transaction = transaction;
     });
+  }
+
+  get Transaction(): Transaction {
+    return this.transaction;
+  }
+
+  get Date(): Date {
+    return this.date;
+  }
+
+  get Title(): string {
+    return this.title;
+  }
+
+  get Rating(): number {
+    return this.rating;
+  }
+
+  get Text(): string {
+    return this.text;
   }
 }

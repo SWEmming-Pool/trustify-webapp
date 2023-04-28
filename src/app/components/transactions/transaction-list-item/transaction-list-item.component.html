@@ -1,13 +1,13 @@
 <div class="container">
   <div class="centralText">
-    <p class="longAddr" id="transId">{{ transaction.id }}</p>
-    <p class="longAddr">{{ transaction.receiver }}</p>
+    <p class="longAddr" id="transId">{{ transaction.Id }}</p>
+    <p class="longAddr">{{ transaction.Receiver }}</p>
     <p class="dateAmount">
-      {{ transaction.date | date : "yyy-MM-dd" + " • " + transaction.amount }}
+      {{ transaction.Date | date : "yyy-MM-dd" + " • " + transaction.Amount }}
       ETH
     </p>
   </div>
-  <button [routerLink]="['/leave-review', transaction.id]">
+  <button [routerLink]="['/leave-review', transaction.Id]">
     <fa-icon id="rateIcon" [icon]="faStar"></fa-icon>
     <span id="rateText"> Valuta</span>
   </button>

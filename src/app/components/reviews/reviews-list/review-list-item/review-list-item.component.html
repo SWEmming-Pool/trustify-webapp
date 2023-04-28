@@ -1,12 +1,12 @@
 <div class="container">
   <div class="transaction">
-    <p class="longAddr transId">{{ review.transaction.id }}</p>
+    <p class="longAddr transId">{{ review.Transaction.Id }}</p>
     <p class="longAddr transReceiver">
-      {{ review.transaction.receiver }}
+      {{ review.Transaction.Receiver }}
     </p>
   </div>
   <div class="review">
-    <h3 class="reviewTitle">{{ review.title }}</h3>
+    <h3 class="reviewTitle">{{ review.Title }}</h3>
     <div class="starsDate">
       <div class="stars">
         <fa-icon
@@ -15,17 +15,17 @@
           class="rateIcon"
         ></fa-icon>
       </div>
-      <p class="reviewDate">{{ review.date | date : "yyyy-MM-dd" }}</p>
+      <p class="reviewDate">{{ review.Date | date : "yyyy-MM-dd" }}</p>
     </div>
-    <p class="reviewText">{{ review.text }}</p>
+    <p class="reviewText">{{ review.Text }}</p>
   </div>
   <div class="reviewer">
     <fa-icon class="reviewerAvatar" [icon]="faUser" [size]="'xl'"></fa-icon>
     <div class="addressDate">
-      <p class="reviewerAddress longAddr">{{ review.transaction.sender }}</p>
+      <p class="reviewerAddress longAddr">{{ review.Transaction.Sender }}</p>
       <p class="transDate">
         <span>Data transazione:</span>
-        {{ review.transaction.date | date : "yyyy-MM-dd" }}
+        {{ review.Transaction.Date | date : "yyyy-MM-dd" }}
       </p>
     </div>
   </div>

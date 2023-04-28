@@ -1,11 +1,11 @@
 import Web3 from 'web3';
 
 export class Transaction {
-  id: string;
-  date: Date;
-  amount: number;
-  sender: string;
-  receiver: string;
+  private id: string;
+  private date: Date;
+  private amount: number;
+  private sender: string;
+  private receiver: string;
 
   constructor(
     id: string = '',
@@ -19,5 +19,25 @@ export class Transaction {
     this.amount = parseFloat(Web3.utils.fromWei(amount.toString(), 'ether'));
     this.sender = sender;
     this.receiver = receiver;
+  }
+
+  get Id(): string {
+    return this.id;
+  }
+
+  get Date(): Date {
+    return this.date;
+  }
+
+  get Amount(): number {
+    return this.amount;
+  }
+
+  get Sender(): string {
+    return this.sender;
+  }
+
+  get Receiver(): string {
+    return this.receiver;
   }
 }
