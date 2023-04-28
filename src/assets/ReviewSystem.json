@@ -37,7 +37,7 @@
         "type": "address"
       }
     ],
-    "name": "getReviewsForReceiver",
+    "name": "getReviewsByReceiver",
     "outputs":
     [
       {
@@ -86,7 +86,7 @@
         "type": "address"
       }
     ],
-    "name": "getReviewsForSender",
+    "name": "getReviewsBySender",
     "outputs":
     [
       {
@@ -136,114 +136,6 @@
       }
     ],
     "name": "getTransactionById",
-    "outputs":
-    [
-      {
-        "components":
-        [
-          {
-            "internalType": "address",
-            "name": "sender",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "receiver",
-            "type": "address"
-          },
-          {
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "date",
-            "type": "uint256"
-          },
-          {
-            "internalType": "bytes32",
-            "name": "id",
-            "type": "bytes32"
-          }
-        ],
-        "internalType": "struct TransactionLibrary.Transaction",
-        "name": "",
-        "type": "tuple"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs":
-    [
-      {
-        "internalType": "address",
-        "name": "_receiver",
-        "type": "address"
-      },
-      {
-        "internalType": "bytes32",
-        "name": "_transactionId",
-        "type": "bytes32"
-      }
-    ],
-    "name": "getTransactionForReceiver",
-    "outputs":
-    [
-      {
-        "components":
-        [
-          {
-            "internalType": "address",
-            "name": "sender",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "receiver",
-            "type": "address"
-          },
-          {
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "date",
-            "type": "uint256"
-          },
-          {
-            "internalType": "bytes32",
-            "name": "id",
-            "type": "bytes32"
-          }
-        ],
-        "internalType": "struct TransactionLibrary.Transaction",
-        "name": "",
-        "type": "tuple"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs":
-    [
-      {
-        "internalType": "address",
-        "name": "_sender",
-        "type": "address"
-      },
-      {
-        "internalType": "bytes32",
-        "name": "_transactionId",
-        "type": "bytes32"
-      }
-    ],
-    "name": "getTransactionForSender",
     "outputs":
     [
       {
