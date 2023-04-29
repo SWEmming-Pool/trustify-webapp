@@ -19,7 +19,7 @@ export class ContractService {
 
     this.INFURA_RPC =
       'https://sepolia.infura.io/v3/2309bf77660544a0b78cef8a85d33a1f';
-    this.CONTRACT_ADDRESS = '0xF16a40c5C0dE254dFf3BFA40F4a5C99f908f9aBa';
+    this.CONTRACT_ADDRESS = '0x748E332b507968EdBfFE429F95BBF7D621a9a835';
     this.CONTRACT_JSON = require('../../assets/ReviewSystem.json');
     this.Client = new Web3(Web3.givenProvider || this.INFURA_RPC);
 
