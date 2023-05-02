@@ -89,27 +89,27 @@ export class ContractService {
       });
   }
 
-  static async addReview(
-    transactionId: string,
-    reviewTitle: string,
-    rating: number,
-    reviewText: string
-  ) {
+  static async addReview(review: Review) {
     if (
-      reviewTitle.length > 50 ||
-      reviewText.length > 500 ||
-      rating < 1 ||
-      rating > 5 ||
-      reviewTitle.length == 0 ||
-      reviewText.length == 0 ||
-      reviewTitle == undefined ||
-      reviewText == undefined
+      review.Title.length > 50 ||
+      review.Text.length > 500 ||
+      review.Rating < 1 ||
+      review.Rating > 5 ||
+      review.Title.length == 0 ||
+      review.Text.length == 0 ||
+      review.Title == undefined ||
+      review.Text == undefined
     ) {
       alert('La recensione non rispetta i vincoli di validità.');
       throw new Error('Invalid review');
     } else {
       await ContractService.Contract.methods
-        .addReview(transactionId, reviewTitle, rating, reviewText)
+        .addReview(
+          review.Transaction.Id,
+          review.Title,
+          review.Rating,
+          review.Text
+        )
         .send({ from: AuthenticationService.account })
         .on('error', (error: any) => {
           alert(error.message);
