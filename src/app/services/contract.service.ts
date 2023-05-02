@@ -42,7 +42,6 @@ export class ContractService {
           throw new Error(error.message);
         } else {
           result.forEach((transaction: any) => {
-            console.log(typeof (transaction));
             unreviewed.push(
               new Transaction(
                 transaction.id,

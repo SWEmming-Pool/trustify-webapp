@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import Web3 from 'web3';
 import { ContractService } from './contract.service';
 import { Transaction } from '../components/transactions/Transaction';
 
@@ -8,28 +9,32 @@ describe('ContractService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        ContractService, // Add the service to the providers array
+        ContractService,
       ],
     });
+
+    // Mock the getUnreviewedTransactions method
+    spyOn(ContractService.Contract.methods, 'getUnreviewedTransactions').and.returnValue({
+      call: (callback: any) => {
+        callback(null, [
+          ["0x36Ac550A5BD2b6a30f52901b3B63ede555F0fdF1", "0x36Ac550A5BD2b6a30f52901b3B63ede555F0fdF1", "10", "123", "1"]
+        ]);
+      }
+    });
+
+    // Get the instance of the ContractService
     service = TestBed.inject(ContractService);
   });
 
-  it('should get unreviewed transactions', async () => {
-    // Mock the getUnreviewedTransactions method to return a predefined result
-    const expectedResult: Transaction[] = [
-      new Transaction('1', 123, 10, '0x36Ac550A5BD2b6a30f52901b3B63ede555F0fdF1', '0x36Ac550A5BD2b6a30f52901b3B63ede555F0fdF1'),
-    ];
-    const mockResult = ["0x36Ac550A5BD2b6a30f52901b3B63ede555F0fdF1", "0x36Ac550A5BD2b6a30f52901b3B63ede555F0fdF1", "10", "123", "1"];
-    spyOn(ContractService.Contract.methods, 'getUnreviewedTransactions').and.returnValue(
-      Promise.resolve(mockResult)
-    );
+  it('should return an array of transactions', async () => {
+    // Arrange
+    const address = '0x1234567890abcdef';
 
-    // Call the getUnreviewedTransactions method and verify the result
-    const address = '0x1234567890';
+    // Act
+    const result = await service.getUnreviewedTransactions(address);
 
-    const result = await ContractService.getUnreviewedTransactions(address);
-
-    expect(result).toEqual(expectedResult);
-    debugger;
+    // Assert
+    const arr: Transaction[] = [new Transaction("1", 123, 10, "0x36Ac550A5BD2b6a30f52901b3B63ede555F0fdF1", "0x36Ac550A5BD2b6a30f52901b3B63ede555F0fdF1")];
+    expect(result).toEqual(arr);
   });
 });
