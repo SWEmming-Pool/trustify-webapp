@@ -69,10 +69,7 @@ export class LeaveReviewComponent implements OnInit {
 
     await ContractService
       .addReview(
-        this.review.Transaction.Id,
-        this.review.Title,
-        this.review.Rating,
-        this.review.Text
+        this.review
       )
       .catch(() => {
         this.router.navigate(['/transactions']);
