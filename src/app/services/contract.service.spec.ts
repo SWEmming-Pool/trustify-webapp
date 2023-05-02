@@ -31,7 +31,7 @@ describe('ContractService', () => {
     const address = '0x1234567890abcdef';
 
     // Act
-    const result = await service.getUnreviewedTransactions(address);
+    const result = await ContractService.getUnreviewedTransactions(address);
 
     // Assert
     const arr: Transaction[] = [new Transaction("1", 123, 10, "0x36Ac550A5BD2b6a30f52901b3B63ede555F0fdF1", "0x36Ac550A5BD2b6a30f52901b3B63ede555F0fdF1")];
