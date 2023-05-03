@@ -8,8 +8,8 @@
 
   border-radius: 10px;
   column-gap: 0.85rem;
-  width: 92.5vw;
   background-color: white;
+  width: 100%;
 }
 
 img {
@@ -66,18 +66,8 @@ button {
   display: none;
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-  .container {
-    width: 70vw;
-  }
-}
-
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-  .container {
-    width: 50vw;
-  }
 
   img {
     height: 3.5rem;

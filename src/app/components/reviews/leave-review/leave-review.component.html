@@ -1,15 +1,9 @@
 <h2>Lascia una recensione</h2>
 
-<div class="transaction">
-  <div class="centralText">
-    <p class="longAddr" id="transId">{{ review.Transaction.Id }}</p>
-    <p class="longAddr">{{ review.Transaction.Receiver }}</p>
-    <p class="dateAmount">
-      {{ review.Transaction.Date | date : "yyy-MM-dd" + " • " + review.Transaction.Amount }}
-      ETH
-    </p>
-  </div>
-</div>
+<app-transaction-list-item
+  [transaction]="review.Transaction"
+  [leaverev]="true"
+></app-transaction-list-item>
 
 <form class="review" #reviewForm="ngForm" (ngSubmit)="addReview()">
   <div class="reviewTitle">

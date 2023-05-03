@@ -10,7 +10,6 @@ button {
   align-self: center;
 }
 
-.transaction,
 .review {
   display: flex;
   justify-content: space-between;
@@ -21,64 +20,8 @@ button {
   background-color: white;
 }
 
-.transaction {
-  align-items: center;
-  column-gap: 0.85rem;
-  padding: 0.85rem;
-
-  .longAddr {
-    font-size: 1rem;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-  #transId {
-    font-weight: 600;
-  }
-
-  .merchantLogo {
-    margin: unset;
-    height: 3rem;
-    width: 3rem;
-    padding: 0.25rem;
-    border: 1px solid hsla(0, 0%, 60%, 0.15);
-    border-radius: 10px;
-    object-fit: cover;
-    object-position: center;
-    background-color: white;
-  }
-
-  .centralText {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex-grow: 2;
-    justify-content: space-evenly;
-    width: 50%;
-    row-gap: 0.45rem;
-  }
-
-  .merchantDesc {
-    font-size: 1rem;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-  .merchant {
-    font-weight: 600;
-  }
-
-  .desc {
-    font-weight: 300;
-  }
-
-  .dateAmount {
-    color: hsl(0, 0%, 30%);
-    font-weight: 300;
-    font-size: 0.9rem;
-  }
+app-transaction-list-item {
+  width: 92.5vw;
 }
 
 .review {
@@ -169,7 +112,7 @@ button {
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-  .transaction,
+  app-transaction-list-item,
   .review {
     width: 75vw;
   }
@@ -177,7 +120,7 @@ button {
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-  .transaction,
+  app-transaction-list-item,
   .review {
     width: 40vw;
   }
