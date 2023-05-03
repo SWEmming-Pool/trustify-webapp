@@ -7,7 +7,7 @@
       ETH
     </p>
   </div>
-  <button [routerLink]="['/leave-review', transaction.Id]">
+  <button [routerLink]="['/leave-review', transaction.Id]" *ngIf="!leaverev">
     <fa-icon id="rateIcon" [icon]="faStar"></fa-icon>
     <span id="rateText"> Valuta</span>
   </button>
