@@ -1,20 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ReviewsComponent } from './reviews.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 describe('ReviewsComponent', () => {
   let component: ReviewsComponent;
-  let fixture: ComponentFixture<ReviewsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ReviewsComponent ]
+      declarations: [ReviewsComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
-    fixture = TestBed.createComponent(ReviewsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+
+    component = new ReviewsComponent(new ActivatedRoute(), new Router());
   });
 
   it('should create', () => {
