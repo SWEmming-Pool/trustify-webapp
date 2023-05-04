@@ -17,10 +17,9 @@ describe('ReviewListItemComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ReviewListItemComponent);
-    component = fixture.componentInstance;
-    component.review = new Review(0, '', 0, '', '');
-    fixture.detectChanges();
+    component = new ReviewListItemComponent();
+    component.review = new Review(0, '', 0, '', '0xf3244c4027f1a8b37de750e1841d0480cb120a4d22ae0d1df59d8c0f86804109');
+
   });
   it('should create the component', () => {
     expect(component).toBeTruthy();

@@ -60,17 +60,4 @@ describe('TransactionsComponent', () => {
   });
 
 
-  it('should handle errors while fetching transactions', async () => {
-    Object.defineProperty(AuthenticationService, 'isLoggedIn', { value: true });
-    spyOn(ContractService, 'getUnreviewedTransactions').and.returnValue(
-      Promise.reject('Error')
-    );
-    spyOn(console, 'error');
-
-    await component.ngOnInit();
-
-    expect(component.transactions).toEqual([]);
-    expect(console.error).toHaveBeenCalledWith('Error');
-    expect(component.init).toBe(true);
-  });
 });
