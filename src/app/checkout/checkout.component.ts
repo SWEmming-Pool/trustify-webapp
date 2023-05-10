@@ -14,7 +14,8 @@ export class CheckoutComponent {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private contractService: ContractService
   ) {}
 
   async sendTransaction() {
@@ -24,13 +25,13 @@ export class CheckoutComponent {
 
     this.router.navigate(['/sending']);
 
-    await ContractService
+    await this.contractService
       .sendTransaction(
         this.route.snapshot.params['seller'],
         this.route.snapshot.params['price']
       )
       .catch((error) => {
-        alert("ERRORE " + error.message);
+        alert('ERRORE ' + error.message);
         throw new Error(error.message);
       })
       .then(() => {

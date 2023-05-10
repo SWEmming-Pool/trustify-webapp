@@ -8,13 +8,13 @@ import { Review } from '../components/reviews/Review';
   providedIn: 'root',
 })
 export class ContractService {
-  static INFURA_RPC: string;
-  static CONTRACT_ADDRESS: string;
-  static CONTRACT_JSON: any;
-  static Contract: any;
-  static Client: Web3;
+  INFURA_RPC: string;
+  CONTRACT_ADDRESS: string;
+  CONTRACT_JSON: any;
+  Contract: any;
+  Client: Web3;
 
-  static {
+  constructor() {
     console.log('ContractService static constructor');
 
     this.INFURA_RPC =
@@ -29,12 +29,10 @@ export class ContractService {
     );
   }
 
-  static async getUnreviewedTransactions(
-    address: string
-  ): Promise<Transaction[]> {
+  async getUnreviewedTransactions(address: string): Promise<Transaction[]> {
     let unreviewed: Transaction[] = [];
 
-    await ContractService.Contract.methods
+    await this.Contract.methods
       .getUnreviewedTransactions(address)
       .call((error: any, result: any) => {
         if (error && error.message !== 'header not found') {
@@ -58,10 +56,10 @@ export class ContractService {
     return unreviewed;
   }
 
-  static async getTransactionById(id: string): Promise<Transaction> {
+  async getTransactionById(id: string): Promise<Transaction> {
     let transaction: Transaction = new Transaction('', 0, 0, '', '');
 
-    await ContractService.Contract.methods
+    await this.Contract.methods
       .getTransactionById(id)
       .call((error: any, result: any) => {
         if (error) {
@@ -80,16 +78,14 @@ export class ContractService {
     return transaction;
   }
 
-  static async sendTransaction(receiverAddress: string, amount: number) {
-    await ContractService.Contract.methods
-      .sendTransaction(receiverAddress)
-      .send({
-        from: AuthenticationService.account,
-        value: Web3.utils.toWei(amount.toString(), 'ether'),
-      });
+  async sendTransaction(receiverAddress: string, amount: number) {
+    await this.Contract.methods.sendTransaction(receiverAddress).send({
+      from: AuthenticationService.account,
+      value: Web3.utils.toWei(amount.toString(), 'ether'),
+    });
   }
 
-  static async addReview(review: Review) {
+  async addReview(review: Review) {
     if (
       review.Title.length > 50 ||
       review.Text.length > 500 ||
@@ -103,7 +99,7 @@ export class ContractService {
       alert('La recensione non rispetta i vincoli di validità.');
       throw new Error('Invalid review');
     } else {
-      await ContractService.Contract.methods
+      await this.Contract.methods
         .addReview(
           review.Transaction.Id,
           review.Title,
@@ -117,14 +113,14 @@ export class ContractService {
     }
   }
 
-  static async getReviewsByAddress(
+  async getReviewsByAddress(
     type: 'sender' | 'receiver',
     address: string
   ): Promise<Review[]> {
     let reviews: Review[] = [];
 
     if (type == 'sender') {
-      await ContractService.Contract.methods
+      await this.Contract.methods
         .getReviewsBySender(address)
         .call((error: any, result: any) => {
           if (error && error.message !== 'header not found') {
@@ -145,7 +141,7 @@ export class ContractService {
           }
         });
     } else {
-      await ContractService.Contract.methods
+      await this.Contract.methods
         .getReviewsByReceiver(address)
         .call((error: any, result: any) => {
           if (error && error.message !== 'header not found') {

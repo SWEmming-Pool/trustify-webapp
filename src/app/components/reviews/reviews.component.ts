@@ -15,7 +15,8 @@ export class ReviewsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private contractService: ContractService
   ) {
     this.type = this.route.snapshot.params['type'];
   }
@@ -25,7 +26,7 @@ export class ReviewsComponent implements OnInit {
       alert('Devi prima effettuare il login per visualizzare le recensioni');
       this.router.navigate(['/user']);
     } else {
-      this.reviews = await ContractService.getReviewsByAddress(
+      this.reviews = await this.contractService.getReviewsByAddress(
         this.type,
         AuthenticationService.account
       );

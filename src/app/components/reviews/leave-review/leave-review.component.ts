@@ -23,9 +23,10 @@ export class LeaveReviewComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private contractService: ContractService
   ) {
-    this.review = new Review();
+    this.review = new Review(this.contractService);
 
     this.faStars = Array(5).fill(faStar);
     this.stars = document.getElementsByClassName('starIcon');
@@ -40,7 +41,7 @@ export class LeaveReviewComponent implements OnInit {
       alert('Devi prima effettuare il login per lasciare una recensione');
       this.router.navigate(['/user']);
     } else {
-      await ContractService
+      await this.contractService
         .getTransactionById(this.route.snapshot.params['transactionId'])
         .then((t) => {
           this.review.Transaction = t;
@@ -67,10 +68,8 @@ export class LeaveReviewComponent implements OnInit {
   async addReview() {
     this.router.navigate(['/sending']);
 
-    await ContractService
-      .addReview(
-        this.review
-      )
+    await this.contractService
+      .addReview(this.review)
       .catch(() => {
         this.router.navigate(['/transactions']);
         throw new Error();

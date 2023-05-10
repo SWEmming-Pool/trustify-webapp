@@ -15,7 +15,7 @@ export class SearchReviewsComponent {
   reviews: Review[];
   searched: boolean;
 
-  constructor() {
+  constructor(private contractService: ContractService) {
     this.faSearch = faSearch;
     this.searchQuery = '';
     this.searchType = 'sender';
@@ -28,7 +28,7 @@ export class SearchReviewsComponent {
 
     this.reviews = [];
 
-    this.reviews = await ContractService.getReviewsByAddress(
+    this.reviews = await this.contractService.getReviewsByAddress(
       this.searchType,
       this.searchQuery
     );

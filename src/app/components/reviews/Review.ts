@@ -9,20 +9,23 @@ export class Review {
   private text: string;
 
   constructor(
+    private contractService: ContractService,
     date: number = 0,
     title: string = '',
     rating: number = 0,
     text: string = '',
-    transactionId: string = ''
+    transactionId: string = '',
   ) {
     this.date = new Date(date * 1000);
     this.title = title;
     this.rating = rating;
     this.text = text;
     this.transaction = new Transaction();
-    ContractService.getTransactionById(transactionId).then((transaction) => {
-      this.transaction = transaction;
-    });
+    this.contractService
+      .getTransactionById(transactionId)
+      .then((transaction) => {
+        this.transaction = transaction;
+      });
   }
 
   get Transaction(): Transaction {

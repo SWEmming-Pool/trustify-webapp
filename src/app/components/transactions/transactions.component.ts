@@ -14,7 +14,8 @@ export class TransactionsComponent implements OnInit {
   init = false;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private contractService: ContractService
   ) {}
 
   async ngOnInit() {
@@ -24,7 +25,7 @@ export class TransactionsComponent implements OnInit {
       alert('Devi prima effettuare il login per visualizzare le transazioni');
       this.router.navigate(['/user']);
     } else {
-      this.transactions = await ContractService.getUnreviewedTransactions(
+      this.transactions = await this.contractService.getUnreviewedTransactions(
         AuthenticationService.account
       );
 
