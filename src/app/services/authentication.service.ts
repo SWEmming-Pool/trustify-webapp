@@ -10,17 +10,15 @@ declare global {
   providedIn: 'root',
 })
 export class AuthenticationService {
-  static account: string;
+  account: string = '';
 
-  static {
-    console.log('AuthenticationService static constructor');
-
+  constructor() {
     if (this.isLoggedIn) {
       this.account = localStorage.getItem('account')!;
     }
   }
 
-  static async login() {
+  async login() {
     if (this.isInstalled) {
       const provider = await detectEthereumProvider();
       if (provider) {
@@ -37,11 +35,11 @@ export class AuthenticationService {
     }
   }
 
-  static get isInstalled(): boolean {
+  get isInstalled(): boolean {
     return window.ethereum !== undefined;
   }
 
-  static get isLoggedIn(): boolean {
+  get isLoggedIn(): boolean {
     if (this.isInstalled) {
       window.ethereum.on('accountsChanged', (accounts: Array<string>) => {
         if (accounts.length <= 0) {

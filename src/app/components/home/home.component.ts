@@ -7,9 +7,11 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  constructor() {}
+  constructor(
+    private authService: AuthenticationService
+  ) {}
 
   get isLoggedIn(): boolean {
-    return AuthenticationService.isLoggedIn;
+    return this.authService.isLoggedIn;
   }
 }

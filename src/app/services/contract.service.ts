@@ -14,7 +14,9 @@ export class ContractService {
   Contract: any;
   Client: Web3;
 
-  constructor() {
+  constructor(
+    private authService: AuthenticationService,
+  ) {
     console.log('ContractService static constructor');
 
     this.INFURA_RPC =
@@ -80,7 +82,7 @@ export class ContractService {
 
   async sendTransaction(receiverAddress: string, amount: number) {
     await this.Contract.methods.sendTransaction(receiverAddress).send({
-      from: AuthenticationService.account,
+      from: this.authService.account,
       value: Web3.utils.toWei(amount.toString(), 'ether'),
     });
   }
@@ -106,7 +108,7 @@ export class ContractService {
           review.Rating,
           review.Text
         )
-        .send({ from: AuthenticationService.account })
+        .send({ from: this.authService.account })
         .on('error', (error: any) => {
           alert(error.message);
         });

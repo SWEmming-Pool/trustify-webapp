@@ -15,12 +15,13 @@ export class CheckoutComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private contractService: ContractService
+    private contractService: ContractService,
+    private authService: AuthenticationService
   ) {}
 
   async sendTransaction() {
-    if (!AuthenticationService.isLoggedIn) {
-      await AuthenticationService.login();
+    if (!this.authService.isLoggedIn) {
+      await this.authService.login();
     }
 
     this.router.navigate(['/sending']);

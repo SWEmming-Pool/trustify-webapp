@@ -24,7 +24,8 @@ export class LeaveReviewComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private contractService: ContractService
+    private contractService: ContractService,
+    private authService: AuthenticationService
   ) {
     this.review = new Review(this.contractService);
 
@@ -37,7 +38,7 @@ export class LeaveReviewComponent implements OnInit {
   }
 
   async ngOnInit() {
-    if (!AuthenticationService.isLoggedIn) {
+    if (!this.authService.isLoggedIn) {
       alert('Devi prima effettuare il login per lasciare una recensione');
       this.router.navigate(['/user']);
     } else {

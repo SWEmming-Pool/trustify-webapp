@@ -16,19 +16,20 @@ export class ReviewsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private contractService: ContractService
+    private contractService: ContractService,
+    private authService: AuthenticationService
   ) {
     this.type = this.route.snapshot.params['type'];
   }
 
   async ngOnInit() {
-    if (!AuthenticationService.isLoggedIn) {
+    if (!this.authService.isLoggedIn) {
       alert('Devi prima effettuare il login per visualizzare le recensioni');
       this.router.navigate(['/user']);
     } else {
       this.reviews = await this.contractService.getReviewsByAddress(
         this.type,
-        AuthenticationService.account
+        this.authService.account
       );
     }
   }
