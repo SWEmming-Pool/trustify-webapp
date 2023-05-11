@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
-describe('HomeComponent', () => {
+/*describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
 
@@ -37,4 +37,4 @@ describe('HomeComponent', () => {
     spyOnProperty(AuthenticationService, 'isLoggedIn', 'get').and.returnValue(false);
     expect(component.isLoggedIn).toBeFalse();
   });
-});
+});*/

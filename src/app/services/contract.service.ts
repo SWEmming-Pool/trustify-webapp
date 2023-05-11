@@ -17,7 +17,6 @@ export class ContractService {
   constructor(
     private authService: AuthenticationService,
   ) {
-    console.log('ContractService static constructor');
 
     this.INFURA_RPC =
       'https://sepolia.infura.io/v3/2309bf77660544a0b78cef8a85d33a1f';
@@ -29,6 +28,8 @@ export class ContractService {
       this.CONTRACT_JSON,
       this.CONTRACT_ADDRESS
     );
+
+    console.log(this.Contract);
   }
 
   async getUnreviewedTransactions(address: string): Promise<Transaction[]> {
