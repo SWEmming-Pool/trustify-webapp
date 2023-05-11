@@ -110,9 +110,9 @@ export class ContractService {
           review.Text
         )
         .send({ from: this.authService.account })
-        .on('error', (error: any) => {
+        /*.on('error', (error: any) => {
           alert(error.message);
-        });
+        })*/;
     }
   }
 

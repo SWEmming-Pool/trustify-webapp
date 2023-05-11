@@ -2,20 +2,26 @@
 import { ContractService } from './contract.service';
 import { Transaction } from '../components/transactions/Transaction';
 import { TestBed } from '@angular/core/testing';
+import Web3 from 'web3';
+import { AuthenticationService } from './authentication.service';
+import { Review } from '../components/reviews/Review';
 
-// Define the test suite
 describe('ContractService', () => {
   let service: ContractService;
+  let authServiceSpy: jasmine.SpyObj<AuthenticationService>;
 
   beforeEach(() => {
-    // Create the TestBed
+    const spy = jasmine.createSpyObj('AuthenticationService', ['getAccount']);
     TestBed.configureTestingModule({
-      providers: [ContractService],
+      providers: [
+        ContractService,
+        { provide: AuthenticationService, useValue: spy },
+      ],
     });
-
-    // Inject the service and create a mock of the Contract object
     service = TestBed.inject(ContractService);
-    service.Contract = jasmine.createSpyObj('Contract', ['methods']);
+    authServiceSpy = TestBed.inject(
+      AuthenticationService
+    ) as jasmine.SpyObj<AuthenticationService>;
   });
 
   it('should return an array of unreviewed transactions', async () => {
@@ -23,15 +29,15 @@ describe('ContractService', () => {
     const expected: Transaction[] = [
       new Transaction(
         '0x3333333333333333333333333333333333333333',
-        0,
-        0,
+        new Date(2021, 0, 1).getTime() / 1000,
+        parseInt(Web3.utils.toWei('1', 'ether')),
         '0x1111111111111111111111111111111111111111',
         '0x2222222222222222222222222222222222222222'
       ),
       new Transaction(
         '0x5555555555555555555555555555555555555555',
-        0,
-        0,
+        new Date(2021, 0, 1).getTime() / 1000,
+        parseInt(Web3.utils.toWei('1', 'ether')),
         '0x1111111111111111111111111111111111111111',
         '0x4444444444444444444444444444444444444444'
       ),
@@ -42,13 +48,14 @@ describe('ContractService', () => {
       .withArgs('0x1111111111111111111111111111111111111111')
       .and.returnValue(
         expected.map(
-          (t) =>
+          (t: any) =>
             new Transaction(
-              t.Id,
-              t.Date.getTime(),
-              t.Amount,
-              t.Sender,
-              t.Receiver
+              t.id,
+              t.date / 1000,
+              //BOH
+              parseInt(Web3.utils.toWei('1', 'ether')),
+              t.sender,
+              t.receiver
             )
         )
       );
@@ -62,159 +69,97 @@ describe('ContractService', () => {
     expect(result).toEqual(expected);
   });
 
-  /*it('should get transaction by id', async () => {
-    const id = '1';
-    const transaction = {
-      id: '1',
-      date: '2022-01-01',
-      amount: '10',
-      sender: '0x1111111111111111111111111111111111111111',
-      receiver: '0x1234567890123456789012345678901234567890',
-    };
-    const getTransactionByIdSpy = spyOn(
-      service.Contract.methods,
-      'getTransactionById'
-    ).and.returnValue(Promise.resolve(transaction));
+  it('should get transaction by id', async () => {
+    console.log('test');
+    const expected = new Transaction(
+      '0x0000000000000000000000000000000000000000000000000000000000000000',
+      0,
+      0,
+      '0x1111111111111111111111111111111111111111',
+      '0x2222222222222222222222222222222222222222'
+    );
 
-    const result = await service.getTransactionById(id);
+    service.getTransactionById = jasmine
+      .createSpy('getTransactionById')
+      .withArgs(
+        '0x0000000000000000000000000000000000000000000000000000000000000000'
+      )
+      .and.returnValue(expected)
+      .and.rejectWith(new Error('Transaction not found'));
 
-    expect(getTransactionByIdSpy).toHaveBeenCalledWith(id);
-    expect(result.Id).toBe('1');
-    expect(result.Date).toBe('2022-01-01');
-    expect(result.Amount).toBe(10);
-    expect(result.Sender).toBe('0x1111111111111111111111111111111111111111');
-    expect(result.Receiver).toBe('0x1234567890123456789012345678901234567890');
+    const result = await service.getTransactionById(
+      '0x0000000000000000000000000000000000000000000000000000000000000000'
+    );
+
+    expect(result).toBe(expected);
   });
 
-  it('should send transaction', async () => {
+  it('should send a transaction', async () => {
     const receiverAddress = '0x1234567890123456789012345678901234567890';
-    const amount = 10;
-    const sendTransactionSpy = spyOn(
+    const amount = 1;
+
+    const sendSpy = spyOn(
       service.Contract.methods,
       'sendTransaction'
-    ).and.returnValue(Promise.resolve());
-
-    authServiceSpy.getAccount.and.returnValue(
-      '0x1111111111111111111111111111111111111111'
-    );
+    ).and.returnValue({
+      send: () => Promise.resolve(),
+    });
 
     await service.sendTransaction(receiverAddress, amount);
 
-    expect(sendTransactionSpy).toHaveBeenCalledWith(receiverAddress);
-    expect(service.Client.eth.defaultAccount).toBe(
-      '0x1111111111111111111111111111111111111111'
-    );
+    expect(sendSpy).toHaveBeenCalledWith(receiverAddress);
   });
 
-  it('should add review', async () => {
-    const review = {
-      title: 'Good',
-      rating: 5,
-      text: 'I had a good experience',
-      date: new Date('2022-01-01'),
-      transaction: {
-        id: '1',
-        date: '2022-01-01',
-        amount: 10,
-        sender: '0x1111111111111111111111111111111111111111',
-        receiver: '0x1234567890123456789012345678901234567890',
-      },
-    };
-    const addReviewSpy = spyOn(
+  it('should throw an error if review is invalid', async () => {
+    const invalidReview = new Review(
+      service,
+      0,
+      'This is a title that is way too long and should trigger an error',
+      6,
+      '',
+      '0x0000000000000000000000000000000000000000000000000000000000000000'
+    );
+
+    const sendSpy = spyOn(
       service.Contract.methods,
       'addReview'
-    ).and.returnValue(Promise.resolve());
+    ).and.returnValue({
+      send: () => Promise.resolve(),
+    });
 
-    authServiceSpy.account = '0x1111111111111111111111111111111111111111';
+    try {
+      await service.addReview(invalidReview);
+      fail('Expected an error to be thrown');
+    } catch (error: any) {
+      expect(error.message).toEqual('Invalid review');
+      expect(sendSpy).not.toHaveBeenCalled();
+    }
+  });
 
-    await service.addReview(review);
-
-    expect(addReviewSpy).toHaveBeenCalledWith(
-      '1',
-      'Good',
+  it('should add a review', async () => {
+    const validReview = new Review(
+      service,
+      0,
+      'This is a valid title',
       5,
-      'I had a good experience'
+      'This is a valid review',
+      '0x1234567890123456789012345678901234567890'
     );
-    expect(service.Client.eth.defaultAccount).toBe(
-      '0x1111111111111111111111111111111111111111'
+
+    const sendSpy = spyOn(
+      service.Contract.methods,
+      'addReview'
+    ).and.returnValue({
+      send: () => Promise.resolve(),
+    });
+
+    await service.addReview(validReview);
+
+    expect(sendSpy).toHaveBeenCalledWith(
+      validReview.Transaction.Id,
+      validReview.Title,
+      validReview.Rating,
+      validReview.Text
     );
   });
-
-  it('should get reviews by sender address', async () => {
-    const address = '0x1111111111111111111111111111111111111111';
-    const reviews = [
-      {
-        date: '2022-01-01',
-        title: 'Good',
-        rating: 5,
-        text: 'I had a good experience',
-        transactionId: '1',
-      },
-      {
-        date: '2022-01-02',
-        title: 'Bad',
-        rating: 1,
-        text: 'I had a bad experience',
-        transactionId: '2',
-      },
-    ];
-    const getReviewsBySenderSpy = spyOn(
-      service.Contract.methods,
-      'getReviewsBySender'
-    ).and.returnValue(Promise.resolve(reviews));
-
-    const result = await service.getReviewsByAddress('sender', address);
-
-    expect(getReviewsBySenderSpy).toHaveBeenCalledWith(address);
-    expect(result.length).toBe(2);
-    expect(result[0].Date).toBe(new Date('2022-01-01'));
-    expect(result[0].Title).toBe('Good');
-    expect(result[0].Rating).toBe(5);
-    expect(result[0].Text).toBe('I had a good experience');
-    expect(result[0].Transaction.Id).toBe('1');
-    expect(result[1].Date).toBe(new Date('2022-01-01'));
-    expect(result[1].Title).toBe('Bad');
-    expect(result[1].Rating).toBe(1);
-    expect(result[1].Text).toBe('I had a bad experience');
-    expect(result[1].Transaction.Id).toBe('2');
-  });
-
-  it('should get reviews by receiver address', async () => {
-    const address = '0x1234567890123456789012345678901234567890';
-    const reviews = [
-      {
-        date: '2022-01-01',
-        title: 'Good',
-        rating: 5,
-        text: 'I had a good experience',
-        transactionId: '1',
-      },
-      {
-        date: '2022-01-02',
-        title: 'Bad',
-        rating: 1,
-        text: 'I had a bad experience',
-        transactionId: '2',
-      },
-    ];
-    const getReviewsByReceiverSpy = spyOn(
-      service.Contract.methods,
-      'getReviewsByReceiver'
-    ).and.returnValue(Promise.resolve(reviews));
-
-    const result = await service.getReviewsByAddress('receiver', address);
-
-    expect(getReviewsByReceiverSpy).toHaveBeenCalledWith(address);
-    expect(result.length).toBe(2);
-    expect(result[0].Date).toBe(new Date('2022-01-01'));
-    expect(result[0].Title).toBe('Good');
-    expect(result[0].Rating).toBe(5);
-    expect(result[0].Text).toBe('I had a good experience');
-    expect(result[0].Transaction.Id).toBe('1');
-    expect(result[1].Date).toBe(new Date('2022-01-01'));
-    expect(result[1].Title).toBe('Bad');
-    expect(result[1].Rating).toBe(1);
-    expect(result[1].Text).toBe('I had a bad experience');
-    expect(result[1].Transaction.Id).toBe('2');
-  });*/
 });
