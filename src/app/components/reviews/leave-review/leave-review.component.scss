@@ -1,0 +1,127 @@
+h2 {
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  text-align: center;
+}
+
+button {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  align-self: center;
+}
+
+.review {
+  display: flex;
+  justify-content: space-between;
+
+  border: 1px solid hsla(0, 0%, 60%, 0.2);
+  border-radius: 10px;
+  width: 92.5vw;
+  background-color: white;
+}
+
+app-transaction-list-item {
+  width: 92.5vw;
+}
+
+.review {
+  flex-direction: column;
+  padding: 1rem;
+  row-gap: 1rem;
+  margin-bottom: 1rem;
+
+  span {
+    font-weight: 300;
+    font-size: 1rem;
+  }
+
+  .required {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: black;
+  }
+
+  .charCount {
+    align-self: flex-end;
+    font-size: 0.8rem;
+    font-weight: 300;
+  }
+
+  .form-error {
+    color: red;
+    font-size: 0.9rem;
+    font-weight: 300;
+  }
+
+  .reviewTitle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    row-gap: 0.5rem;
+
+    h4 {
+      font-size: 1.15rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.75rem 0.5rem;
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: 7.5px;
+      border: 1px solid hsla(0, 0%, 50%, 0.4);
+    }
+  }
+
+  #stars {
+    display: flex;
+    align-self: center;
+
+    input {
+      display: none;
+    }
+  }
+
+  .starIcon {
+    cursor: pointer;
+    padding: 0 0.5rem;
+  }
+
+  .reviewText {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    row-gap: 0.5rem;
+
+    h4 {
+      font-size: 1.15rem;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 0.75rem 0.5rem;
+      font-size: 1rem;
+      border-radius: 7.5px;
+      border: 1px solid hsla(0, 0%, 50%, 0.4);
+      resize: none;
+      font-family: inherit;
+      height: 15rem;
+    }
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  app-transaction-list-item,
+  .review {
+    width: 75vw;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  app-transaction-list-item,
+  .review {
+    width: 40vw;
+  }
+}

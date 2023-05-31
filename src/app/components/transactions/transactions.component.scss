@@ -1,0 +1,28 @@
+h2 {
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  text-align: center;
+}
+
+#noTrans {
+  font-size: 1.2rem;
+  font-weight: 200;
+}
+
+app-transaction-list-item {
+  width: 92.5vw;
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  app-transaction-list-item {
+    width: 70vw;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  app-transaction-list-item {
+    width: 50vw;
+  }
+}

@@ -1,0 +1,107 @@
+<h2>Lascia una recensione</h2>
+
+<app-transaction-list-item
+  [transaction]="review.Transaction"
+  [leaverev]="true"
+></app-transaction-list-item>
+
+<form class="review" #reviewForm="ngForm" (ngSubmit)="addReview()">
+  <div class="reviewTitle">
+    <h4>
+      <label for="title"
+        >Titolo
+        <span
+          [ngClass]="
+            title.valid || (title.pristine && title.untouched)
+              ? 'required'
+              : 'form-error'
+          "
+          >*</span
+        ></label
+      >
+    </h4>
+    <input
+      type="text"
+      id="title"
+      placeholder="Inserisci il titolo della recensione"
+      maxlength="50"
+      required
+      [(ngModel)]="review.Title"
+      name="title"
+      #title="ngModel"
+      (ngModelChange)="textChange('reviewTitle', review.Title)"
+    />
+    <p class="charCount">{{ titleCharCount }} / 50</p>
+  </div>
+
+  <div id="stars">
+    <input
+      type="radio"
+      id="{{ 'star' + i }}"
+      value="{{ i + 1 }}"
+      *ngFor="let star of [].constructor(5); let i = index"
+      [(ngModel)]="review.Rating"
+      name="rating"
+      required
+    />
+    <label
+      class="full"
+      for="{{ 'star' + i }}"
+      *ngFor="let star of [].constructor(5); let i = index"
+    >
+      <fa-icon
+        class="starIcon"
+        id="{{ i }}"
+        [icon]="faStars[i]"
+        [size]="'2xl'"
+        (click)="fillStars(i)"
+      ></fa-icon>
+    </label>
+    <span>*</span>
+  </div>
+
+  <div class="reviewText">
+    <h4>
+      <label for="text"
+        >Testo
+        <span
+          [ngClass]="
+            text.valid || (text.pristine && text.untouched)
+              ? 'required'
+              : 'form-error'
+          "
+          >*</span
+        ></label
+      >
+    </h4>
+    <textarea
+      id="text"
+      placeholder="Inserisci il testo della recensione"
+      maxlength="500"
+      required
+      [(ngModel)]="review.Text"
+      (ngModelChange)="textChange('reviewText', review.Text)"
+      name="text"
+      #text="ngModel"
+    ></textarea>
+    <p class="charCount">{{ textCharCount }} / 500</p>
+  </div>
+  <p
+    [ngClass]="
+      (text.valid || (text.pristine && text.untouched)) &&
+      (title.valid || (title.pristine && title.untouched))
+        ? 'required'
+        : 'form-error'
+    "
+  >
+    * campi obbligatori
+  </p>
+
+  <button
+    type="submit"
+    class="submitReview"
+    [disabled]="!reviewForm.form.valid"
+  >
+    Invia
+  </button>
+</form>

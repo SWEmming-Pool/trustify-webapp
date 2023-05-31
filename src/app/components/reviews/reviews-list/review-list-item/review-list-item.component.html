@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="transaction">
+    <p class="longAddr transId">{{ review.Transaction.Id }}</p>
+    <p class="longAddr transReceiver">
+      {{ review.Transaction.Receiver }}
+    </p>
+  </div>
+  <div class="review">
+    <h3 class="reviewTitle">{{ review.Title }}</h3>
+    <div class="starsDate">
+      <div class="stars">
+        <fa-icon
+          *ngFor="let filled of stars"
+          [icon]="filled ? faStarSolid : faStar"
+          class="rateIcon"
+        ></fa-icon>
+      </div>
+      <p class="reviewDate">{{ review.Date | date : "yyyy-MM-dd" }}</p>
+    </div>
+    <p class="reviewText">{{ review.Text }}</p>
+  </div>
+  <div class="reviewer">
+    <fa-icon class="reviewerAvatar" [icon]="faUser" [size]="'xl'"></fa-icon>
+    <div class="addressDate">
+      <p class="reviewerAddress longAddr">{{ review.Transaction.Sender }}</p>
+      <p class="transDate">
+        <span>Data transazione:</span>
+        {{ review.Transaction.Date | date : "yyyy-MM-dd" }}
+      </p>
+    </div>
+  </div>
+</div>

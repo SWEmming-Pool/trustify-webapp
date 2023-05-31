@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="centralText">
+    <p class="longAddr" id="transId">{{ transaction.Id }}</p>
+    <p class="longAddr">{{ transaction.Receiver }}</p>
+    <p class="dateAmount">
+      {{ transaction.Date | date : "yyy-MM-dd" + " • " + transaction.Amount }}
+      ETH
+    </p>
+  </div>
+  <button [routerLink]="['/leave-review', transaction.Id]" *ngIf="!leaverev">
+    <fa-icon id="rateIcon" [icon]="faStar"></fa-icon>
+    <span id="rateText"> Valuta</span>
+  </button>
+</div>
